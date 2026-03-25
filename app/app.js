@@ -31,7 +31,7 @@ app.get('/catalogue', (req, res) =>
 // ===== ROUTES API =====
 // ------ CHAUSSETTES ------
 // On ajoute le '/api' afin d'éviter les confusions entre les routes API et page HTML (JSON ou HTML)
-const chaussetteRouter = require('./backend/router/poisson')
+const chaussetteRouter = require('./backend/router/jeu')
 app.use('/api', chaussetteRouter)
 
 // ===== GESTIONNAIRES 404 =====

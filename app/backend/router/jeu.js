@@ -3,7 +3,7 @@ const express = require('express')
 // On crée une instance de router
 const router = express.Router()
 // On importe (require) le fichier controller (backend)
-const poissonController = require('../controller/poisson')
+const poissonController = require('../controller/jeu')
 
 // ====== ROUTES ======
 // ----- API/CHAUSSETTES ------
