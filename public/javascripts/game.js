@@ -1,5 +1,6 @@
 import nodemon from "nodemon";
 import cookieParser from "cookie-parser";
+import express from "express";
 
 // Les nouveaux paliers basés sur le nombre de kills (le Score)
 const PALIER_THRESHOLDS = {
