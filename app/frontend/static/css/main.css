@@ -1,0 +1,149 @@
+/* CSS général pour les classes communes à toutes les pages */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Poppins, sans-serif
+}
+
+.logosnavbar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logosnavbar a:last-child {
+    width: 50px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#logosite {
+    width: 140px;
+}
+
+#logopanier {
+    width: 25px;
+    height: 25px;
+}
+
+.panier {
+    position: relative;
+    width: 50px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.panier a {
+    padding: 0;
+}
+
+
+.navbar {
+    background-color: #114b5f;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+}
+
+.menu.active {
+    display: flex;
+}
+
+.menu li {
+    list-style: none;
+    text-align: center;
+}
+
+.burger {
+    display: block;
+    background: none;
+    border: none;
+    color: #e4fde1;
+    cursor: pointer;
+    font-size: 25px;
+    width: 50px;
+    text-align: left;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.pointrouge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgb(255, 51, 51);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*Format Tablette*/
+@media (min-width: 768px) {
+
+    .burger {
+        display: none;
+    }
+
+    .navbar {
+        position: relative;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .menu li {
+        margin: 0 15px;
+    }
+
+    .menu a {
+        padding: 5px 10px;
+        white-space: nowrap;
+    }
+
+
+}
+
+/*Format Laptop*/
+@media (min-width: 1024px) {}
+
+/*Format Grand écran de bureau*/
+@media (min-width: 1280px) {}
