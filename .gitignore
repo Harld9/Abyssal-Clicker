@@ -1,1 +1,21 @@
-node_modules
+# Dépendances (Les bibliothèques externes)
+node_modules/
+
+# Base de données
+*.sqlite
+*.sqlite3
+*.db
+data/*.sqlite
+
+# Fichiers de configuration secrets
+.env
+.env.local
+
+# Fichiers système (Mac et Windows)
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Fichiers de logs (historique des erreurs)
+npm-debug.log*
+*.log
