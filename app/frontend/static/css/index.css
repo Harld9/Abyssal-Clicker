@@ -1,0 +1,15 @@
+/* CSS uniquement pour l'accueil */
+
+/*Format Tablette*/
+@media (min-width: 768px) {
+    ul {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/*Format Laptop*/
+@media (min-width: 1024px) {}
+
+/*Format Grand écran de bureau*/
+@media (min-width: 1280px) {}
