@@ -2,6 +2,11 @@
    main.css
    Reset + base globale
    ===================== */
+:root {
+    --color-primary: #000000;
+    --color-secondary: #ffffff;
+    --text-color: #ffffff;
+}
 
 * {
     margin: 0;
