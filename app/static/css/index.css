@@ -77,6 +77,7 @@
 
 .imgPoisson:hover {
     cursor: pointer;
+    scale: 1.1;
 }
 
 /* --- Barre des paliers (colonne centrale fine) --- */
@@ -159,12 +160,15 @@
     border-style: solid;
     border-color: black;
     border-image: initial;
-    margin: 1% 25% 1% 5%;
+    margin: 1% 15% 1% 5%;
     background-position: center;
 }
 #succes-box {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
 }
 .succes {
@@ -174,8 +178,10 @@
     border-width: 2px;
     border-style: solid;
     border-color: black;
-    margin : 1% 5%;
+    margin : 1% 1%;
     border-image: initial;
+    width: 75px;
+    height: 75px;
 }
 
 
@@ -185,16 +191,10 @@
     position: fixed;
     top: 5px;
     right: 5px;
-    z-index: 100;
-    cursor: pointer;
-    padding: 4px 10px;
-    margin-left: 10px ;
+    padding: 3px 3px 0 3px;
     background-image: url(../background/lightwood.webp);
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    border-image: initial;
-    background-position: center center;
+    border : 2px solid black;
+    background-position: center;
     color: var(--text-color);
 }
 
