@@ -112,41 +112,52 @@ const modele = {
 
     //Méthode pour faire apparaître un poisson aléatoire en fonction du palier actuel du joueur
     spawnFish(playerPalier) {
+        const nomDeLaListe = "Palier" + playerPalier;
+        const currentFishList = this.catalogue[nomDeLaListe];
 
-        const currentFishList = this.catalogue[playerPalier];
+        console.log("playerPalier =", playerPalier);
+        console.log("clé cherchée =", nomDeLaListe);
+        console.log("currentFishList =", currentFishList);
+
+        if (!currentFishList) {
+            console.error("Liste introuvable :", nomDeLaListe);
+            return null;
+        }
 
         const randomIndex = Math.floor(Math.random() * currentFishList.length);
-        let chosenFish = currentFishList[randomIndex];
+        const chosenFish = currentFishList[randomIndex];
 
-        // Création du poisson normal
-        let fish = {
-            nom: chosenFish.Nom,
-            image: chosenFish.Image,
-            pvMax: chosenFish.PV,
-            pvActuel: chosenFish.PV,
-            rarete: "normal",
-            multiplicateurArgent: 1
-        };
+        this.poisson.pvPoissonMax = chosenFish.PV;
+        this.poisson.pvPoissonActuel = chosenFish.PV;
 
-        // Vérification shiny/golden
-        fish = this.applyRareVariant(fish);
+            // Création du poisson normal
+            let fish = {
+                nom: chosenFish.Nom,
+                image: chosenFish.Image,
+                pvMax: chosenFish.PV,
+                pvActuel: chosenFish.PV,
+                rarete: "normal",
+                multiplicateurArgent: 1
+            };
 
-        return fish;
-    },
+            // Vérification shiny/golden
+            fish = this.applyRareVariant(fish);
+
+            return fish;
+        },
 
 applyRareVariant(fish) {
 
     let random = Math.random() * 100;
 
     // 4% Golden
-    if (random <= 4) {
+    if (random <= 100) {
 
         fish.rarete = "Golden";
         fish.image = fish.image.replace(".png", "Golden.png");
         fish.pvMax *= 5;
         fish.pvActuel = fish.pvMax;
         fish.multiplicateurArgent = 3;
-
     }
 
     // 1% Shiny
