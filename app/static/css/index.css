@@ -5,7 +5,7 @@
 
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 /* --- Grille principale --- */
 /* 4 colonnes : poisson-score | paliers (fine) | améliorations | succès */
@@ -15,10 +15,31 @@
     display: grid;
     grid-template-columns: 2fr 3% 2fr 1fr;
     grid-template-rows: 1fr;
+    grid-template-areas: "poisson paliers ameliorations succes";
     color: var(--text-color);
     text-align: center;
 }
 
+/* On assigne chaque enfant à sa zone */
+#poisson-score        { grid-area: poisson; }
+#paliers              { grid-area: paliers; }
+#ameliorations-argent { grid-area: ameliorations; }
+#succes               { grid-area: succes; }
+
+#interface:has(#paliers.hidden) {
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-areas: "poisson ameliorations succes";
+}
+
+#interface:has(#ameliorations-argent.hidden) {
+    grid-template-columns: 4fr 1fr;
+    grid-template-areas: "poisson succes";
+}
+
+#interface:has(#succes-page.hidden) {
+    grid-template-columns: 100%;
+    grid-template-areas: "poisson";
+}
 
 /* --- Colonne gauche : score + poisson --- */
 #poisson-score {
