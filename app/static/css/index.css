@@ -5,7 +5,7 @@
 
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 /* --- Grille principale --- */
 /* 4 colonnes : poisson-score | paliers (fine) | améliorations | succès */
@@ -15,10 +15,31 @@
     display: grid;
     grid-template-columns: 2fr 3% 2fr 1fr;
     grid-template-rows: 1fr;
+    grid-template-areas: "poisson paliers ameliorations succes";
     color: var(--text-color);
     text-align: center;
 }
 
+/* On assigne chaque enfant à sa zone */
+#poisson-score        { grid-area: poisson; }
+#paliers              { grid-area: paliers; }
+#ameliorations-argent { grid-area: ameliorations; }
+#succes               { grid-area: succes; }
+
+#interface:has(#paliers.hidden) {
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-areas: "poisson ameliorations succes";
+}
+
+#interface:has(#ameliorations-argent.hidden) {
+    grid-template-columns: 4fr 1fr;
+    grid-template-areas: "poisson succes";
+}
+
+#interface:has(#succes-page.hidden) {
+    grid-template-columns: 100%;
+    grid-template-areas: "poisson";
+}
 
 /* --- Colonne gauche : score + poisson --- */
 #poisson-score {
@@ -54,8 +75,9 @@
 
 }
 
-.imgPoisson:hover {
+.imgPoisson > img:hover {
     cursor: pointer;
+    transform: scale(1.1);
 }
 
 /* --- Barre des paliers (colonne centrale fine) --- */
@@ -79,6 +101,7 @@
     background-position: center center;
     color: var(--text-color);
 }
+
 #paliers > button:hover {
     cursor: pointer;
     border: 3px solid black;
@@ -123,7 +146,6 @@
 
 /* --- Panneau succès --- */
 #succes-page {
-    overflow-y: auto;
     display: inline;
     background-image: url(../background/plank.webp);
     border-width: 1px;
@@ -138,23 +160,25 @@
     border-style: solid;
     border-color: black;
     border-image: initial;
-    margin: 1% 25% 1% 5%;
+    margin: 1% 15% 1% 5%;
     background-position: center;
 }
 #succes-box {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: center;
 
 }
 .succes {
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 20%;
     background-image: url(../background/lightwood.webp);
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    margin : 1% 5%;
-    border-image: initial;
+    border : 2px solid black;
+    margin : 1%;
 }
 
 
@@ -164,10 +188,8 @@
     position: fixed;
     top: 5px;
     right: 5px;
-    z-index: 100;
+    padding: 3px 2px 0 2px;
     cursor: pointer;
-    padding: 4px 10px;
-    margin-left: 10px ;
     background-image: url(../background/lightwood.webp);
     border-width: 2px;
     border-style: solid;
