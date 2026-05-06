@@ -12,6 +12,15 @@ const controller = {
             let poisson = modele.obtenirFish()
             vue.updateFish(poisson)
         })
+    },
+
+    sauvegarderPartie() {
+        let sauvegardePartie = JSON.stringify(modele.obtenirDonneesJoueur())
+        console.log(sauvegardePartie)
+        localStorage.setItem("SauvegardePartie", sauvegardePartie)
+        let sauvegardePartieEncodé = btoa(sauvegardePartie)
+        console.log(sauvegardePartieEncodé)
+        // Faire atob() pour transformer la base 64 en json 
     }
 }
 
