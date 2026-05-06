@@ -114,24 +114,26 @@
     background-image: url(../background/plank.webp);
 }
 
-#ameliorations-argent > div {
-    margin: 1% 2%;
-}
 
 /* Améliorations clic et passif côte à côte */
 #ameliorations {
     display: flex;
-    flex: 1 1 0%;
+    flex: 1;
+}
+#a-titre {
+    background-image: url(../background/lightwood.webp);
+    border : 2px solid black;
+    margin: 2% 2% 0 2%;
+    background-position: center;
+    background-size: cover;
 }
 
 #ameliorations > div {
     width: 50%;
     background-image: url(../background/lightwood.webp);
-    margin: 1% 2%;
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    border-image: initial;
+    margin: 0 2%;
+    border : 2px solid black;
+    border-top: none;
 }
 
 #argent {
@@ -145,7 +147,6 @@
 
 /* --- Panneau succès --- */
 #succes-page {
-    overflow-y: auto;
     display: inline;
     background-image: url(../background/plank.webp);
     border-width: 1px;
@@ -154,7 +155,7 @@
     border-image: initial;
 }
 
-#succes-titre {
+#s-titre {
     background-image: url(../background/lightwood.webp);
     border-width: 2px;
     border-style: solid;
@@ -163,7 +164,7 @@
     margin: 1% 15% 1% 5%;
     background-position: center;
 }
-#succes-box {
+#s-box {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
