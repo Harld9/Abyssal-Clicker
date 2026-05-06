@@ -131,7 +131,7 @@
 #ameliorations > div {
     width: 50%;
     background-image: url(../background/lightwood.webp);
-    margin: 0 2%;
+    margin: 0 2% 1% 0;
     border : 2px solid black;
     border-top: none;
 }
