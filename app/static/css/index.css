@@ -1,1 +1,163 @@
-/* CSS uniquement pour l'accueil */
+/* =====================
+   index.css
+   Layout de l'interface
+   ===================== */
+
+
+/* --- Grille principale --- */
+/* 4 colonnes : poisson-score | paliers (fine) | améliorations | succès */
+#interface {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 2fr 3% 2fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+
+/* --- Colonne gauche : score + poisson --- */
+#poisson-score {
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 10% 90%;
+    background-image: url(../background/1_profondeur.png);
+    background-size: cover;
+    background-position: center center;
+}
+
+#score {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../background/lightwood.webp);
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    border-image: initial;
+    background-position: center center;
+    margin: 20px;
+}
+
+#poisson {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Barre des paliers (colonne centrale fine) --- */
+#paliers {
+    display: flex;
+    flex-direction: column;
+    background-image: url(../background/plank.webp);
+}
+
+/* Chaque palier prend une part égale de la hauteur disponible */
+#paliers > div {
+    text-align: center;
+    align-content: center;
+    background-image: url(../background/lightwood.webp);
+    flex: 1 1 0%;
+    margin: 5%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    border-image: initial;
+    background-position: center center;
+}
+
+/* Palier non encore atteint */
+.hidden {
+    display: none;
+}
+
+
+/* --- Colonne droite : argent + améliorations --- */
+#ameliorations-argent {
+    display: flex;
+    flex-direction: column;
+    background-image: url(../background/plank.webp);
+}
+
+#ameliorations-argent > div {
+    margin: 1% 2%;
+}
+
+/* Améliorations clic et passif côte à côte */
+#ameliorations {
+    display: flex;
+    flex: 1 1 0%;
+}
+
+#ameliorations > div {
+    width: 50%;
+    background-image: url(../background/lightwood.webp);
+    margin: 1% 2%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    border-image: initial;
+}
+
+#argent {
+    background-image: url(../background/lightwood.webp);
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    border-image: initial;
+}
+
+
+/* --- Panneau succès --- */
+#succes {
+    overflow-y: auto;
+    display: inline;
+    background-image: url(../background/plank.webp);
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    border-image: initial;
+}
+
+#succes > div {
+    background-image: url(../background/lightwood.webp);
+    margin: 1% 2%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    border-image: initial;
+}
+
+
+/* --- Bouton options fixe en haut à droite --- */
+/* position: fixed = toujours visible, indépendant du scroll */
+#options {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 100;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    border-color: purple;
+    border-image: initial;
+    padding: 4px 10px;
+}
+
+/* =====================
+   Responsive
+   ===================== */
+
+/* Tablette */
+@media (max-width: 768px) {
+    #interface {
+        /* paliers passent en bas sur petits écrans */
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr auto;
+    }
+
+    #paliers {
+        flex-direction: row; /* paliers horizontaux sur tablette */
+        grid-column: span 2;
+    }
+}
