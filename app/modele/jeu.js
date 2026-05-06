@@ -113,7 +113,7 @@ const modele = {
     //Méthode pour faire apparaître un poisson aléatoire en fonction du palier actuel du joueur
     spawnFish(playerPalier) {
 
-        const currentFishList = this.catalogue["Palier" + playerPalier];
+        const currentFishList = this.catalogue[playerPalier];
 
         const randomIndex = Math.floor(Math.random() * currentFishList.length);
         let chosenFish = currentFishList[randomIndex];
@@ -142,7 +142,7 @@ applyRareVariant(fish) {
     if (random <= 4) {
 
         fish.rarete = "Golden";
-        fish.image = fish.image.replace(".png", "_Golden.png");
+        fish.image = fish.image.replace(".png", "Golden.png");
         fish.pvMax *= 5;
         fish.pvActuel = fish.pvMax;
         fish.multiplicateurArgent = 3;
@@ -153,7 +153,7 @@ applyRareVariant(fish) {
     else if (random <= 1) {
 
         fish.rarete = "Shiny";
-        fish.image = fish.image.replace(".png", "_Shiny.png");
+        fish.image = fish.image.replace(".png", "Shiny.png");
         fish.pvMax *= 2;
         fish.pvActuel = fish.pvMax;
         fish.multiplicateurArgent = 10;
