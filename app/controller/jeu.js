@@ -8,6 +8,9 @@ const controller = {
             modele.ajouterClic()
             let resultat = modele.obtenirScore()
             vue.updateScore(resultat)
+
+            let poisson = modele.obtenirFish()
+            vue.updateFish(poisson)
         })
 
     }

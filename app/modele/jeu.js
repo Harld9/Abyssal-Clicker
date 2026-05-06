@@ -1,16 +1,34 @@
 //Objet modele qui possède les infos du joueur (score, argent, etc...)
 const modele = {
     score: 0,
-
+    nbClics: 0,
+    pvPoisson: 10,
+    pvPoissonActuel: 10,
+    poissonActuel: 1,
     //Méthode qui permet de rajouter du score à chaque clic
     ajouterClic() {
-        console.log("Nouveau clic, score +1")
-        modele.score++
+        if (modele.pvPoissonActuel < 1) {
+            vue.updateFish()
+            modele.poissonActuel++
+            modele.pvPoisson = modele.pvPoisson * 1.05
+            modele.pvPoissonActuel = modele.pvPoisson
+            console.log("Le poisson est mort")
+            console.log("Voici le nouveau poisson avec " + modele.pvPoissonActuel + " points de vie")
+        } else {
+            modele.nbClics++
+            modele.pvPoissonActuel--
+            console.log("Encore un effort le poisson a maintenant " + modele.pvPoissonActuel)
+        }
+
     },
 
     //Méthode qui permet d'obtenir le score
     obtenirScore() {
-        return modele.score
+        return modele.nbClics
+    },
+
+    obtenirFish() {
+        return modele.poissonActuel
     },
 
     // Les nouveaux paliers basés sur le nombre de kills (le Score)
