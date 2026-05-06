@@ -1,25 +1,86 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="./static/css/main.css" rel="stylesheet" />
-    <link href="./static/css/index.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    />
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <title>Abyssal Clicker</title>
-  </head>
-  <body>
-    <p id="poisson">Poisson 1</p>
-    <button id="click"></button>
-    <p id="nbClics">Nombre de clics : 0</p>
+  <!-- CSS -->
+  <link href="./static/css/main.css" rel="stylesheet">
+  <link href="./static/css/index.css" rel="stylesheet" />
 
-    <script src="./modele/jeu.js"></script>
-    <script src="./vue/jeu.js"></script>
-    <script src="./controller/jeu.js"></script>
-    <script src="./static/js/game.js"></script>
-  </body>
+  <!-- Police Poppins via Google Fonts -->
+  <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+  />
+
+  <title>Abyssal Clicker</title>
+</head>
+
+<body>
+<div id="interface">
+
+  <!-- Colonne gauche : score + poisson cliquable -->
+  <div id="poisson-score">
+    <div id="score">
+      <p>Score</p>
+      <p id="nbScore">2590000000000000000000000000</p>
+    </div>
+    <div id="poisson">
+      <img src="" alt="Poisson">
+      <p>Poisson</p>
+      <div></div>
+    </div>
+  </div>
+
+  <!-- Colonne centrale : barre des paliers -->
+  <div id="paliers">
+    <div class="palier" id="palier-1">1</div>
+    <div class="palier" id="palier-2">2</div>
+    <div class="palier" id="palier-3">3</div>
+    <div class="palier" id="palier-4">4</div>
+    <div class="palier" id="palier-5">5</div>
+    <div class="palier" id="palier-6">6</div>
+    <div class="palier" id="palier-7">7</div>
+    <div class="palier" id="palier-8">8</div>
+    <div class="palier" id="palier-9">9</div>
+    <div class="palier" id="palier-10">10</div>
+    <div class="palier" id="palier-11">11</div>
+    <div class="palier" id="palier-12">12</div>
+    <div class="palier" id="palier-13">13</div>
+  </div>
+
+  <!-- Colonne droite : argent + améliorations -->
+  <div id="ameliorations-argent">
+    <div id="argent">argent</div>
+    <div id="ameliorations">
+      <div id="a-clic">clic</div>
+      <div id="a-passif">passif</div>
+    </div>
+  </div>
+
+  <!-- Panneau succès -->
+  <div id="succes">
+    <div id="succes-box">
+      succes box
+    </div>
+  </div>
+
+</div>
+
+<!-- Bouton options fixe, en dehors du flux de la grille -->
+
+
+<button id="options">Options</button><!-- Scripts JS dans l'ordre de dépendance -->
+<script src="../js/etat.js"></script>
+<script src="../js/ressources.js"></script>
+<script src="../js/degats.js"></script>
+<script src="../js/poissons.js"></script>
+<script src="../js/upgrades.js"></script>
+<script src="../js/paliers.js"></script>
+<script src="../js/succes.js"></script>
+<script src="../js/save.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/engine.js"></script>
+</body>
 </html>
