@@ -59,7 +59,9 @@
   align-content: center;
   justify-items: center;
   align-items: center;
-  grid-template-rows: 10% 90%;
+  /*auto → la première ligne prend exactement la hauteur de son contenu (#score-bg)
+    1fr → la deuxième ligne prend tout l'espace restant (#poisson)*/
+  grid-template-rows: auto 1fr;
   background-image: url(../background/1_profondeur.png);
   background-size: cover;
   background-position: center center;
@@ -73,10 +75,9 @@
   justify-content: center;
   align-items: center;
   background-image: url(../background/plank.webp);
-  margin: 20px;
+  margin: 10px;
   width: fit-content;
   height: fit-content;
-  max-height: 100%;
   border: 2px solid black;
 }
 
@@ -154,7 +155,6 @@
   display: flex;
   flex-direction: column;
   background-image: url(../background/plank.webp);
-  border-right: 2px solid black;
 }
 
 /* Améliorations clic et passif côte à côte */
@@ -209,6 +209,7 @@
   flex: 1; /* prend tout l'espace restant sous le titre */
   min-height: 0; /* crucial pour que overflow fonctionne dans un flex */
   overflow-y: auto;
+  scrollbar-width: none;
 }
 
 /*----- Amélioration ------*/
@@ -281,8 +282,7 @@
 
 /* --- Panneau succès --- */
 #succes-page {
-  display: flex;
-  flex-direction: column;
+  display: inline;
   background-image: url(../background/plank.webp);
   border-width: 1px;
   border-style: solid;
