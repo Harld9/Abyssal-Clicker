@@ -10,7 +10,7 @@ const vue = {
     //Méthode qui met à jour l'argent' dans l'affichage
     updateArgent(nouveauArgent) {
         const affichageArgent = document.getElementById("argent")
-        affichageArgent.textContent = "Nombre de clics : " + nouveauArgent
+        affichageArgent.textContent = "Argent :" + nouveauArgent
         console.log(nouveauArgent + "argents")
     },
 
@@ -25,7 +25,7 @@ const vue = {
 
         if (!nouveauPoisson) return;
 
-        const imagePoisson = document.querySelector("#imagePoisson");
+        const imagePoisson = document.querySelector("#click img");
         const nomPoisson = document.querySelector("#nomPoisson");
 
         imagePoisson.src = nouveauPoisson.image || nouveauPoisson.Image;
