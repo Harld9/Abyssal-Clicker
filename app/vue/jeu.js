@@ -8,16 +8,19 @@ const vue = {
     },
 
     updateFish(nouveauPoisson) {
+        console.log("Poisson reçu dans la vue :", nouveauPoisson);
 
         if (!nouveauPoisson) return;
 
-        document.querySelector("#imagePoisson").src =
-            nouveauPoisson.image;
+        const imagePoisson = document.querySelector("#imagePoisson");
+        const nomPoisson = document.querySelector("#nomPoisson");
 
-        document.querySelector("#nomPoisson").textContent =
-            nouveauPoisson.nom;
+        imagePoisson.src = nouveauPoisson.image || nouveauPoisson.Image;
 
-        console.log("Poisson affiché :", nouveauPoisson);
+        if (nomPoisson) {
+            nomPoisson.textContent = nouveauPoisson.nom || nouveauPoisson.Nom;
+        }
+    console.log("Image changée vers :", imagePoisson.src);
 }
 }
 

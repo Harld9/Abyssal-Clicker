@@ -25,4 +25,6 @@ const controller = {
 }
 
 //Appelle la fonction initialiser le controller 
-controller.initialiser();
+document.addEventListener("DOMContentLoaded", function () {
+    controller.initialiser();
+});
