@@ -232,7 +232,7 @@ const modele = {
         console.log(this.poisson.pvPoissonActuel)
         // Vérification de la mort du poisson
         if (this.poisson.pvPoissonActuel <= 0) {
-        
+
             // LE POISSON EST MORT : On donne +1 au Score
             this.joueur.score += 1;
             console.log("Poisson tué ! Score total : " + this.joueur.score);
@@ -290,45 +290,3 @@ const modele = {
         this.joueur.seuilPalier = donnees.seuilPalier
     }
 }
-
-/*// Les nouveaux paliers basés sur le nombre de kills (le Score)
- 
-
-//Méthode qui permet d'appliquer des dommages
-applyDamage(damageAmount) {
-    // ASTUCE DE PRO : Math.min empêche de faire plus de dégâts que les HP restants
-    let actualDamage = Math.min(damageAmount, currentFish.current_hp);
-
-    // On retire la vie au poisson
-    currentFish.current_hp -= actualDamage;
-
-    // On donne l'argent immédiat (1 Dégât = 1 Argent)
-    player.money += actualDamage;
-
-    // Vérification de la mort du poisson
-    if (currentFish.current_hp <= 0) {
-
-        // LE POISSON EST MORT : On donne +1 au Score
-        player.score += 1;
-        console.log("Poisson tué ! Score total : " + player.score);
-
-        // On vérifie si on passe au Palier Supérieur
-        let nextPalier = player.palier + 1;
-        if (PALIER_THRESHOLDS[nextPalier] && player.score >= PALIER_THRESHOLDS[nextPalier]) {
-            player.palier = nextPalier;
-            console.log("Bravo ! Palier " + player.palier + " atteint !");
-        }
-        // On fait apparaître le nouveau poisson du bloc correspondant
-        currentFish = spawnFish(player.palier);
-    }
-<<<<<<< HEAD
-    return fish;
-}
-=======
-},
-
- 
->>>>>>> frontend
-}
-*/
-
