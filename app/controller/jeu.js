@@ -14,13 +14,20 @@ const controller = {
         })
     },
 
+    /* chargerPartie() {
+         if (localStorage.getItem('maSauvegarde') !== null) {
+         } else {
+             //alors initialiser une nouvelle partie
+         }
+     },*/
+
     sauvegarderPartie() {
         let sauvegardePartie = JSON.stringify(modele.obtenirDonneesJoueur())
-        console.log(sauvegardePartie)
-        localStorage.setItem("SauvegardePartie", sauvegardePartie)
         let sauvegardePartieEncodé = btoa(sauvegardePartie)
         console.log(sauvegardePartieEncodé)
+        localStorage.setItem("maSauvegarde", sauvegardePartieEncodé);
         // Faire atob() pour transformer la base 64 en json 
+        // JSON.parse pour inverser le stringify
     }
 }
 
