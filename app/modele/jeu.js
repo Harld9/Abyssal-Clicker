@@ -406,9 +406,8 @@ const modele = {
         this.joueur.inventaireObjetPassif = donnees.inventaireObjetPassif
     },
 
-    exporterDonneesSauvegarde() {
+    obtenirDonneesSauvegarde() {
         return btoa(JSON.stringify(this.obtenirDonneesJoueur()));
-
     }
 }
 

@@ -13,7 +13,7 @@ const controller = {
             const code = modele.exporterDonneesSauvegarde()
             navigator.clipboard.writeText(code)
             document.getElementById("recup-sauvegarde").textContent = "Sauvegarde copiée"
-            console.log("Sauvegarde exportée")
+            document.getElementById("output-sauvegarde").textContent = modele.obtenirDonneesSauvegarde()
         })
 
         document.getElementById("options").addEventListener("click", function () {
