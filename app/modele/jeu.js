@@ -335,7 +335,7 @@ const modele = {
     poisson: {
         pvPoissonMax: 10,
         pvPoissonActuel: 10,
-        poissonActuel: 1,
+        poissonActuel: null,
     },
 
     item: {},
@@ -473,9 +473,7 @@ const modele = {
     frapperPoisson(damageAmount) {
         this.joueur.nbClics++
         // ASTUCE DE PRO : Math.min empêche de faire plus de dégâts que les HP restants
-        let dommagesActuels = Math.min(
-            damageAmount,
-            this.poisson.pvPoissonActuel);
+        let dommagesActuels = Math.min(damageAmount, this.poisson.pvPoissonActuel);
 
         // On retire la vie au poisson
         this.poisson.pvPoissonActuel -= dommagesActuels;
@@ -486,8 +484,6 @@ const modele = {
 
         // Vérification de la mort du poisson
         if (this.poisson.pvPoissonActuel <= 0) {
-        
-            // LE POISSON EST MORT : On donne +1 a Argent et on augmente le score du joueur
 
             // LE POISSON EST MORT : On donne +1 au Score
             this.joueur.score += 1;
@@ -565,6 +561,19 @@ const modele = {
         let codeSauvegarde = document.getElementById('codeSauvegarde')
         codeSauvegarde.textContent = sauvegardePartieEncodé
     }
-}
+}   
+
+// Création du premier poisson au lancement du jeu
+modele.poisson.poissonActuel =
+    modele.spawnFish(modele.joueur.palier);
+
+modele.poisson.pvPoissonMax =
+    modele.poisson.poissonActuel.pvMax;
+
+modele.poisson.pvPoissonActuel =
+    modele.poisson.poissonActuel.pvMax;
+
+console.log("Premier poisson chargé :",
+    modele.poisson.poissonActuel);
 
 
