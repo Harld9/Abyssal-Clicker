@@ -2,27 +2,35 @@ const controller = {
 
     initialiser() {
         console.log("Initialisation")
-
-        document.getElementById("imgPoisson").addEventListener("click", function () {
+        const bouton = document.getElementById("click")
+        // Au click sur le bouton, on appelle le modèle on rajoute 1 au score et on met à jour le résultat dans la vue
+        bouton.addEventListener("imgPoisson", function () {
             modele.frapperPoisson(modele.joueur.dommagesActuels)
-            vue.updateScore(modele.obtenirScore())
-            vue.updateFish(modele.obtenirFish())
+            // On récupère le score actuel du modèle et on le met à jour dans la vue
+            let resultat = modele.obtenirNbClics()
+            vue.updateScore(resultat)
+            // On récupère l'argent actuel du modèle et on le met à jour dans la vue
+            let argent = modele.joueur.argent;
+            vue.updateArgent(argent);
+            // On récupère le poisson actuel du modèle et on le met à jour dans la vue
+            let poisson = modele.obtenirFish()
+            vue.updateFish(poisson)
         })
 
-        document.getElementById("recup-sauvegarde").addEventListener("click", function () {
-            const code = modele.exporterDonneesSauvegarde()
-            navigator.clipboard.writeText(code)
-            document.getElementById("recup-sauvegarde").textContent = "Sauvegarde copiée"
-            document.getElementById("output-sauvegarde").textContent = modele.obtenirDonneesSauvegarde()
-        })
+        let options = document.getElementById('options')
 
-        document.getElementById("options").addEventListener("click", function () {
-            document.getElementById("modale-options").classList.remove("hidden")
-        })
 
-        document.getElementById("fermer-options").addEventListener("click", function () {
-            document.getElementById("modale-options").classList.add("hidden")
-        })
+
+        options.addEventListener("click", function () {
+
+            console.log("Sauvegarde Exporté");
+
+            modele.exporterDonneesSauvegarde()
+
+            let codeSauvegarde = document.getElementById('codeSauvegarde')
+
+            navigator.clipboard.writeText(codeSauvegarde.textContent)
+        });
     },
 
     chargerPartie() {

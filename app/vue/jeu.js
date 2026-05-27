@@ -25,7 +25,7 @@ const vue = {
 
         if (!nouveauPoisson) return;
 
-        const imagePoisson = document.querySelector("#imgPoisson  img");
+        const imagePoisson = document.querySelector("#imgPoisson img");
         const nomPoisson = document.querySelector("#nomPoisson");
 
         imagePoisson.src = nouveauPoisson.image || nouveauPoisson.Image;
