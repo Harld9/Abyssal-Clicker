@@ -17,8 +17,8 @@
 /* html et body doivent avoir une hauteur définie
    pour que height: 100% fonctionne dans les enfants */
 html, body {
-    width: 100%;
-    height: 100%;
+    width: 100dvw;   /* dynamic viewport width  = largeur de l'écran */
+    height: 100dvh;  /* dynamic viewport height = hauteur de l'écran */
     overflow: hidden; /* empêche le scroll global */
     font-family: 'Poppins', sans-serif;
 }
