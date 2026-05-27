@@ -57,13 +57,32 @@
 #poisson-score {
     display: grid;
     justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
     grid-template-rows: 10% 90%;
     background-image: url(../background/1_profondeur.png);
     background-size: cover;
     background-position: center center;
 }
 
+#score-bg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../background/plank.webp);
+    margin: 20px;
+    max-width: 100%;
+    width: max-content;
+    height: max-content;
+    max-height: 100%;
+    border: 2px solid black;
+}
+
 #score {
+    margin: 5px;
+    padding: 2px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -71,7 +90,7 @@
     background-image: url(../background/patternwood.webp);
     border: 2px solid black;
     background-position: center;
-    margin: 20px;
+
 }
 
 #poisson {

@@ -3,7 +3,7 @@ const vue = {
     //Méthode qui met à jour le score dans l'affichage
     updateScore(nouveauScore) {
         const affichageScore = document.getElementById("nbScore")
-        affichageScore.textContent = "Nombre de clics : " + nouveauScore
+        affichageScore.textContent = nouveauScore
         console.log("Nombre de clics : " + nouveauScore)
     },
 
