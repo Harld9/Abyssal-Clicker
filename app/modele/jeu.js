@@ -2,7 +2,8 @@
 const modele = {
     joueur: {
         sauvegardeChargee: false,
-        score: 0, nbClics: 0, dommagesActuels: 1, argent: 0, palier: 1, seuilPalier: {
+        score: 0, nbClics: 0, dommagesActuels: 1, argent: 0, palier: 1, mortPoisson: 0,
+        seuilPalier: {
             1: 0, 2: 10, 3: 25, 4: 45, 5: 70, 6: 100,
             7: 140, 8: 190, 9: 250, 10: 320,
             11: 400, 12: 500, 13: 650
@@ -237,6 +238,8 @@ const modele = {
 
             // LE POISSON EST MORT : On donne +1 au Score
             this.joueur.score += 1;
+            this.joueur.mortPoisson += 1;
+            console.log("Nombres de poissons tués : " + this.joueur.mortPoisson)
             console.log("Argent gagné :", this.joueur.argent);
             console.log("Poisson tué ! Score total : " + this.joueur.score);
 
@@ -275,6 +278,9 @@ const modele = {
     obtenirDonneesJoueur() {
         return this.joueur
     },
+    obtenirMortPoisson() {
+        return this.joueur.mortPoisson
+    },
 
     //Méthode pour faire apparaître un poisson aléatoire en fonction du palier actuel du joueur
     spawnFish(playerPalier) {
@@ -306,6 +312,7 @@ const modele = {
         this.joueur.inventaireObjetClic = donnees.joueur.inventaireObjetClic
         this.joueur.inventaireObjetPassif = donnees.joueur.inventaireObjetPassif
         this.joueur.palier = donnees.joueur.palier
+        this.joueur.mortPoisson = donnees.joueur.mortPoisson
         this.poisson.pvPoissonMax = donnees.poisson.pvPoissonMax
         this.poisson.pvPoissonActuel = donnees.poisson.pvPoissonActuel
         this.poisson.poissonActuel = donnees.poisson.poissonActuel

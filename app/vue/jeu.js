@@ -3,8 +3,8 @@ const vue = {
     //Méthode qui met à jour le score dans l'affichage
     updateScore(nouveauScore) {
         const affichageScore = document.getElementById("nbScore")
-        affichageScore.textContent = nouveauScore
-        console.log("Nombre de clics : " + nouveauScore)
+        affichageScore.textContent = "Score : " + nouveauScore
+        console.log("Score : " + nouveauScore)
     },
 
     //Méthode qui met à jour l'argent' dans l'affichage
@@ -13,13 +13,6 @@ const vue = {
         affichageArgent.textContent = "Argent :" + nouveauArgent
         console.log(nouveauArgent + "argents")
     },
-
-    //Méthode qui met à jour les améliorations dans l'affichage selon l'argent disponible
-
-    //Méthode qui met à jour les succès dans l'affichage selon les succès débloqués par le joueur
-
-    //Méthode qui met à jour les paliers dans l'affichage selon les paliers débloqués par le joueur
-
     //Méthode qui met une animation de dégât au poisson.
     damageFish() {
         const poisson = document.getElementById("poisson")
@@ -29,12 +22,18 @@ const vue = {
         }, 100)
     },
 
+    //Méthode qui met à jour les améliorations dans l'affichage selon l'argent disponible
+
+    //Méthode qui met à jour les succès dans l'affichage selon les succès débloqués par le joueur
+
+    //Méthode qui met à jour les paliers dans l'affichage selon les paliers débloqués par le joueur
+
     updateFish(nouveauPoisson) {
         console.log("Poisson reçu dans la vue :", nouveauPoisson);
 
         if (!nouveauPoisson) return;
 
-        const imagePoisson = document.querySelector("#imgPoisson img");
+        const imagePoisson = document.querySelector("#click img");
         const nomPoisson = document.querySelector("#nomPoisson");
 
         imagePoisson.src = nouveauPoisson.image || nouveauPoisson.Image;
@@ -44,6 +43,12 @@ const vue = {
         }
         console.log("Image changée vers :", imagePoisson.src);
     },
+
+    updateMortPoisson(nouveauMortPoisson) {
+        const affichageMortPoisson = document.getElementById('nbScore')
+        affichageMortPoisson.textContent = nouveauMortPoisson
+        console.log("Poissons morts : " + nouveauMortPoisson)
+    }
 }
 
 
