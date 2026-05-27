@@ -6,8 +6,160 @@ const modele = {
             7: 140, 8: 190, 9: 250, 10: 320,
             11: 400, 12: 500, 13: 650
         },
-        inventaireObjetPassif: {},
-        inventaireObjetClic: {},
+        inventaireObjetPassif: {
+            amelioration_1: {
+                nom: "Cage a poisson",
+                bonusDPS: 1,
+                prixBase: 250,
+                quantitePossedee: 0
+            },
+            amelioration_2: {
+                nom: "Filet de peche",
+                bonusDPS: 3,
+                prixBase: 800,
+                quantitePossedee: 0
+            },
+            amelioration_3: {
+                nom: "Barque a rames avec filet",
+                bonusDPS: 6,
+                prixBase: 1800,
+                quantitePossedee: 0
+            },
+            amelioration_4: {
+                nom: "Petit bateau a moteur",
+                bonusDPS: 10,
+                prixBase: 4500,
+                quantitePossedee: 0
+            },
+            amelioration_5: {
+                nom: "Chalutier",
+                bonusDPS: 20,
+                prixBase: 8000,
+                quantitePossedee: 0
+            },
+            amelioration_6: {
+                nom: "Navire-usine",
+                bonusDPS: 75,
+                prixBase: 20000,
+                quantitePossedee: 0
+            },
+            amelioration_7: {
+                nom: "Ferme aquacole",
+                bonusDPS: 200,
+                prixBase: 50000,
+                quantitePossedee: 0
+            },
+            amelioration_8: {
+                nom: "Flotte de chalutiers",
+                bonusDPS: 500,
+                prixBase: 120000,
+                quantitePossedee: 0
+            },
+            amelioration_9: {
+                nom: "Station de pompage marine",
+                bonusDPS: 1500,
+                prixBase: 350000,
+                quantitePossedee: 0
+            },
+            amelioration_10: {
+                nom: "Sous-marin de chalutage",
+                bonusDPS: 4000,
+                prixBase: 1000000,
+                quantitePossedee: 0
+            },
+            amelioration_11: {
+                nom: "Canon a filet en titane",
+                bonusDPS: 6000,
+                prixBase: 1500000,
+                quantitePossedee: 0
+            },
+            amelioration_12: {
+                nom: "Mega-plateforme oceanique",
+                bonusDPS: 10000,
+                prixBase: 3000000,
+                quantitePossedee: 0
+            },
+            amelioration_13: {
+                nom: "Base sous-marine autonome",
+                bonusDPS: 30000,
+                prixBase: 10000000,
+                quantitePossedee: 0
+            }
+        },
+        inventaireObjetClic: {
+            amelioration_1: {
+                nom: "Peche a mains nues",
+                bonusDegat: 1,
+                prixBase: 15,
+                quantitePossedee: 0
+            },
+            amelioration_2: {
+                nom: "Lance en bois taillee",
+                bonusDegat: 2,
+                prixBase: 50,
+                quantitePossedee: 0
+            },
+            amelioration_3: {
+                nom: "Epuisette de plage",
+                bonusDegat: 4,
+                prixBase: 150,
+                quantitePossedee: 0
+            },
+            amelioration_4: {
+                nom: "Canne a peche artisanale",
+                bonusDegat: 6,
+                prixBase: 400,
+                quantitePossedee: 0
+            },
+            amelioration_5: {
+                nom: "Canne a peche avec moulinet",
+                bonusDegat: 10,
+                prixBase: 1200,
+                quantitePossedee: 0
+            },
+            amelioration_6: {
+                nom: "Fusil-harpon de plongee",
+                bonusDegat: 25,
+                prixBase: 3000,
+                quantitePossedee: 0
+            },
+            amelioration_7: {
+                nom: "Appats aux pheromones",
+                bonusDegat: 50,
+                prixBase: 12000,
+                quantitePossedee: 0
+            },
+            amelioration_8: {
+                nom: "Canne en fibre de carbone",
+                bonusDegat: 120,
+                prixBase: 30000,
+                quantitePossedee: 0
+            },
+            amelioration_9: {
+                nom: "Harpon pneumatique",
+                bonusDegat: 300,
+                prixBase: 75000,
+                quantitePossedee: 0
+            },
+            amelioration_10: {
+                nom: "Fusil a ondes soniques",
+                bonusDegat: 800,
+                prixBase: 180000,
+                quantitePossedee: 0
+            },
+            amelioration_11: {
+                nom: "Gantelet electrique",
+                bonusDegat: 2500,
+                prixBase: 500000,
+                quantitePossedee: 0
+            },
+            amelioration_12: {
+                nom: "Lance-torpilles cryogeniques",
+                bonusDegat: 15000,
+                prixBase: 4500000,
+                quantitePossedee: 0
+            }
+        },
     },
 
     poisson: { pvPoissonMax: 10, pvPoissonActuel: 10, poissonActuel: 1, },
@@ -66,6 +218,7 @@ const modele = {
         ]
 
     },
+
     frapperPoisson(damageAmount) {
         this.joueur.nbClics++
         // ASTUCE DE PRO : Math.min empêche de faire plus de dégâts que les HP restants
