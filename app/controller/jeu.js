@@ -1,10 +1,9 @@
 const controller = {
 
     initialiser() {
-        console.log("Initialisation")
-        const bouton = document.getElementById("click")
+        const bouton = document.getElementById("imgPoisson")
         // Au click sur le bouton, on appelle le modèle on rajoute 1 au score et on met à jour le résultat dans la vue
-        bouton.addEventListener("imgPoisson", function () {
+        bouton.addEventListener("click", function () {
             modele.frapperPoisson(modele.joueur.dommagesActuels)
             // On récupère le score actuel du modèle et on le met à jour dans la vue
             let resultat = modele.obtenirNbClics()
@@ -17,7 +16,7 @@ const controller = {
             vue.updateFish(poisson)
         })
 
-        let options = document.getElementById('options')
+        let options = document.getElementById('recup-sauvegarde')
 
 
 
@@ -27,7 +26,7 @@ const controller = {
 
             modele.exporterDonneesSauvegarde()
 
-            let codeSauvegarde = document.getElementById('codeSauvegarde')
+            let codeSauvegarde = document.getElementById('output-sauvegarde')
 
             navigator.clipboard.writeText(codeSauvegarde.textContent)
         });
@@ -36,14 +35,18 @@ const controller = {
     chargerPartie() {
         if (localStorage.getItem("maSauvegarde") === null) return
         const donnees = JSON.parse(atob(localStorage.getItem("maSauvegarde")))
+        console.log("Données de la fonction charger partie : " + donnees)
         modele.importerDonneesSauvegarde(donnees)
-        vue.updateScore(modele.obtenirScore())
+        vue.updateScore(modele.obtenirNbClics())
+        vue.updateFish(modele.obtenirFish())
+        //Penser a faire le getter
+        vue.updateArgent(modele.joueur.argent)
     },
 
     sauvegarderPartie() {
-        const encode = btoa(JSON.stringify(modele.obtenirDonneesJoueur()))
+        const encode = btoa(JSON.stringify(modele.obtenirEtatPartie()))
+        console.log(encode)
         localStorage.setItem("maSauvegarde", encode)
-        console.log("Sauvegarde effectuée")
     }
 }
 

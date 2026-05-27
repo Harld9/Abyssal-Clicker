@@ -1,6 +1,6 @@
 setInterval(function () {
     controller.sauvegarderPartie()
-    console.log("Sauvegarde effectuée")
+    console.log("Partie Sauvegardée !")
 }, 5000);
 
 document.getElementById('options').addEventListener('click', () => {

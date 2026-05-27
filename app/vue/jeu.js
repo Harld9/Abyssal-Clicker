@@ -34,7 +34,7 @@ const vue = {
             nomPoisson.textContent = nouveauPoisson.nom || nouveauPoisson.Nom;
         }
         console.log("Image changée vers :", imagePoisson.src);
-    }
+    },
 }
 
 
