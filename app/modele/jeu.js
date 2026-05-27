@@ -288,5 +288,14 @@ const modele = {
         this.joueur.dommagesActuels = donnees.dommagesActuels
         this.joueur.argent = donnees.argent
         this.joueur.seuilPalier = donnees.seuilPalier
+        this.joueur.inventaireObjetClic = donnees.inventaireObjetClic
+        this.joueur.inventaireObjetPassif = donnees.inventaireObjetPassif
+    },
+
+    exporterDonneesSauvegarde() {
+        let sauvegardePartie = JSON.stringify(modele.obtenirDonneesJoueur())
+        let sauvegardePartieEncodé = btoa(sauvegardePartie)
+        let codeSauvegarde = document.getElementById('codeSauvegarde')
+        codeSauvegarde.textContent = sauvegardePartieEncodé
     }
 }
