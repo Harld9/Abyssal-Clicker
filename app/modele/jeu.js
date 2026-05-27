@@ -130,6 +130,8 @@ const modele = {
         
             // LE POISSON EST MORT : On donne +1 au Score
             this.joueur.score += 1;
+            this.joueur.argent += dommagesActuels; 
+            console.log("Argent gagné :", this.joueur.argent);
             console.log("Poisson tué ! Score total : " + this.joueur.score);
         
             // On vérifie si on passe au Palier Supérieur
