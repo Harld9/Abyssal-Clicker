@@ -156,7 +156,6 @@
     display: flex;
     flex-direction: column;
     background-image: url(../background/plank.webp);
-    border-right: 2px solid black;
 }
 
 
@@ -212,6 +211,7 @@
     flex: 1; /* prend tout l'espace restant sous le titre */
     min-height: 0; /* crucial pour que overflow fonctionne dans un flex */
     overflow-y: auto;
+    scrollbar-width: none;
 }
 
 /*----- Amélioration ------*/
@@ -286,8 +286,7 @@
 
 /* --- Panneau succès --- */
 #succes-page {
-    display: flex;
-    flex-direction: column;
+    display: inline;
     background-image: url(../background/plank.webp);
     border-width: 1px;
     border-style: solid;

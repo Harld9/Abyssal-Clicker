@@ -10,7 +10,7 @@ const vue = {
     //Méthode qui met à jour l'argent' dans l'affichage
     updateArgent(nouveauArgent) {
         const affichageArgent = document.getElementById("argent")
-        affichageArgent.textContent = "Nombre de clics : " + nouveauArgent
+        affichageArgent.textContent = "Argent :" + nouveauArgent
         console.log(nouveauArgent + "argents")
     },
 
@@ -30,8 +30,21 @@ const vue = {
     },
 
     updateFish(nouveauPoisson) {
-        const affichagePoisson = document.getElementById("nomPoisson")
-        affichagePoisson.textContent = "Poisson " + nouveauPoisson
-    }
+        console.log("Poisson reçu dans la vue :", nouveauPoisson);
+
+        if (!nouveauPoisson) return;
+
+        const imagePoisson = document.querySelector("#imgPoisson img");
+        const nomPoisson = document.querySelector("#nomPoisson");
+
+        imagePoisson.src = nouveauPoisson.image || nouveauPoisson.Image;
+
+        if (nomPoisson) {
+            nomPoisson.textContent = nouveauPoisson.nom || nouveauPoisson.Nom;
+        }
+    console.log("Image changée vers :", imagePoisson.src);
 }
+}
+
+
 
