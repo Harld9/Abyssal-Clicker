@@ -1,1 +1,24 @@
-/* CSS général pour les classes communes à toutes les pages */
+/* =====================
+   main.css
+   Reset + base globale
+   ===================== */
+:root {
+    --color-primary: #000000;
+    --color-secondary: #ffffff;
+    --text-color: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* html et body doivent avoir une hauteur définie
+   pour que height: 100% fonctionne dans les enfants */
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* empêche le scroll global */
+    font-family: 'Poppins', sans-serif;
+}

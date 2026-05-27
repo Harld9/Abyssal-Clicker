@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS -->
     <link href="./static/css/main.css" rel="stylesheet" />
     <link href="./static/css/index.css" rel="stylesheet" />
+
+    <!-- Police Poppins via Google Fonts -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -12,11 +16,89 @@
 
     <title>Abyssal Clicker</title>
   </head>
-  <body>
-    <p id="poisson">Poisson 1</p>
-    <button id="click"></button>
-    <p id="nbClics">Nombre de clics : 0</p>
 
+  <body>
+    <div id="interface">
+      <!-- Colonne gauche : score + poisson cliquable -->
+      <div id="poisson-score">
+        <div id="score">
+          <p>Score</p>
+          <p id="nbScore">25900000</p>
+        </div>
+        <div id="poisson">
+          <button class="imgPoisson">
+            <img src="./static/images/poissons/Poisson1.png" alt="Poisson1" />
+          </button>
+          <p id="nomPoisson">Poisson1</p>
+        </div>
+      </div>
+
+      <!-- Colonne centrale : barre des paliers -->
+      <div class="" id="paliers">
+        <button class="palier" id="palier-1">1</button>
+        <button class="palier" id="palier-2">2</button>
+        <button class="hidden palier" id="palier-3">3</button>
+        <button class="hidden palier" id="palier-4">4</button>
+        <button class="hidden palier" id="palier-5">5</button>
+        <button class="hidden palier" id="palier-6">6</button>
+        <button class="hidden palier" id="palier-7">7</button>
+        <button class="hidden palier" id="palier-8">8</button>
+        <button class="hidden palier" id="palier-9">9</button>
+        <button class="hidden palier" id="palier-10">10</button>
+        <button class="hidden palier" id="palier-11">11</button>
+        <button class="hidden palier" id="palier-12">12</button>
+        <button class="hidden palier" id="palier-13">13</button>
+      </div>
+
+      <!-- Colonne droite : argent + améliorations -->
+      <div class="" id="ameliorations-argent">
+        <div id="argent">argent</div>
+        <div id="a-titre"><p>Améliorations</p></div>
+        <div id="ameliorations">
+          <div id="a-clic">clic</div>
+          <div id="a-passif">passif</div>
+        </div>
+      </div>
+
+      <!-- Panneau succès -->
+      <div class="" id="succes-page">
+        <div id="s-titre">
+          <p>Succés</p>
+        </div>
+        <div id="s-box">
+          <div class="succes">
+            <p>succes n°1</p>
+          </div>
+          <div class="succes">
+            <p>succes n°2</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bouton options fixe, en dehors du flux de la grille -->
+
+    <button id="options">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-settings-icon lucide-settings"
+      >
+        <path
+          d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"
+        />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    </button>
+
+    <!-- Scripts JS dans l'ordre de dépendance -->
     <script src="./modele/jeu.js"></script>
     <script src="./vue/jeu.js"></script>
     <script src="./controller/jeu.js"></script>
