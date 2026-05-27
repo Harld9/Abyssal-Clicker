@@ -60,7 +60,9 @@
     align-content: center;
     justify-items: center;
     align-items: center;
-    grid-template-rows: 10% 90%;
+    /*auto → la première ligne prend exactement la hauteur de son contenu (#score-bg)
+    1fr → la deuxième ligne prend tout l'espace restant (#poisson)*/
+    grid-template-rows: auto 1fr;
     background-image: url(../background/1_profondeur.png);
     background-size: cover;
     background-position: center center;
@@ -74,10 +76,9 @@
     justify-content: center;
     align-items: center;
     background-image: url(../background/plank.webp);
-    margin: 20px;
+    margin: 10px;
     width: fit-content;
     height: fit-content;
-    max-height: 100%;
     border: 2px solid black;
 }
 
