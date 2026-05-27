@@ -166,16 +166,16 @@ const modele = {
     catalogue: {
 
         Palier1: [
-            { Nom: "Ruben le Poisson Rouge Majestueux", Image: "../static/images/Poisson1.png", PV: 20 },
-            { Nom: "Barnabé le Colin, Grand Archiduc des Reflets Argentés", Image: "../static/images/Poisson2.png", PV: 20 }
+            { Nom: "Ruben le Poisson Rouge Majestueux", Image: "./static/images/Poisson1.png", PV: 20 },
+            { Nom: "Barnabé le Colin, Grand Archiduc des Reflets Argentés", Image: "./static/images/Poisson2.png", PV: 20 }
         ],
         Palier2: [
-            { Nom: "Théodort le Hareng, l'Illustre Voyageur Scintillant", Image: "../static/images/Poisson3.png", PV: 80 },
-            { Nom: "Barnabé l'Alose, Grand Argentier du Courant Froid.", Image: "../static/images/Poisson4.png", PV: 80 }
+            { Nom: "Théodort le Hareng, l'Illustre Voyageur Scintillant", Image: "./static/images/Poisson3.png", PV: 80 },
+            { Nom: "Barnabé l'Alose, Grand Argentier du Courant Froid.", Image: "./static/images/Poisson4.png", PV: 80 }
         ],
         Palier3: [
-            { Nom: "Hubert La Carpe, Grand Intendant des Eaux Stagnantes", Image: "../static/images/Poisson5.png", PV: 200 },
-            { Nom: "M. Saumon, le Grand Saumon Rose", Image: "../static/images/Poisson6.png", PV: 200 }
+            { Nom: "Hubert La Carpe, Grand Intendant des Eaux Stagnantes", Image: "./static/images/Poisson5.png", PV: 200 },
+            { Nom: "M. Saumon, le Grand Saumon Rose", Image: "./static/images/Poisson6.png", PV: 200 }
         ],
         Palier4: [
             { Nom: "Edouard Le Saumon Noir, Seigneur Affamé des Eaux Douces", Image: "../static/images/Poisson7.png", PV: 500 },
@@ -229,10 +229,10 @@ const modele = {
 
         // On donne l'argent immédiat (1 Dégât = 1 Argent)
         this.joueur.argent += dommagesActuels;
-
+        console.log(this.poisson.pvPoissonActuel)
         // Vérification de la mort du poisson
         if (this.poisson.pvPoissonActuel <= 0) {
-
+        
             // LE POISSON EST MORT : On donne +1 au Score
             this.joueur.score += 1;
             console.log("Poisson tué ! Score total : " + this.joueur.score);
@@ -321,9 +321,14 @@ applyDamage(damageAmount) {
         // On fait apparaître le nouveau poisson du bloc correspondant
         currentFish = spawnFish(player.palier);
     }
+<<<<<<< HEAD
+    return fish;
+}
+=======
 },
 
  
+>>>>>>> frontend
 }
 */
 
