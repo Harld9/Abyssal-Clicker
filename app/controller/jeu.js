@@ -14,12 +14,20 @@ const controller = {
         })
     },
 
-    /* chargerPartie() {
-         if (localStorage.getItem('maSauvegarde') !== null) {
-         } else {
-             //alors initialiser une nouvelle partie
-         }
-     },*/
+    chargerPartie() {
+        if (localStorage.getItem('maSauvegarde') !== null) {
+            donneesLocalstorage = JSON.parse(atob(localStorage.getItem('maSauvegarde')))
+            console.log(JSON.parse(atob(localStorage.getItem('maSauvegarde'))))
+            modele.joueur.score = donneesLocalstorage.score
+            modele.joueur.nbClics = donneesLocalstorage.nbClics
+            modele.joueur.dommagesActuels = donneesLocalstorage.dommagesActuels
+            modele.joueur.argent = donneesLocalstorage.argent
+            modele.joueur.seuilPalier = donneesLocalstorage.seuilPalier
+            vue.updateScore(modele.joueur.nbClics)
+        } else if (localStorage.getItem('maSauvegarde') === null) {
+            return
+        }
+    },
 
     sauvegarderPartie() {
         let sauvegardePartie = JSON.stringify(modele.obtenirDonneesJoueur())
@@ -31,5 +39,8 @@ const controller = {
     }
 }
 
-//Appelle la fonction initialiser le controller 
-controller.initialiser();
+if (localStorage.getItem('maSauvegarde') !== null) {
+    controller.chargerPartie()
+
+}
+controller.initialiser()
