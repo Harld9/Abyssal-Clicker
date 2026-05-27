@@ -56,7 +56,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url(../background/lightwood.webp);
+    background-image: url(../background/patternwood.webp);
     border : 2px solid black;
     background-position: center;
     margin: 20px;
@@ -123,7 +123,7 @@
     min-height: 0;
 }
 #a-titre {
-    background-image: url(../background/lightwood.webp);
+    background-image: url(../background/patternwood.webp);
     border : 2px solid black;
     margin: 2% 2% 0 0;
     background-position: center;
@@ -154,7 +154,7 @@
 }
 
 .a-cli-pas-titre {
-    background-image: url(../background/lightwood.webp);
+    background-image: url(../background/patternwood.webp);
     border : 2px solid black;
     margin: 2%;
     background-position: center;
@@ -231,7 +231,7 @@
 }
 /*----------*/
 #argent {
-    background-image: url(../background/lightwood.webp);
+    background-image: url(../background/patternwood.webp);
     border-width: 2px;
     border-style: solid;
     border-color: black;
@@ -250,7 +250,7 @@
 }
 
 #s-titre {
-    background-image: url(../background/lightwood.webp);
+    background-image: url(../background/patternwood.webp);
     border-width: 2px;
     border-style: solid;
     border-color: black;
@@ -291,6 +291,64 @@
     border : 2px solid black;
     background-position: center;
     color: var(--text-color);
+}
+
+#options:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
+}
+
+/* Fond semi-transparent derrière la modale */
+#modale-options {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modale-bg {
+    background-image: url(../background/plank.webp);
+    background-size: cover;
+    background-position: center;
+    border: 2px solid black;
+    padding: 20px;
+    width: 400px;
+    position: relative;
+}
+
+/* La boîte de la modale */
+#modale-contenu {
+    background-image: url(../background/patternwood.webp);
+    border: 2px solid black;
+    margin: 5%;
+    position: relative;
+}
+
+#modale-contenu > h2 {
+    width: 150px;
+    height: 30px;
+}
+
+/* Bouton fermer */
+#fermer-options {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+#fermer-options:hover {
+    color: black;
 }
 
 /* =====================
