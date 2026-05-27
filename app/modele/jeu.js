@@ -114,9 +114,7 @@ const modele = {
     frapperPoisson(damageAmount) {
         this.joueur.nbClics++
         // ASTUCE DE PRO : Math.min empêche de faire plus de dégâts que les HP restants
-        let dommagesActuels = Math.min(
-            damageAmount, 
-            this.poisson.pvPoissonActuel);
+        let dommagesActuels = Math.min(damageAmount, this.poisson.pvPoissonActuel);
 
         // On retire la vie au poisson
         this.poisson.pvPoissonActuel -= dommagesActuels;
@@ -128,10 +126,8 @@ const modele = {
         // Vérification de la mort du poisson
         if (this.poisson.pvPoissonActuel <= 0) {
         
-            // LE POISSON EST MORT : On donne +1 au Score
+            // LE POISSON EST MORT : On donne +1 a Argent et on augmente le score du joueur
             this.joueur.score += 1;
-            this.joueur.argent += dommagesActuels; 
-            console.log("Argent gagné :", this.joueur.argent);
             console.log("Poisson tué ! Score total : " + this.joueur.score);
         
             // On vérifie si on passe au Palier Supérieur
