@@ -296,6 +296,11 @@
     height: 75px;
 }
 
+.succes.inconnu {
+    filter: grayscale(100%);
+    cursor: default;
+}
+
 
 /* --- Bouton options fixe en haut à droite --- */
 /* position: fixed = toujours visible, indépendant du scroll */
