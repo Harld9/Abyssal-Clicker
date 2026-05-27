@@ -64,6 +64,8 @@
     background-image: url(../background/1_profondeur.png);
     background-size: cover;
     background-position: center center;
+    border: 2px solid pink;
+    width: 100%;
 }
 
 #score-bg {
@@ -97,17 +99,27 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .imgPoisson {
     background: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
-
 }
 
-.imgPoisson:hover {
+.imgPoisson img {
+    width: 80%;
+    display: block;
+    transition: scale 0.1s ease;
+}
+
+.imgPoisson:hover img {
+    scale: 0.9;
     cursor: pointer;
-    scale: 1.1;
 }
 
 /* --- Barre des paliers (colonne centrale fine) --- */
@@ -484,6 +496,16 @@
 .a-box::-webkit-scrollbar-thumb:hover,
 .s-texte-hover::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 0, 0, 0.5);
+}
+
+/* =====================
+   État du poisson
+   ===================== */
+
+.dommage:hover {
+    filter: blur(1px) sepia(100%) saturate(300%) hue-rotate(300deg);
+    scale: 0.9;
+    transition: filter, scale 0.1s ease;
 }
 
 /* =====================

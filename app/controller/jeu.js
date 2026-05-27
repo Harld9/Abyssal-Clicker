@@ -6,6 +6,7 @@ const controller = {
         // Au click sur le bouton, on appelle le modèle on rajoute 1 au score et on met à jour le résultat dans la vue
         bouton.addEventListener("click", function () {
             modele.frapperPoisson(modele.joueur.dommagesActuels)
+            vue.damageFish()
             let resultat = modele.obtenirNbClics()
             vue.updateScore(resultat)
 
