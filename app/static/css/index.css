@@ -56,13 +56,33 @@
 #poisson-score {
   display: grid;
   justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
   grid-template-rows: 10% 90%;
   background-image: url(../background/1_profondeur.png);
   background-size: cover;
   background-position: center center;
+  border: 2px solid pink;
+  width: 100%;
+}
+
+#score-bg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../background/plank.webp);
+  margin: 20px;
+  width: fit-content;
+  height: fit-content;
+  max-height: 100%;
+  border: 2px solid black;
 }
 
 #score {
+  margin: 5px;
+  padding: 2px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,7 +90,6 @@
   background-image: url(../background/patternwood.webp);
   border: 2px solid black;
   background-position: center;
-  margin: 20px;
 }
 
 #poisson {
@@ -78,16 +97,27 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .imgPoisson {
   background: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
 }
 
-.imgPoisson:hover {
+.imgPoisson img {
+  width: 80%;
+  display: block;
+  transition: scale 0.1s ease;
+}
+
+.imgPoisson:hover img {
+  scale: 0.9;
   cursor: pointer;
-  scale: 1.1;
 }
 
 /* --- Barre des paliers (colonne centrale fine) --- */
@@ -124,6 +154,7 @@
   display: flex;
   flex-direction: column;
   background-image: url(../background/plank.webp);
+  border-right: 2px solid black;
 }
 
 /* Améliorations clic et passif côte à côte */
@@ -178,7 +209,6 @@
   flex: 1; /* prend tout l'espace restant sous le titre */
   min-height: 0; /* crucial pour que overflow fonctionne dans un flex */
   overflow-y: auto;
-  scrollbar-width: none;
 }
 
 /*----- Amélioration ------*/
@@ -251,7 +281,8 @@
 
 /* --- Panneau succès --- */
 #succes-page {
-  display: inline;
+  display: flex;
+  flex-direction: column;
   background-image: url(../background/plank.webp);
   border-width: 1px;
   border-style: solid;
@@ -280,6 +311,7 @@
 .succes {
   display: flex;
   align-items: center;
+  justify-content: center;
   background-image: url(../background/lightwood.webp);
   border-width: 2px;
   border-style: solid;
@@ -288,6 +320,35 @@
   border-image: initial;
   width: 75px;
   height: 75px;
+
+  position: relative;
+}
+
+.succes.inconnu {
+  filter: grayscale(100%);
+  cursor: default;
+}
+
+.s-texte-hover {
+  position: absolute;
+  display: none;
+  background-image: url(../background/patternwood.webp);
+  top: 100%;
+  left: 50%; /*commence à 50% du parent*/
+  transform: translateX(-50%); /* recule de la moitié de sa propre largeur */
+  width: max-content;
+  max-width: 150px;
+  max-height: 120%;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px;
+  border: 2px solid black;
+  overflow-y: auto;
+}
+
+.succes:hover .s-texte-hover {
+  display: block;
 }
 
 /* --- Bouton options fixe en haut à droite --- */
@@ -395,6 +456,51 @@
 
 #fermer-options:hover {
   color: black;
+}
+
+/* =====================
+   Scrollbar
+   ===================== */
+
+.a-box::-webkit-scrollbar,
+.s-texte-hover::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Cache les flèches */
+.a-box::-webkit-scrollbar-button,
+.s-texte-hover::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Fond transparent */
+.a-box::-webkit-scrollbar-track,
+.s-texte-hover::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* La barre */
+.a-box::-webkit-scrollbar-thumb,
+.s-texte-hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.a-box::-webkit-scrollbar-thumb:hover,
+.s-texte-hover::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* =====================
+   État du poisson
+   ===================== */
+
+.dommage:hover {
+  filter: blur(1px) sepia(100%) saturate(300%) hue-rotate(300deg);
+  scale: 0.9;
+  transition:
+    filter,
+    scale 0.1s ease;
 }
 
 /* =====================
