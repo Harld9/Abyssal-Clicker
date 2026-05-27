@@ -154,12 +154,43 @@
       </svg>
     </button>
 
-    <p id="codeSauvegarde"></p>
-
+    <div id="modale-options" class="hidden">
+      <div id="modale-bg">
+        <button id="fermer-options">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-x-icon lucide-x"
+          >
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+        <div id="modale-contenu">
+          <h2>OPTIONS</h2>
+          <div>
+            <button id="recup-sauvegarde">Récupérer ma sauvegarde</button>
+            <div id="output-sauvegarde">qzefsgdh</div>
+          </div>
+          <div>
+            <label for="input-sauvegarde"></label
+            ><input type="text" id="input-sauvegarde" />
+            <button id="ajout-sauvegarde">Ajouter ma sauvegarde</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Scripts JS dans l'ordre de dépendance -->
     <script src="./modele/jeu.js"></script>
     <script src="./vue/jeu.js"></script>
     <script src="./controller/jeu.js"></script>
-    <script src="./static/js/jeu.js"></script>
-    <!-- Scripts JS dans l'ordre de dépendance -->
+    <script src="./static/js/game.js"></script>
   </body>
 </html>
