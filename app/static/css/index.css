@@ -6,6 +6,7 @@
 .hidden {
   display: none !important;
 }
+
 /* --- Grille principale --- */
 /* 4 colonnes : poisson-score | paliers (fine) | améliorations | succès */
 #interface {
@@ -107,6 +108,7 @@
   background-position: center center;
   color: var(--text-color);
 }
+
 #paliers > button:hover {
   cursor: pointer;
   border: 3px solid black;
@@ -125,6 +127,7 @@
   display: flex;
   flex: 1;
 }
+
 #a-titre {
   background-image: url(../background/patternwood.webp);
   border: 2px solid black;
@@ -230,6 +233,7 @@
   width: 15%;
   margin-right: 2%;
 }
+
 /*----------*/
 #argent {
   background-image: url(../background/patternwood.webp);
@@ -258,6 +262,7 @@
   margin: 1% 15% 1% 5%;
   background-position: center;
 }
+
 #s-box {
   display: flex;
   flex-wrap: wrap;
@@ -265,6 +270,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .succes {
   display: flex;
   align-items: center;
