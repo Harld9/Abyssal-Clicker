@@ -116,25 +116,65 @@
 
 
 /* Améliorations clic et passif côte à côte */
-#ameliorations {
+#amelioration-page {
     display: flex;
     flex: 1;
 }
 #a-titre {
     background-image: url(../background/lightwood.webp);
     border : 2px solid black;
-    margin: 2% 2% 0 2%;
+    margin: 2% 2% 0 0;
     background-position: center;
     background-size: cover;
 }
 
-#ameliorations > div {
+#amelioration-page > div {
     width: 50%;
-    background-image: url(../background/lightwood.webp);
     margin: 0 2% 1% 0;
     border : 2px solid black;
     border-top: none;
 }
+
+#a-clic {
+
+}
+
+#a-passif {
+
+}
+
+.a-cli-pas-titre {
+    background-image: url(../background/lightwood.webp);
+    border : 2px solid black;
+    margin: 2%;
+    background-position: center;
+    background-size: cover;
+}
+
+.a-box {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.amelioration {
+    display: flex;
+    align-items: center;
+    background-image: url(../background/lightwood.webp);
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    margin : 1% 1%;
+    border-image: initial;
+    height: 75px;
+}
+
+.amelioration:hover {
+
+}
+
+.a-img
 
 #argent {
     background-image: url(../background/lightwood.webp);
