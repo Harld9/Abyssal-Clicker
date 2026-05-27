@@ -113,7 +113,7 @@
   color: black;
 }
 
-/* --- Colonne droite : argent + améliorations --- */
+/* --- barre : argent + améliorations --- */
 #ameliorations-argent {
   display: flex;
   flex-direction: column;

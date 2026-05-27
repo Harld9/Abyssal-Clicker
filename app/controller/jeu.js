@@ -2,7 +2,7 @@
 const controller = {
     initialiser() {
         console.log("Initialisation")
-        const bouton = document.getElementById("imgPoisson")
+        const bouton = document.getElementById("click")
         // Au click sur le bouton, on appelle le modèle on rajoute 1 au score et on met à jour le résultat dans la vue
         bouton.addEventListener("imgPoisson", function () {
             modele.frapperPoisson(modele.joueur.dommagesActuels)
