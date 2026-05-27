@@ -126,6 +126,7 @@
     display: flex;
     flex-direction: column;
     background-image: url(../background/plank.webp);
+    border-right: 2px solid black;
 }
 
 
@@ -181,7 +182,6 @@
     flex: 1; /* prend tout l'espace restant sous le titre */
     min-height: 0; /* crucial pour que overflow fonctionne dans un flex */
     overflow-y: auto;
-    scrollbar-width: none;
 }
 
 /*----- Amélioration ------*/
@@ -286,6 +286,7 @@
 .succes {
     display: flex;
     align-items: center;
+    justify-content: center;
     background-image: url(../background/lightwood.webp);
     border-width: 2px;
     border-style: solid;
@@ -294,11 +295,35 @@
     border-image: initial;
     width: 75px;
     height: 75px;
+
+    position: relative;
 }
 
 .succes.inconnu {
     filter: grayscale(100%);
     cursor: default;
+}
+
+.s-texte-hover {
+    display: none;
+    background-image: url(../background/patternwood.webp);
+    top: 100%;
+    left: 50%; /*commence à 50% du parent*/
+    transform: translateX(-50%); /* recule de la moitié de sa propre largeur */
+}
+
+.succes:hover .s-texte-hover {
+    display: block;
+    position: absolute;
+    width: max-content;
+    max-width: 150px;
+    max-height: 120%;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    padding: 5px;
+    border: 2px solid black;
+    overflow-y: auto;
 }
 
 
@@ -407,6 +432,39 @@
 
 #fermer-options:hover {
     color: black;
+}
+
+/* =====================
+   Scrollbar
+   ===================== */
+
+.a-box::-webkit-scrollbar,
+.s-texte-hover::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Cache les flèches */
+.a-box::-webkit-scrollbar-button,
+.s-texte-hover::-webkit-scrollbar-button  {
+    display: none;
+}
+
+/* Fond transparent */
+.a-box::-webkit-scrollbar-track,
+.s-texte-hover::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* La barre */
+.a-box::-webkit-scrollbar-thumb,
+.s-texte-hover::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.a-box::-webkit-scrollbar-thumb:hover,
+.s-texte-hover::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
 }
 
 /* =====================
