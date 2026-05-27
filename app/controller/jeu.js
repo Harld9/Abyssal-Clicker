@@ -16,14 +16,10 @@ const controller = {
 
     chargerPartie() {
         if (localStorage.getItem('maSauvegarde') !== null) {
-            donneesLocalstorage = JSON.parse(atob(localStorage.getItem('maSauvegarde')))
-            console.log(JSON.parse(atob(localStorage.getItem('maSauvegarde'))))
-            modele.joueur.score = donneesLocalstorage.score
-            modele.joueur.nbClics = donneesLocalstorage.nbClics
-            modele.joueur.dommagesActuels = donneesLocalstorage.dommagesActuels
-            modele.joueur.argent = donneesLocalstorage.argent
-            modele.joueur.seuilPalier = donneesLocalstorage.seuilPalier
-            vue.updateScore(modele.joueur.nbClics)
+            let donneesLocalstorage = JSON.parse(atob(localStorage.getItem('maSauvegarde')))
+            console.log(donneesLocalstorage)
+            modele.importerDonneesSauvegarde(donneesLocalstorage)
+            vue.updateScore(modele.obtenirNbClics())
         } else if (localStorage.getItem('maSauvegarde') === null) {
             return
         }

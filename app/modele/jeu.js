@@ -6,10 +6,11 @@ const modele = {
             7: 140, 8: 190, 9: 250, 10: 320,
             11: 400, 12: 500, 13: 650
         },
+        inventaireObjetPassif: {},
+        inventaireObjetClic: {},
     },
 
     poisson: { pvPoissonMax: 10, pvPoissonActuel: 10, poissonActuel: 1, },
-    item: {},
     catalogue: {
 
         Palier1: [
@@ -127,6 +128,13 @@ const modele = {
             max_hp: chosenFish.hp,
             current_hp: chosenFish.hp
         }
+    },
+    importerDonneesSauvegarde(donnees) {
+        this.joueur.score = donnees.score
+        this.joueur.nbClics = donnees.nbClics
+        this.joueur.dommagesActuels = donnees.dommagesActuels
+        this.joueur.argent = donnees.argent
+        this.joueur.seuilPalier = donnees.seuilPalier
     }
 }
 
@@ -165,3 +173,4 @@ applyDamage(damageAmount) {
  
 }
 */
+
