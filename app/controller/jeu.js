@@ -12,6 +12,21 @@ const controller = {
             let poisson = modele.obtenirFish()
             vue.updateFish(poisson)
         })
+
+        let options = document.getElementById('options')
+
+
+
+        options.addEventListener("click", function () {
+
+            console.log("Sauvegarde Exporté");
+
+            modele.exporterDonneesSauvegarde()
+
+            let codeSauvegarde = document.getElementById('codeSauvegarde')
+
+            navigator.clipboard.writeText(codeSauvegarde.textContent)
+        });
     },
 
     chargerPartie() {
