@@ -3,9 +3,10 @@ setInterval(function () {
     console.log("Sauvegarde effectuée")
 }, 5000);
 
-let options = document.getElementById('options')
+document.getElementById('options').addEventListener('click', () => {
+    document.getElementById('modale-options').classList.remove('hidden')
+})
 
-options.addEventListener("click", function () {
-    console.log("Sauvegarde Exporté");
-    modele.exporterDonneesSauvegarde()
-});
+document.getElementById('fermer-options').addEventListener('click', () => {
+    document.getElementById('modale-options').classList.add('hidden')
+})

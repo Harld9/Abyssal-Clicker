@@ -9,8 +9,8 @@
 /* --- Grille principale --- */
 /* 4 colonnes : poisson-score | paliers (fine) | améliorations | succès */
 #interface {
-  width: 100%;
-  height: 100%;
+  width: 100dvw; /* dynamic viewport width  = largeur de l'écran */
+  height: 100dvh; /* dynamic viewport height = hauteur de l'écran */
   display: grid;
   grid-template-columns: 2fr 3% 2fr 1fr;
   grid-template-rows: 1fr;
@@ -98,7 +98,7 @@
   text-align: center;
   align-content: center;
   background-image: url(../background/lightwood.webp);
-  flex: 1 1 0%;
+  flex: 1 1 0;
   margin: 5%;
   border-width: 2px;
   border-style: solid;
@@ -109,21 +109,23 @@
 }
 #paliers > button:hover {
   cursor: pointer;
-  border: 3px solid black;
-  color: black;
+  filter: brightness(0.9);
 }
 
 /* --- barre : argent + améliorations --- */
 #ameliorations-argent {
+  height: 100%;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   background-image: url(../background/plank.webp);
 }
 
 /* Améliorations clic et passif côte à côte */
-#ameliorations {
+#amelioration-page {
   display: flex;
   flex: 1;
+  min-height: 0;
 }
 #a-titre {
   background-image: url(../background/patternwood.webp);
@@ -133,9 +135,10 @@
   background-size: cover;
 }
 
-#ameliorations > div {
+#amelioration-page > div {
+  height: 100%;
+  min-height: 0;
   width: 50%;
-  background-image: url(../background/lightwood.webp);
   margin: 0 2% 1% 0;
   border: 2px solid black;
   border-top: none;

@@ -25,7 +25,7 @@ const vue = {
 
         if (!nouveauPoisson) return;
 
-        const imagePoisson = document.querySelector("#click img");
+        const imagePoisson = document.querySelector("#imgPoisson  img");
         const nomPoisson = document.querySelector("#nomPoisson");
 
         imagePoisson.src = nouveauPoisson.image || nouveauPoisson.Image;
@@ -33,8 +33,8 @@ const vue = {
         if (nomPoisson) {
             nomPoisson.textContent = nouveauPoisson.nom || nouveauPoisson.Nom;
         }
-    console.log("Image changée vers :", imagePoisson.src);
-}
+        console.log("Image changée vers :", imagePoisson.src);
+    }
 }
 
 
