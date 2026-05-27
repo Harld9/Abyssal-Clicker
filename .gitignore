@@ -20,5 +20,6 @@ ehthumbs.db
 npm-debug.log*
 *.log
 
-# Fichier jetlab
-.idea
+
+
+.idea/
