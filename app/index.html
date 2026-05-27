@@ -27,7 +27,7 @@
             <p id="nbScore">25900000</p>
         </div>
         <div id="poisson">
-            <button class="imgPoisson"><img src="./static/images/poissons/Poisson1.png" alt="Poisson1"></button>
+            <button class="imgPoisson" id="click"><img src="./static/images/poissons/Poisson1.png" alt="Poisson1"></button>
             <p id="nomPoisson">Poisson1</p>
         </div>
     </div>
@@ -51,13 +51,13 @@
 
     <!-- Colonne droite : argent + améliorations -->
     <div class="" id="ameliorations-argent">
-        <div id="argent">argent</div>
+        <div id="argent">10 argents</div>
         <div id="a-titre"><p>Améliorations</p></div>
         <div id="amelioration-page">
             <div id="a-clic">
                 <div class="a-cli-pas-titre">clic</div>
                 <div class="a-box">
-                    <div class="amelioration">
+                    <div class="amelioration" id="a-clic-1">
                         <img class="a-img" alt="a-img" src="./static/images/items/Item1.png">
                         <div class="a-nom-prix">
                             <p class="a-nom">Pêche à mains nues</p>
@@ -65,14 +65,35 @@
                         </div>
                         <div class="a-quantite">x26</div>
                     </div>
-                    <div class="amelioration">upgrade n°#</div>
+                    <div class="amelioration inconnu" id="a-clic-2">
+                        <img class="a-img" alt="a-img" src="./static/images/ui/question-mark.png">
+                        <div class="a-nom-prix">
+                            <p class="a-nom">????</p>
+                            <p class="a-prix">15 argents</p>
+                        </div>
+                        <div class="a-quantite"></div>
+                    </div>
                 </div>
             </div>
             <div id="a-passif">
                 <div class="a-cli-pas-titre">passif</div>
                 <div class="a-box">
-                    <div class="amelioration">upgrade n°#</div>
-                    <div class="amelioration">upgrade n°#</div>
+                    <div class="amelioration" id="a-passif-1">
+                        <img class="a-img" alt="a-img" src="./static/images/items/Item1.png">
+                        <div class="a-nom-prix">
+                            <p class="a-nom">Pêche à mains nues</p>
+                            <p class="a-prix">15 argents</p>
+                        </div>
+                        <div class="a-quantite">x26</div>
+                    </div>
+                    <div class="amelioration inconnu" id="a-passif-2">
+                        <img class="a-img" alt="a-img" src="./static/images/ui/question-mark.png">
+                        <div class="a-nom-prix">
+                            <p class="a-nom">????</p>
+                            <p class="a-prix">15 argents</p>
+                        </div>
+                        <div class="a-quantite"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -107,5 +128,9 @@
 </button>
 
 <!-- Scripts JS dans l'ordre de dépendance -->
+<script src="./modele/jeu.js"></script>
+<script src="./vue/jeu.js"></script>
+<script src="./controller/jeu.js"></script>
+<!--<script src="./static/js/game.js"></script> -->
 </body>
 </html>
