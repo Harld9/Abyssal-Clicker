@@ -73,9 +73,8 @@
     align-items: center;
     background-image: url(../background/plank.webp);
     margin: 20px;
-    max-width: 100%;
-    width: max-content;
-    height: max-content;
+    width: fit-content;
+    height: fit-content;
     max-height: 100%;
     border: 2px solid black;
 }
@@ -275,7 +274,8 @@
 
 /* --- Panneau succès --- */
 #succes-page {
-    display: inline;
+    display: flex;
+    flex-direction: column;
     background-image: url(../background/plank.webp);
     border-width: 1px;
     border-style: solid;
@@ -324,16 +324,12 @@
 }
 
 .s-texte-hover {
+    position: absolute;
     display: none;
     background-image: url(../background/patternwood.webp);
     top: 100%;
     left: 50%; /*commence à 50% du parent*/
     transform: translateX(-50%); /* recule de la moitié de sa propre largeur */
-}
-
-.succes:hover .s-texte-hover {
-    display: block;
-    position: absolute;
     width: max-content;
     max-width: 150px;
     max-height: 120%;
@@ -343,6 +339,10 @@
     padding: 5px;
     border: 2px solid black;
     overflow-y: auto;
+}
+
+.succes:hover .s-texte-hover {
+    display: block;
 }
 
 
