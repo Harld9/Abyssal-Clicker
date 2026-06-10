@@ -1,6 +1,13 @@
 //Objet vue qui possède les infos visibles
 const vue = {
     //Méthode qui met à jour le score dans l'affichage
+    updateClic(nouveauClic) {
+        const affichageClic = document.getElementById("nbClic")
+        affichageClic.textContent = nouveauClic
+        console.log("Nombre de clics : " + nouveauClic)
+    },
+
+    //Méthode qui met à jour le score dans l'affichage
     updateScore(nouveauScore) {
         const affichageScore = document.getElementById("nbScore")
         affichageScore.textContent = nouveauScore
@@ -11,23 +18,18 @@ const vue = {
     updateArgent(nouveauArgent) {
         const affichageArgent = document.getElementById("argent")
         affichageArgent.textContent = "Argent :" + nouveauArgent
-        console.log(nouveauArgent + "argents")
+        console.log(nouveauArgent + "argent")
     },
     //Méthode qui met une animation de dégât au poisson.
     damageFish() {
         const poisson = document.getElementById("poisson")
+        void poisson.offsetWidth;
         poisson.classList.add("dommage")
         setTimeout(() => {
             poisson.classList.remove("dommage")
         }, 100)
     },
-
-    //Méthode qui met à jour les améliorations dans l'affichage selon l'argent disponible
-
-    //Méthode qui met à jour les succès dans l'affichage selon les succès débloqués par le joueur
-
-    //Méthode qui met à jour les paliers dans l'affichage selon les paliers débloqués par le joueur
-
+    //Méthode qui met à jour le poisson dans l'affichage
     updateFish(nouveauPoisson) {
         console.log("Poisson reçu dans la vue :", nouveauPoisson);
 
@@ -43,13 +45,9 @@ const vue = {
         }
         console.log("Image changée vers :", imagePoisson.src);
     },
-
     updateMortPoisson(nouveauMortPoisson) {
         const affichageMortPoisson = document.getElementById('nbScore')
         affichageMortPoisson.textContent = nouveauMortPoisson
         console.log("Poissons morts : " + nouveauMortPoisson)
-    }
+    },
 }
-
-
-

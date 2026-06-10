@@ -3,7 +3,6 @@
    Layout de l'interface
    ===================== */
 
-
 .hidden {
     display: none !important;
 }
@@ -23,445 +22,440 @@
 
 /* On assigne chaque enfant à sa zone */
 #poisson-score {
-    grid-area: poisson;
+  grid-area: poisson;
 }
 
 #paliers {
-    grid-area: paliers;
+  grid-area: paliers;
 }
 
 #ameliorations-argent {
-    grid-area: ameliorations;
+  grid-area: ameliorations;
 }
 
 #succes {
-    grid-area: succes;
+  grid-area: succes;
 }
 
 #interface:has(#paliers.hidden) {
-    grid-template-columns: 2fr 2fr 1fr;
-    grid-template-areas: "poisson ameliorations succes";
+  grid-template-columns: 2fr 2fr 1fr;
+  grid-template-areas: "poisson ameliorations succes";
 }
 
 #interface:has(#ameliorations-argent.hidden) {
-    grid-template-columns: 4fr 1fr;
-    grid-template-areas: "poisson succes";
+  grid-template-columns: 4fr 1fr;
+  grid-template-areas: "poisson succes";
 }
 
 #interface:has(#succes-page.hidden) {
-    grid-template-columns: 100%;
-    grid-template-areas: "poisson";
+  grid-template-columns: 100%;
+  grid-template-areas: "poisson";
 }
 
 /* --- Colonne gauche : score + poisson --- */
 #poisson-score {
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    justify-items: center;
-    align-items: center;
-    /*auto → la première ligne prend exactement la hauteur de son contenu (#score-bg)
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  /*auto → la première ligne prend exactement la hauteur de son contenu (#score-bg)
     1fr → la deuxième ligne prend tout l'espace restant (#poisson)*/
-    grid-template-rows: auto 1fr;
-    background-image: url(../background/1_profondeur.png);
-    background-size: cover;
-    background-position: center center;
-    width: 100%;
+  grid-template-rows: auto 1fr;
+  background-image: url(../background/1_profondeur.png);
+  background-size: cover;
+  background-position: center center;
+  border: 2px solid pink;
+  width: 100%;
 }
 
 #score-bg {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url(../background/plank.webp);
-    margin: 10px;
-    width: fit-content;
-    height: fit-content;
-    border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../background/plank.webp);
+  margin: 10px;
+  width: fit-content;
+  height: fit-content;
+  border: 2px solid black;
 }
 
 #score {
-    margin: 5px;
-    padding: 2px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url(../background/patternwood.webp);
-    border: 2px solid black;
-    background-position: center;
-
+  margin: 5px;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../background/patternwood.webp);
+  border: 2px solid black;
+  background-position: center;
 }
 
 #poisson {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .imgPoisson {
-    background: none;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
+  background: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
 }
 
 .imgPoisson img {
-    width: 80%;
-    display: block;
-    transition: scale 0.1s ease;
+  width: 80%;
+  display: block;
+  transition: scale 0.1s ease;
 }
 
 .imgPoisson:hover img {
-    scale: 0.9;
-    cursor: pointer;
+  scale: 0.9;
+  cursor: pointer;
 }
 
 /* --- Barre des paliers (colonne centrale fine) --- */
 #paliers {
-    display: flex;
-    flex-direction: column;
-    background-image: url(../background/plank.webp);
+  display: flex;
+  flex-direction: column;
+  background-image: url(../background/plank.webp);
 }
 
 /* Chaque palier prend une part égale de la hauteur disponible */
 #paliers > button {
-    text-align: center;
-    align-content: center;
-    background-image: url(../background/lightwood.webp);
-    flex: 1 1 0;
-    margin: 5%;
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    border-image: initial;
-    background-position: center center;
-    color: var(--text-color);
+  text-align: center;
+  align-content: center;
+  background-image: url(../background/lightwood.webp);
+  flex: 1 1 0;
+  margin: 5%;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  border-image: initial;
+  background-position: center center;
+  color: var(--text-color);
 }
 
 #paliers > button:hover {
-    cursor: pointer;
-    filter: brightness(0.9);
+  cursor: pointer;
+  filter: brightness(0.9);
 }
 
 /* --- barre : argent + améliorations --- */
 #ameliorations-argent {
-    height: 100%;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-    background-image: url(../background/plank.webp);
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background-image: url(../background/plank.webp);
 }
-
 
 /* Améliorations clic et passif côte à côte */
 #amelioration-page {
-    display: flex;
-    flex: 1;
-    min-height: 0;
+  display: flex;
+  flex: 1;
+  min-height: 0;
 }
 
 #a-titre {
-    background-image: url(../background/patternwood.webp);
-    border: 2px solid black;
-    margin: 2% 2% 0 0;
-    background-position: center;
-    background-size: cover;
+  background-image: url(../background/patternwood.webp);
+  border: 2px solid black;
+  margin: 2% 2% 0 0;
+  background-position: center;
+  background-size: cover;
 }
 
 #amelioration-page > div {
-    height: 100%;
-    min-height: 0;
-    width: 50%;
-    margin: 0 2% 1% 0;
-    border: 2px solid black;
-    border-top: none;
+  height: 100%;
+  min-height: 0;
+  width: 50%;
+  margin: 0 2% 1% 0;
+  border: 2px solid black;
+  border-top: none;
 }
 
 #a-clic {
-    height: 100%;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 #a-passif {
-    height: 100%;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .a-cli-pas-titre {
-    background-image: url(../background/patternwood.webp);
-    border: 2px solid black;
-    margin: 2%;
-    background-position: center;
-    background-size: cover;
+  background-image: url(../background/patternwood.webp);
+  border: 2px solid black;
+  margin: 2%;
+  background-position: center;
+  background-size: cover;
 }
 
 .a-box {
-    display: flex;
-    flex-direction: column;
-    flex: 1; /* prend tout l'espace restant sous le titre */
-    min-height: 0; /* crucial pour que overflow fonctionne dans un flex */
-    overflow-y: auto;
-    scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* prend tout l'espace restant sous le titre */
+  min-height: 0; /* crucial pour que overflow fonctionne dans un flex */
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 /*----- Amélioration ------*/
 .amelioration {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-image: url(../background/lightwood.webp);
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    margin: 1%;
-    border-image: initial;
-    height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url(../background/lightwood.webp);
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  margin: 1%;
+  border-image: initial;
+  height: 70px;
 }
 
 .amelioration:hover {
-    filter: brightness(0.9);
-    cursor: pointer;
+  filter: brightness(0.9);
+  cursor: pointer;
 }
 
 .amelioration.inconnu {
-    filter: grayscale(100%);
-    cursor: default;
+  filter: grayscale(100%);
+  cursor: default;
 }
 
 .a-img {
-    height: 75px;
-    width: auto;
-    font-size: 10em;
+  height: 75px;
+  width: auto;
+  font-size: 10em;
 }
 
 .a-nom-prix {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-    height: 75px;
-    width: 100%;
-    margin: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  height: 75px;
+  width: 100%;
+  margin: 2%;
 }
 
 .a-nom {
-    height: 75px;
-    width: 100%;
-    margin-top: 2%;
-    font-size: 110%;
+  height: 75px;
+  width: 100%;
+  margin-top: 2%;
+  font-size: 110%;
 }
 
 .a-prix {
-    width: 100%;
-    font-size: 80%;
-    margin-bottom: 2%;
-    border-top: 1px solid black;
+  width: 100%;
+  font-size: 80%;
+  margin-bottom: 2%;
+  border-top: 1px solid black;
 }
 
 .a-quantite {
-
-    width: 15%;
-    margin-right: 2%;
+  width: 15%;
+  margin-right: 2%;
 }
 
 /*----------*/
 #argent {
-    background-image: url(../background/patternwood.webp);
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    border-image: initial;
+  background-image: url(../background/patternwood.webp);
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  border-image: initial;
 }
-
 
 /* --- Panneau succès --- */
 #succes-page {
-    display: inline;
-    background-image: url(../background/plank.webp);
-    border-width: 1px;
-    border-style: solid;
-    border-color: black;
-    border-image: initial;
+  display: inline;
+  background-image: url(../background/plank.webp);
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-image: initial;
 }
 
 #s-titre {
-    background-image: url(../background/patternwood.webp);
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    border-image: initial;
-    margin: 1% 15% 1% 5%;
-    background-position: center;
+  background-image: url(../background/patternwood.webp);
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  border-image: initial;
+  margin: 1% 15% 1% 5%;
+  background-position: center;
 }
 
 #s-box {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .succes {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url(../background/lightwood.webp);
-    border-width: 2px;
-    border-style: solid;
-    border-color: black;
-    margin: 1% 1%;
-    border-image: initial;
-    width: 75px;
-    height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../background/lightwood.webp);
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  margin: 1% 1%;
+  border-image: initial;
+  width: 75px;
+  height: 75px;
 
-    position: relative;
+  position: relative;
 }
 
 .succes.inconnu {
-    filter: grayscale(100%);
-    cursor: default;
+  filter: grayscale(100%);
+  cursor: default;
 }
 
 .s-texte-hover {
-    position: absolute;
-    display: none;
-    background-image: url(../background/patternwood.webp);
-    top: 100%;
-    left: 50%; /*commence à 50% du parent*/
-    transform: translateX(-50%); /* recule de la moitié de sa propre largeur */
-    width: max-content;
-    max-width: 150px;
-    max-height: 120%;
-    color: white;
-    font-size: 12px;
-    text-align: center;
-    padding: 5px;
-    border: 2px solid black;
-    overflow-y: auto;
+  position: absolute;
+  display: none;
+  background-image: url(../background/patternwood.webp);
+  top: 100%;
+  left: 50%; /*commence à 50% du parent*/
+  transform: translateX(-50%); /* recule de la moitié de sa propre largeur */
+  width: max-content;
+  max-width: 150px;
+  max-height: 120%;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px;
+  border: 2px solid black;
+  overflow-y: auto;
 }
 
 .succes:hover .s-texte-hover {
-    display: block;
+  display: block;
 }
-
 
 /* --- Bouton options fixe en haut à droite --- */
 /* position: fixed = toujours visible, indépendant du scroll */
 #options {
-    position: fixed;
-    top: 5px;
-    right: 5px;
-    padding: 3px 3px 0 3px;
-    background-image: url(../background/lightwood.webp);
-    border: 2px solid black;
-    background-position: center;
-    color: var(--text-color);
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  padding: 3px 3px 0 3px;
+  background-image: url(../background/lightwood.webp);
+  border: 2px solid black;
+  background-position: center;
+  color: var(--text-color);
 }
 
 #options:hover {
-    cursor: pointer;
-    filter: brightness(0.9);
+  cursor: pointer;
+  filter: brightness(0.9);
 }
 
 /* Fond semi-transparent derrière la modale */
 #modale-options {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100dvw;
-    height: 100dvh;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 200;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #modale-bg {
-    background-image: url(../background/plank.webp);
-    background-size: cover;
-    background-position: center;
-    border: 2px solid black;
-    padding: 20px;
-    width: 400px;
-    position: relative;
+  background-image: url(../background/plank.webp);
+  background-size: cover;
+  background-position: center;
+  border: 2px solid black;
+  padding: 20px;
+  width: 400px;
+  position: relative;
 }
 
 /* La boîte de la modale */
 #modale-contenu {
-    background-image: url(../background/patternwood.webp);
-    border: 2px solid black;
-    margin: 5%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  background-image: url(../background/patternwood.webp);
+  border: 2px solid black;
+  margin: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .modale-sauvegarde {
-    border-top: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 10px;
+  border-top: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
 }
 
 #modale-contenu > h2 {
 }
 
 .modale-i-o {
-    background: white;
-    border: 1px solid black;
-    margin-bottom: 10px;
-    width: 100%;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    overflow-x: auto;
-    scrollbar-width: none;
-    font-size: 20px;
+  background: white;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+  font-size: 20px;
 }
 
-#recup-sauvegarde, #ajout-sauvegarde {
-    background-image: url(../background/lightwood.webp);
-    color: var(--text-color);
-    border: 2px solid black;
-    margin-bottom: 10px;
-    width: 100%;
-
+#recup-sauvegarde,
+#ajout-sauvegarde {
+  background-image: url(../background/lightwood.webp);
+  color: var(--text-color);
+  border: 2px solid black;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .modale-sauvegarde button:hover {
-    cursor: pointer;
-    filter: brightness(0.9);
+  cursor: pointer;
+  filter: brightness(0.9);
 }
 
 /* Bouton fermer */
 #fermer-options {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: var(--text-color);
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--text-color);
 }
 
 #fermer-options:hover {
-    color: black;
+  color: black;
 }
 
 /* =====================
@@ -470,31 +464,31 @@
 
 .a-box::-webkit-scrollbar,
 .s-texte-hover::-webkit-scrollbar {
-    width: 6px;
+  width: 6px;
 }
 
 /* Cache les flèches */
 .a-box::-webkit-scrollbar-button,
-.s-texte-hover::-webkit-scrollbar-button  {
-    display: none;
+.s-texte-hover::-webkit-scrollbar-button {
+  display: none;
 }
 
 /* Fond transparent */
 .a-box::-webkit-scrollbar-track,
 .s-texte-hover::-webkit-scrollbar-track {
-    background: transparent;
+  background: transparent;
 }
 
 /* La barre */
 .a-box::-webkit-scrollbar-thumb,
 .s-texte-hover::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
 }
 
 .a-box::-webkit-scrollbar-thumb:hover,
 .s-texte-hover::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 /* =====================
@@ -513,14 +507,14 @@
 
 /* Tablette */
 @media (max-width: 768px) {
-    #interface {
-        /* paliers passent en bas sur petits écrans */
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr auto;
-    }
+  #interface {
+    /* paliers passent en bas sur petits écrans */
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+  }
 
-    #paliers {
-        flex-direction: row; /* paliers horizontaux sur tablette */
-        grid-column: span 2;
-    }
+  #paliers {
+    flex-direction: row; /* paliers horizontaux sur tablette */
+    grid-column: span 2;
+  }
 }
