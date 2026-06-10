@@ -551,7 +551,7 @@ const modele = {
         return this.joueur.palierActuelAffiche;
     },
 
-    frapperPoisson(damageAmount, compterClic = true) {
+    frapperPoisson(damageAmount, compterClic) {
         if (compterClic) {
             this.joueur.nbClics++;
         }

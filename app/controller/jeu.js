@@ -4,7 +4,7 @@ const controller = {
         const bouton = document.getElementById("imgPoisson")
         // Au click sur le bouton, on appelle le modèle on rajoute 1 au score et on met à jour le résultat dans la vue
         bouton.addEventListener("click", function () {
-            modele.frapperPoisson(modele.joueur.dommagesActuels)
+            modele.frapperPoisson(modele.joueur.dommagesActuels, true)
             vue.damageFish()
             vue.updateScore(modele.obtenirMortPoisson());
             vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
