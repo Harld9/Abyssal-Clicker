@@ -117,15 +117,25 @@ const vue = {
 
         for (let index = 1; index <= 12; index++) {
             const item = inventaire["amelioration_" + index];
-
             if (!item) continue;
+
+            const itemPrecedent = inventaire["amelioration_" + (index - 1)];
+
+            const estDebloque =
+                index === 1 || itemPrecedent.quantitePossedee > 0;
+
+            const estProchainMystere =
+                index > 1 &&
+                itemPrecedent &&
+                itemPrecedent.quantitePossedee === 0;
+
+            if (!estDebloque && !estProchainMystere) {
+                continue;
+            }
 
             const bloc = document.createElement("div");
             bloc.className = "amelioration";
             bloc.id = type === "clic" ? "a-clic-" + index : "a-passif-" + index;
-
-            const itemPrecedent = inventaire["amelioration_" + (index - 1)];
-            const estDebloque = index === 1 || itemPrecedent.quantitePossedee > 0;
 
             const imageItem = type === "passif"
                 ? `./static/images/items/Item${index}Passif.png`
@@ -140,8 +150,16 @@ const vue = {
                 </div>
                 <div class="a-quantite">x0</div>
             `;
+
+                liste.appendChild(bloc);
+                const quantiteAchat = type === "clic"
+                    ? modele.joueur.quantiteAchatClic
+                    : modele.joueur.quantiteAchatPassif;
+
+                this.updateItem(bloc.id, item, quantiteAchat);
             } else {
                 bloc.classList.add("inconnu");
+
                 bloc.innerHTML = `
                 <img class="a-img" alt="a-img" src="./static/images/ui/question-mark.png">
                 <div class="a-nom-prix">
@@ -150,25 +168,29 @@ const vue = {
                 </div>
                 <div class="a-quantite"></div>
             `;
-            }
 
-            liste.appendChild(bloc);
-
-            if (estDebloque) {
-                this.updateItem(bloc.id, item);
+                liste.appendChild(bloc);
+                break;
             }
         }
     },
 
-    updateItem(idHtml, item) {
+    updateItem(idHtml, item, quantiteAchat = 1) {
         const bloc = document.getElementById(idHtml);
         if (!bloc || !item) return;
 
-        const prixActuel = Math.round(
-            item.prixBase * Math.pow(item.multiplicateurPrix, item.quantitePossedee)
-        );
+        let prixTotal = 0;
 
-        bloc.querySelector(".a-prix").textContent = prixActuel + " argents";
+        for (let i = 0; i < quantiteAchat; i++) {
+            prixTotal += Math.round(
+                item.prixBase * Math.pow(
+                    item.multiplicateurPrix,
+                    item.quantitePossedee + i
+                )
+            );
+        }
+
+        bloc.querySelector(".a-prix").textContent = prixTotal + " argents";
         bloc.querySelector(".a-quantite").textContent = "x" + item.quantitePossedee;
     },
 

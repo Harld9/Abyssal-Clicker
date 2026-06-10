@@ -57,6 +57,10 @@ const controller = {
                 }
 
                 vue.updateBoutonsQuantite(zone, bouton);
+                vue.creerItems("clic", modele.joueur.inventaireObjetClic);
+                vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
+                controller.brancherItems();
+                vue.updateAmeliorations(modele.joueur.argent);
             });
         });
 
