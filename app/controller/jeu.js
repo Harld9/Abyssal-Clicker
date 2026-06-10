@@ -35,6 +35,30 @@ const controller = {
             });
         }
 
+        const boutonsQuantite = document.querySelectorAll(".btn-quantite");
+
+        boutonsQuantite.forEach(function (bouton) {
+            bouton.addEventListener("click", function () {
+                const quantite = Number(bouton.dataset.quantite);
+
+                const zone = bouton.closest("#a-clic, #a-passif");
+
+                if (zone.id === "a-clic") {
+                    modele.joueur.quantiteAchatClic = quantite;
+                }
+
+                if (zone.id === "a-passif") {
+                    modele.joueur.quantiteAchatPassif = quantite;
+                }
+
+                zone.querySelectorAll(".btn-quantite").forEach(function (btn) {
+                    btn.classList.remove("actif");
+                });
+
+                bouton.classList.add("actif");
+            });
+        });
+
         modele.degat_passif();
 
         // Achat de l'amélioration clic 1
@@ -57,10 +81,10 @@ const controller = {
             vue.updateDegatsPassif(modele.joueur.inventaireObjetPassif);
             console.log(modele.obteniritem_Passif("amelioration_1").quantitePossedee);
 
-        });
+});
 
         let options = document.getElementById('recup-sauvegarde')
-        options.addEventListener("click", function () {
+            options.addEventListener("click", function () {
             console.log("Sauvegarde Exporté");
             modele.exporterDonneesSauvegarde()
             let codeSauvegarde = document.getElementById('output-sauvegarde')
