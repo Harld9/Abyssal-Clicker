@@ -47,7 +47,7 @@ const vue = {
     updateCodeSauvegarde(codePartie) {
         const inputSauvegarde = document.getElementById('output-sauvegarde')
         inputSauvegarde.textContent = codePartie
-    }
+    },
 
     updateFondPalier(palier) {
         const zonePoisson = document.getElementById("poisson-score");

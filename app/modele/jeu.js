@@ -458,9 +458,6 @@ const modele = {
         }
     },
 
-<<<<<<< HEAD
-
-=======
     degat_passif() {
         setInterval(function () {
             if (modele.joueur.passifBonusDPS > 0) {
@@ -468,12 +465,11 @@ const modele = {
                 modele.frapperPoisson(modele.joueur.passifBonusDPS);
                 vue.updateArgent(modele.joueur.argent);
                 vue.updateFish(modele.obtenirFish());
-                vue.updateScore(modele.obtenirNbClics());
-                vue.updateMortPoisson(modele.obtenirMortPoisson());
+                vue.updateScore(modele.obtenirScore());
+
             }
         }, 200);
     },
->>>>>>> b7e5ec4a20216690d5fa94eadc1854cce0fec7ef
 
     ajout_item_Passif(typeItem) {
         const item = this.joueur.inventaireObjetPassif[typeItem];
