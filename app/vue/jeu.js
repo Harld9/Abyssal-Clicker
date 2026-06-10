@@ -115,36 +115,48 @@ const vue = {
 
         liste.innerHTML = "";
 
-        let index = 1;
+        for (let index = 1; index <= 12; index++) {
+            const item = inventaire["amelioration_" + index];
 
-        for (const idItem in inventaire) {
-            const item = inventaire[idItem];
+            if (!item) continue;
 
             const bloc = document.createElement("div");
             bloc.className = "amelioration";
             bloc.id = type === "clic" ? "a-clic-" + index : "a-passif-" + index;
 
-            if (index > 1 && item.quantitePossedee === 0) {
-                bloc.classList.add("inconnu");
-            }
+            const itemPrecedent = inventaire["amelioration_" + (index - 1)];
+            const estDebloque = index === 1 || itemPrecedent.quantitePossedee > 0;
 
             const imageItem = type === "passif"
                 ? `./static/images/items/Item${index}Passif.png`
                 : `./static/images/items/Item${index}.png`;
 
-            bloc.innerHTML = `
-            <img class="a-img" alt="a-img" src="${imageItem}">
-            <div class="a-nom-prix">
-                <p class="a-nom">${item.nom}</p>
-                <p class="a-prix">0 argents</p>
-            </div>
-            <div class="a-quantite">x0</div>
-        `;
+            if (estDebloque) {
+                bloc.innerHTML = `
+                <img class="a-img" alt="a-img" src="${imageItem}">
+                <div class="a-nom-prix">
+                    <p class="a-nom">${item.nom}</p>
+                    <p class="a-prix">0 argents</p>
+                </div>
+                <div class="a-quantite">x0</div>
+            `;
+            } else {
+                bloc.classList.add("inconnu");
+                bloc.innerHTML = `
+                <img class="a-img" alt="a-img" src="./static/images/ui/question-mark.png">
+                <div class="a-nom-prix">
+                    <p class="a-nom">????</p>
+                    <p class="a-prix">????</p>
+                </div>
+                <div class="a-quantite"></div>
+            `;
+            }
 
             liste.appendChild(bloc);
-            this.updateItem(bloc.id, item);
 
-            index++;
+            if (estDebloque) {
+                this.updateItem(bloc.id, item);
+            }
         }
     },
 

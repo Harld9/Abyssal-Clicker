@@ -5,11 +5,7 @@ const controller = {
 
         vue.creerItems("clic", modele.joueur.inventaireObjetClic);
         vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
-
         this.brancherItems();
-
-        vue.updateDeblocageItems("clic", modele.joueur.inventaireObjetClic);
-        vue.updateDeblocageItems("passif", modele.joueur.inventaireObjetPassif);
         vue.updateAmeliorations(modele.joueur.argent);
 
         const bouton = document.getElementById("imgPoisson");
@@ -95,9 +91,9 @@ const controller = {
 
             controller.brancherItems();
 
-            vue.updateDeblocageItems("clic", modele.joueur.inventaireObjetClic);
-            vue.updateDeblocageItems("passif", modele.joueur.inventaireObjetPassif);
             vue.updateAmeliorations(modele.joueur.argent);
+            vue.updateDegatsClick(modele.joueur.dommagesActuels);
+            vue.updateDegatsPassif(modele.joueur.inventaireObjetPassif);
         });
     },
 
@@ -109,13 +105,11 @@ const controller = {
                 blocClic.addEventListener("click", function () {
                     modele.ajout_item_Clic("amelioration_" + i);
 
-                    vue.updateItem(
-                        "a-clic-" + i,
-                        modele.obteniritem_Clic("amelioration_" + i)
-                    );
+                    vue.creerItems("clic", modele.joueur.inventaireObjetClic);
+                    vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
 
-                    vue.updateDeblocageItems("clic", modele.joueur.inventaireObjetClic);
-                    vue.updateDeblocageItems("passif", modele.joueur.inventaireObjetPassif);
+                    controller.brancherItems();
+
                     vue.updateArgent(modele.joueur.argent);
                     vue.updateAmeliorations(modele.joueur.argent);
                     vue.updateDegatsClick(modele.joueur.dommagesActuels);
@@ -128,13 +122,11 @@ const controller = {
                 blocPassif.addEventListener("click", function () {
                     modele.ajout_item_Passif("amelioration_" + i);
 
-                    vue.updateItem(
-                        "a-passif-" + i,
-                        modele.obteniritem_Passif("amelioration_" + i)
-                    );
+                    vue.creerItems("clic", modele.joueur.inventaireObjetClic);
+                    vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
 
-                    vue.updateDeblocageItems("clic", modele.joueur.inventaireObjetClic);
-                    vue.updateDeblocageItems("passif", modele.joueur.inventaireObjetPassif);
+                    controller.brancherItems();
+
                     vue.updateArgent(modele.joueur.argent);
                     vue.updateAmeliorations(modele.joueur.argent);
                     vue.updateDegatsPassif(modele.joueur.inventaireObjetPassif);
@@ -160,8 +152,6 @@ const controller = {
         vue.creerItems("clic", modele.joueur.inventaireObjetClic);
         vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
 
-        vue.updateDeblocageItems("clic", modele.joueur.inventaireObjetClic);
-        vue.updateDeblocageItems("passif", modele.joueur.inventaireObjetPassif);
         vue.updateAmeliorations(modele.joueur.argent);
 
         vue.updateBoutonsPaliers(
