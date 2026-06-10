@@ -1,6 +1,13 @@
 //Objet vue qui possède les infos visibles
 const vue = {
     //Méthode qui met à jour le score dans l'affichage
+    updateClic(nouveauClic) {
+        const affichageClic = document.getElementById("nbClic")
+        affichageClic.textContent = nouveauClic
+        console.log("Nombre de clics : " + nouveauClic)
+    },
+
+    //Méthode qui met à jour le score dans l'affichage
     updateScore(nouveauScore) {
         const affichageScore = document.getElementById("nbScore")
         affichageScore.textContent = nouveauScore
@@ -11,7 +18,7 @@ const vue = {
     updateArgent(nouveauArgent) {
         const affichageArgent = document.getElementById("argent")
         affichageArgent.textContent = "Argent :" + nouveauArgent
-        console.log(nouveauArgent + "argents")
+        console.log(nouveauArgent + "argent")
     },
     //Méthode qui met une animation de dégât au poisson.
     damageFish() {

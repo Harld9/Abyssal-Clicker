@@ -6,8 +6,8 @@ const controller = {
         bouton.addEventListener("click", function () {
             modele.frapperPoisson(modele.joueur.dommagesActuels)
             vue.damageFish()
-            let resultat = modele.obtenirNbClics()
-            vue.updateScore(resultat)
+            let score = modele.obtenirScore()
+            vue.updateScore(score)
             let mortPoisson = modele.obtenirMortPoisson()
             vue.updateMortPoisson(mortPoisson)
             // On récupère l'argent actuel du modèle et on le met à jour dans la vue
@@ -16,29 +16,32 @@ const controller = {
             // On récupère le poisson actuel du modèle et on le met à jour dans la vue
             let poisson = modele.obtenirFish()
             vue.updateFish(poisson)
+
+            let nbClic = modele.obtenirNbClics()
+            vue.updateClic(nbClic);
         })
 
         modele.degat_passif();
 
         const item_clic1 = document.getElementById("a-clic-1");
         item_clic1.addEventListener("click", function () {
-        modele.ajout_item_Clic("amelioration_1");
-        vue.updateArgent(modele.joueur.argent);
-        console.log(modele.obteniritem_Clic("amelioration_1").quantitePossedee
-    );
+            modele.ajout_item_Clic("amelioration_1");
+            vue.updateArgent(modele.joueur.argent);
+            console.log(modele.obteniritem_Clic("amelioration_1").quantitePossedee
+            );
 
-});
+        });
         const itempassif1 = document.getElementById("a-passif-1");
         itempassif1.addEventListener("click", function () {
-        modele.ajout_item_Passif("amelioration_1");
-        vue.updateArgent(modele.joueur.argent);
-        console.log(modele.obteniritem_Passif("amelioration_1").quantitePossedee
-    );
+            modele.ajout_item_Passif("amelioration_1");
+            vue.updateArgent(modele.joueur.argent);
+            console.log(modele.obteniritem_Passif("amelioration_1").quantitePossedee
+            );
 
-});
+        });
 
         let options = document.getElementById('recup-sauvegarde')
-            options.addEventListener("click", function () {
+        options.addEventListener("click", function () {
             console.log("Sauvegarde Exporté");
             modele.exporterDonneesSauvegarde()
             let codeSauvegarde = document.getElementById('output-sauvegarde')
@@ -53,6 +56,7 @@ const controller = {
         modele.importerDonneesSauvegarde(donnees)
         vue.updateScore(modele.obtenirMortPoisson())
         vue.updateFish(modele.obtenirFish())
+        vue.updateClic(modele.obtenirNbClics())
         //Penser a faire le getter
         vue.updateArgent(modele.joueur.argent)
     },
