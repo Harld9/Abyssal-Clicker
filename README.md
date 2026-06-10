@@ -1,38 +1,107 @@
-# Abyssal Clicker
+# 🐟 Abyssal Clicker
 
-1. Le Concept de Jeu
+Un jeu de type clicker sur le thème des profondeurs marines. Affrontez des poissons de plus en plus redoutables, améliorez votre équipement et plongez toujours plus loin dans les abysses.
 
-🌊 Abyssal Clicker
-Abyssal Clicker est un jeu de type "Idle/Clicker" développé en HTML5, CSS3 et JavaScript. Plongez dans les profondeurs de l'océan, récoltez de la biomasse et débloquez des créatures marines de plus en plus étranges pour coloniser les abysses.
+---
 
-2. Fonctionnalités (Features)
-Système de récolte : Cliquez sur la [BUBULLE] pour générer de la biomasse.
-Boutique d'améliorations : Achetez des bancs de poissons ou des récifs coralliens pour automatiser la récolte.
-Progression par paliers : Plus vous avez de points, plus le décor s'assombrit pour simuler la descente dans les abysses.
-Sauvegarde automatique : Utilisation du localStorage pour reprendre sa partie plus tard.
+## 🎮 Gameplay
 
-3. Technologies utilisées
+- **Cliquez** sur le poisson pour lui infliger des dégâts
+- **Tuez** des poissons pour gagner de l'argent et faire progresser votre score
+- **Achetez** des améliorations de clic pour augmenter vos dégâts par clic
+- **Achetez** des améliorations passives pour infliger des dégâts automatiquement
+- **Débloquez** les 13 paliers de profondeur en atteignant les seuils de score
+- **Collectionnez** les 74 succès
 
-HTML5 : Structure sémantique du jeu.
+---
 
-CSS3 : Animations de flottement des poissons, dégradés abyssaux et design responsive.
+## 🌊 Les 13 paliers
 
-JavaScript (ES6+) : Logique du jeu, gestion du DOM et boucles temporelles.
+| Palier | Nom | Seuil de score |
+|--------|-----|---------------|
+| 1 | Les portes de la mer s'ouvre | 0 |
+| 2 | Les pieds dans l'eau | 10 |
+| 3 | Baptême marin | 25 |
+| 4 | L'horizon s'efface | 45 |
+| 5 | Le soleil pâlit | 70 |
+| 6 | La lumière hésite | 100 |
+| 7 | Le silence commence | 140 |
+| 8 | Les ombres parlent | 190 |
+| 9 | Quelque chose remonte | 250 |
+| 10 | Ne regarde pas en bas | 320 |
+| 11 | Il n'y a plus de surface | 400 |
+| 12 | Tu n'aurais pas dû descendre | 500 |
+| 13 | Les abysses t'ont choisi | 650 |
 
-Nous avons choisi une authentification par JWT (JSON Web Token) pour assurer la communication entre le client et le serveur. Cela permet une gestion de session sécurisée et légère, sans stockage côté serveur (Stateless).
+---
 
-4. Installation et Lancement
-Explique comment tester le projet (très important pour ceux qui vont vous noter !).
+## 🗂️ Structure du projet
 
-Clonez le dépôt : git clone [https://github.com/Harld9/Abyssal-Clicker.git]
+```
+projet/
+├── index.html
+├── static/
+│   ├── css/
+│   │   ├── main.css
+│   │   └── index.css
+│   ├── background/
+│   ├── images/
+│   │   ├── poissons/
+│   │   ├── items/
+│   │   └── ui/
+│   └── js/
+│       └── jeu.js
+├── modele/
+│   └── jeu.js
+├── vue/
+│   └── jeu.js
+└── controller/
+    └── jeu.js
+```
 
-Ouvrez le fichier index. dans votre navigateur préféré.
+---
 
-Commencez à cliquer !
+## ⚙️ Architecture
 
-5. L'Équipe (Répartition des tâches)
-Membre A (Emrick Rivet) : Design UI/UX, animations CSS et ambiance sonore.
+Le projet suit une architecture **MVC** (Modèle - Vue - Contrôleur) :
 
-Membre B (Florian Azria) : Logique JS (moteur de clic, calculs des prix, stockage).
+| Fichier | Rôle |
+|---------|------|
+| `modele/jeu.js` | État du jeu, logique métier, calculs |
+| `vue/jeu.js` | Mise à jour du DOM, affichage |
+| `controller/jeu.js` | Événements, coordination modèle ↔ vue |
+| `static/js/jeu.js` | Autosauvegarde, modale options |
 
-Membre C (Harold Francois) : Gestion de la boutique, équilibrage et intégration des assets.
+---
+
+## 💾 Sauvegarde
+
+La progression est sauvegardée automatiquement toutes les **5 secondes** dans le `localStorage` sous forme encodée en base64.
+
+Il est possible d'**exporter** et d'**importer** manuellement une sauvegarde via le menu options (⚙️) :
+- **Récupérer ma sauvegarde** — copie le code dans le presse-papier
+- **Utiliser ma sauvegarde** — colle un code pour restaurer une progression
+
+---
+
+## 🚀 Lancer le projet
+
+Aucune dépendance, aucun build requis. Ouvre simplement `index.html` dans un navigateur.
+
+Pour éviter les restrictions de sécurité sur les fichiers locaux, utilise un serveur local :
+
+```bash
+# avec Node.js
+npx serve .
+
+# avec Python
+python -m http.server 8080
+```
+
+Ou avec l'extension **Live Server** sur VS Code.
+
+---
+
+## 👥 Équipe
+
+Projet réalisé dans le cadre d'un cours à **Ynov Campus**.
