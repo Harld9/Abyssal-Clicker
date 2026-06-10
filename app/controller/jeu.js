@@ -131,4 +131,4 @@ const controller = {
 
 controller.chargerPartie()
 controller.initialiser()
-this.degat_passif();
+controller.degat_passif();
