@@ -11,17 +11,6 @@ const vue = {
     },
 
     /**
-     * Met à jour l'affichage du score
-     * @param {number} nouveauScore - modele.joueur.score via modele.obtenirScore()
-     * @returns {void} - met à jour le textContent de <p id="nbScore">
-     */
-    updateScore(nouveauScore) {
-        const affichageScore = document.getElementById("nbScore")
-        affichageScore.textContent = nouveauScore
-        console.log("Score : " + nouveauScore)
-    },
-
-    /**
      * Met à jour l'affichage de l'argent
      * @param {number} nouveauArgent - modele.joueur.argent
      * @returns {void} - met à jour le textContent de <div id="argent">
@@ -71,10 +60,15 @@ const vue = {
      * @param {number} nouveauMortPoisson - modele.joueur.mortPoisson via modele.obtenirMortPoisson()
      * @returns {void} - met à jour le textContent de <p id="nbScore">
      */
-    updateMortPoisson(nouveauMortPoisson) {
+    updateScore(nouveauMortPoisson) {
         const affichageMortPoisson = document.getElementById('nbScore')
         affichageMortPoisson.textContent = nouveauMortPoisson
         console.log("Poissons morts : " + nouveauMortPoisson)
+    },
+
+    updateCodeSauvegarde(codePartie) {
+        const inputSauvegarde = document.getElementById('output-sauvegarde')
+        inputSauvegarde.textContent = codePartie
     },
 
     /**
@@ -85,9 +79,11 @@ const vue = {
      */
     updateFondPalier(palier) {
         const zonePoisson = document.getElementById("poisson-score");
+
         zonePoisson.style.backgroundImage =
             `url("./static/background/${palier}_profondeur.png")`;
     },
+
 
     /**
      * Met à jour l'affichage des boutons de paliers
