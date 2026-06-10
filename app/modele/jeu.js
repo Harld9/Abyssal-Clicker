@@ -535,7 +535,7 @@ const modele = {
         console.log("damageAmount =", damageAmount);
         console.log("PV avant =", this.poisson.pvPoissonActuel);
         console.log("dommagesActuels joueur =", this.joueur.dommagesActuels);
-        this.joueur.nbClics++
+
         // ASTUCE DE PRO : Math.min empêche de faire plus de dégâts que les HP restants
         let dommagesActuels = Math.min(damageAmount, this.poisson.pvPoissonActuel);
 
@@ -662,9 +662,11 @@ const modele = {
         this.joueur.passifBonusDPS = donnees.joueur.passifBonusDPS
         this.joueur.mortPoisson = donnees.joueur.mortPoisson
         this.joueur.dommagesBase = donnees.joueur.dommagesBase
-        this.poisson.pvPoissonMax = donnees.poisson.pvPoissonMax
-        this.poisson.pvPoissonActuel = donnees.poisson.pvPoissonActuel
-        this.poisson.poissonActuel = donnees.poisson.poissonActuel
+        this.joueur.palierActuelAffiche = this.joueur.palier
+        const nouveauPoisson = this.spawnFish(this.joueur.palier)
+        this.poisson.poissonActuel = nouveauPoisson
+        this.poisson.pvPoissonMax = nouveauPoisson.pvMax
+        this.poisson.pvPoissonActuel = nouveauPoisson.pvMax
 
         this.joueur.sauvegardeChargee = true
     },
