@@ -103,6 +103,7 @@
 }
 
 .imgPoisson {
+    position: relative;
     background: none;
     width: 100%;
     display: flex;
@@ -112,9 +113,11 @@
 }
 
 .imgPoisson img {
-    width: 80%;
     display: block;
+    width: 80%;
     transition: scale 0.1s ease;
+    margin: 3em;
+    height: 200px;
 }
 
 .imgPoisson:hover img {
@@ -374,8 +377,9 @@
     border-width: 2px;
     border-style: solid;
     border-color: black;
-    margin: 1% 1%;
     border-image: initial;
+
+    margin: 1% 1%;
     width: 75px;
     height: 75px;
 
@@ -528,7 +532,7 @@
 
 /* Cache les flèches */
 .a-box::-webkit-scrollbar-button,
-.s-texte-hover::-webkit-scrollbar-button  {
+.s-texte-hover::-webkit-scrollbar-button {
     display: none;
 }
 
@@ -560,11 +564,65 @@
     transition: filter, scale 0.1s ease;
 }
 
-  .palier.bloque {
+@keyframes dommage-passif-anim {
+    0%   { opacity: 1; transform: translate(0, 0); }
+    100% { opacity: 0; transform: translate(var(--dx), var(--dy)); }
+}
+
+.coin {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.coin-hg {
+    top: 10px;
+    left: 10px;
+    --dx: 10px; --dy: 10px;
+    border-top-color: transparent !important;
+    border-left-color: transparent !important;
+}
+
+.coin-hd {
+    top: 10px;
+    right: 10px;
+    --dx: -10px; --dy: 10px;
+    border-top-color: transparent !important;
+    border-right-color: transparent !important;
+}
+
+.coin-bg {
+    bottom: 10px;
+    left: 10px;
+    --dx: 10px; --dy: -10px;
+    border-bottom-color: transparent !important;
+    border-left-color: transparent !important;
+}
+
+.coin-bd {
+    bottom: 10px;
+    right: 10px;
+    --dx: -10px; --dy: -10px;
+    border-bottom-color: transparent !important;
+    border-right-color: transparent !important;
+}
+
+.dommage-passif .coin {
+    border-color: darkred;
+    animation: dommage-passif-anim 0.5s ease forwards;
+}
+
+
+
+.palier.bloque {
     filter: grayscale(100%);
     cursor: not-allowed;
     opacity: 0.5;
-  }
+}
 
 /* =====================
    Responsive

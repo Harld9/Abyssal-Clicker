@@ -2,31 +2,37 @@ const controller = {
 
     initialiser() {
         const bouton = document.getElementById("imgPoisson")
+        // Au click sur le bouton, on appelle le modèle on rajoute 1 au score et on met à jour le résultat dans la vue
         bouton.addEventListener("click", function () {
-            modele.frapperPoisson(modele.joueur.dommagesActuels, true);
-            vue.damageFish();
+            modele.frapperPoisson(modele.joueur.dommagesActuels)
+            vue.damageFish()
+            vue.updateScore(modele.obtenirMortPoisson());
+            vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
+            // On récupère l'argent actuel du modèle et on le met à jour dans la vue
+            let argent = modele.joueur.argent;
+            vue.updateArgent(argent);
+            vue.updateAmeliorations(modele.joueur.argent)
+            // On récupère le poisson actuel du modèle et on le met à jour dans la vue
+            let poisson = modele.obtenirFish()
+            vue.updateFish(poisson)
 
-            vue.updateScore(modele.obtenirScore());
-            vue.updateClic(modele.obtenirNbClics());
-            vue.updateArgent(modele.joueur.argent);
-            vue.updateFish(modele.obtenirFish());
+            let nbClic = modele.obtenirNbClics()
+            vue.updateClic(nbClic);
 
-            vue.updateBoutonsPaliers(
-                modele.joueur.palierActuelAffiche,
-                modele.joueur.palier
-            );
-        });
+
+        })
+
+        this.degat_passif()
 
         for (let i = 1; i <= 13; i++) {
-
             const boutonPalier = document.getElementById("palier-" + i);
 
             boutonPalier.addEventListener("click", function () {
                 modele.changerPalier(i);
 
                 vue.updateFish(modele.obtenirFish());
-                vue.updateFondPalier(modele.joueur.palierActuelAffiche)
-                vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier)
+                vue.updateFondPalier(modele.joueur.palierActuelAffiche);
+                vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
             });
         }
 
@@ -105,6 +111,7 @@ const controller = {
         vue.updateDegatsClick(modele.joueur.dommagesActuels);
         vue.updateFondPalier(modele.joueur.palierActuelAffiche)
         vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier)
+        vue.updateDegatsPassif(modele.joueur.inventaireObjetPassif);
     },
 
     sauvegarderPartie() {
@@ -115,6 +122,7 @@ const controller = {
         setInterval(function () {
             if (modele.joueur.passifBonusDPS > 0) {
                 vue.damageFish();
+                vue.damageFishPassif();
                 modele.frapperPoisson(modele.joueur.passifBonusDPS);
                 vue.updateArgent(modele.joueur.argent);
                 vue.updateFish(modele.obtenirFish());
