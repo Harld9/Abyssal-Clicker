@@ -104,4 +104,6 @@ Ou avec l'extension **Live Server** sur VS Code.
 
 ## 👥 Équipe
 
-Projet réalisé dans le cadre d'un cours à **Ynov Campus**.
+Florian AZRIA - Logique du jeu et système de progression
+Harold FRANCOIS - Gestion de la sauvegarde et création des assets
+Emrick RIVET - Front-end HTML/CSS et conception de l'interface
