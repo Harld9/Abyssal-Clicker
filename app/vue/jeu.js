@@ -166,7 +166,7 @@ const vue = {
             totalDPS += item.bonusDPS * item.quantitePossedee
         })
         const affichage = document.querySelector("#a-passif .a-dps")
-        if (affichage) affichage.textContent = totalDPS + " dégâts/s"
+        if (affichage) affichage.textContent = totalDPS + " dégâts/tick"
     },
 
     /**
