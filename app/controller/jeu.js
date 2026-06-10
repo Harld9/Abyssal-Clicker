@@ -9,14 +9,15 @@ const controller = {
             let resultat = modele.obtenirNbClics()
             vue.updateScore(resultat)
             let mortPoisson = modele.obtenirMortPoisson()
+            vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
             vue.updateMortPoisson(mortPoisson)
             // On récupère l'argent actuel du modèle et on le met à jour dans la vue
             let argent = modele.joueur.argent;
             vue.updateArgent(argent);
+            vue.updateAmeliorations(modele.joueur.argent)
             // On récupère le poisson actuel du modèle et on le met à jour dans la vue
             let poisson = modele.obtenirFish()
             vue.updateFish(poisson)
-            vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
 
             let nbClic = modele.obtenirNbClics()
             vue.updateClic(nbClic);
@@ -36,25 +37,30 @@ const controller = {
 
         modele.degat_passif();
 
+        // Achat de l'amélioration clic 1
         const item_clic1 = document.getElementById("a-clic-1");
         item_clic1.addEventListener("click", function () {
-        modele.ajout_item_Clic("amelioration_1");
-        vue.updateArgent(modele.joueur.argent);
-        console.log(modele.obteniritem_Clic("amelioration_1").quantitePossedee
-    );
+            modele.ajout_item_Clic("amelioration_1");
+            vue.updateArgent(modele.joueur.argent);
+            vue.updateAmeliorations(modele.joueur.argent);
+            vue.updateDegatsClick(modele.joueur.dommagesActuels);
+            console.log(modele.obteniritem_Clic("amelioration_1").quantitePossedee);
 
-});
+        });
+
+        // Achat de l'amélioration passif 1
         const itempassif1 = document.getElementById("a-passif-1");
         itempassif1.addEventListener("click", function () {
-        modele.ajout_item_Passif("amelioration_1");
-        vue.updateArgent(modele.joueur.argent);
-        console.log(modele.obteniritem_Passif("amelioration_1").quantitePossedee
-    );
+            modele.ajout_item_Passif("amelioration_1");
+            vue.updateArgent(modele.joueur.argent);
+            vue.updateAmeliorations(modele.joueur.argent);
+            vue.updateDegatsPassif(modele.joueur.inventaireObjetPassif);
+            console.log(modele.obteniritem_Passif("amelioration_1").quantitePossedee);
 
-});
+        });
 
         let options = document.getElementById('recup-sauvegarde')
-            options.addEventListener("click", function () {
+        options.addEventListener("click", function () {
             console.log("Sauvegarde Exporté");
             modele.exporterDonneesSauvegarde()
             let codeSauvegarde = document.getElementById('output-sauvegarde')
@@ -72,6 +78,9 @@ const controller = {
         vue.updateClic(modele.obtenirNbClics())
         //Penser a faire le getter
         vue.updateArgent(modele.joueur.argent)
+        vue.updateAmeliorations(modele.joueur.argent)
+        vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
+        vue.updateDegatsClick(modele.joueur.dommagesActuels);
     },
 
     sauvegarderPartie() {
