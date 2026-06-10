@@ -12,6 +12,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none;
 }
 
 /* html et body doivent avoir une hauteur définie
@@ -21,4 +22,8 @@ html, body {
     height: 100dvh;  /* dynamic viewport height = hauteur de l'écran */
     overflow: hidden; /* empêche le scroll global */
     font-family: 'Poppins', sans-serif;
+}
+
+img {
+    -webkit-user-drag: none;
 }

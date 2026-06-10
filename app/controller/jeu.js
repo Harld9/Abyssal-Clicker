@@ -8,14 +8,14 @@ const controller = {
             modele.joueur.nbClics++
             vue.damageFish()
             vue.updateScore(modele.obtenirMortPoisson());
-
+            vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
             // On récupère l'argent actuel du modèle et on le met à jour dans la vue
             let argent = modele.joueur.argent;
             vue.updateArgent(argent);
+            vue.updateAmeliorations(modele.joueur.argent)
             // On récupère le poisson actuel du modèle et on le met à jour dans la vue
             let poisson = modele.obtenirFish()
             vue.updateFish(poisson)
-            vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
 
             let nbClic = modele.obtenirNbClics()
             vue.updateClic(nbClic);
@@ -45,36 +45,32 @@ const controller = {
 
                 const zone = bouton.closest("#a-clic, #a-passif");
 
-                if (zone.id === "a-clic") {
-                    modele.joueur.quantiteAchatClic = quantite;
-                }
+                if (zone.id === "a-clic") modele.joueur.quantiteAchatClic = quantite;
+                if (zone.id === "a-passif") modele.joueur.quantiteAchatPassif = quantite;
 
-                if (zone.id === "a-passif") {
-                    modele.joueur.quantiteAchatPassif = quantite;
-                }
-
-                zone.querySelectorAll(".btn-quantite").forEach(function (btn) {
-                    btn.classList.remove("actif");
-                });
-
-                bouton.classList.add("actif");
+                vue.updateBoutonsQuantite(zone, bouton)
             });
         });
 
+        // Achat de l'amélioration clic 1
         const item_clic1 = document.getElementById("a-clic-1");
         item_clic1.addEventListener("click", function () {
             modele.ajout_item_Clic("amelioration_1");
             vue.updateArgent(modele.joueur.argent);
-            console.log(modele.obteniritem_Clic("amelioration_1").quantitePossedee
-            );
+            vue.updateAmeliorations(modele.joueur.argent);
+            vue.updateDegatsClick(modele.joueur.dommagesActuels);
+            console.log(modele.obteniritem_Clic("amelioration_1").quantitePossedee);
 
         });
+
+        // Achat de l'amélioration passif 1
         const itempassif1 = document.getElementById("a-passif-1");
         itempassif1.addEventListener("click", function () {
             modele.ajout_item_Passif("amelioration_1");
             vue.updateArgent(modele.joueur.argent);
-            console.log(modele.obteniritem_Passif("amelioration_1").quantitePossedee
-            );
+            vue.updateAmeliorations(modele.joueur.argent);
+            vue.updateDegatsPassif(modele.joueur.inventaireObjetPassif);
+            console.log(modele.obteniritem_Passif("amelioration_1").quantitePossedee);
 
         });
 
@@ -111,6 +107,9 @@ const controller = {
         vue.updateClic(modele.obtenirNbClics())
         //Penser a faire le getter
         vue.updateArgent(modele.joueur.argent)
+        vue.updateAmeliorations(modele.joueur.argent)
+        vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
+        vue.updateDegatsClick(modele.joueur.dommagesActuels);
         vue.updateFondPalier(modele.joueur.palierActuelAffiche)
         vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier)
     },
