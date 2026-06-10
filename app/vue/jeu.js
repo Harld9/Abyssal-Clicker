@@ -36,6 +36,30 @@ const vue = {
         }, 100)
     },
 
+    updateDeblocageItems(type, inventaire) {
+        const prefixHtml = type === "clic" ? "a-clic-" : "a-passif-";
+
+        for (let i = 1; i <= 12; i++) {
+            const bloc = document.getElementById(prefixHtml + i);
+            const item = inventaire["amelioration_" + i];
+
+            if (!bloc || !item) continue;
+
+            if (i === 1) {
+                bloc.classList.remove("inconnu");
+                continue;
+            }
+
+            const itemPrecedent = inventaire["amelioration_" + (i - 1)];
+
+            if (itemPrecedent && itemPrecedent.quantitePossedee > 0) {
+                bloc.classList.remove("inconnu");
+            } else {
+                bloc.classList.add("inconnu");
+            }
+        }
+    },
+
     /**
      * Met à jour l'image et le nom du poisson affiché
      * @param {Object} nouveauPoisson - modele.poisson.poissonActuel via modele.obtenirFish()
@@ -82,6 +106,58 @@ const vue = {
 
         zonePoisson.style.backgroundImage =
             `url("./static/background/${palier}_profondeur.png")`;
+    },
+
+    creerItems(type, inventaire) {
+        const liste = document.getElementById(
+            type === "clic" ? "liste-clic" : "liste-passif"
+        );
+
+        liste.innerHTML = "";
+
+        let index = 1;
+
+        for (const idItem in inventaire) {
+            const item = inventaire[idItem];
+
+            const bloc = document.createElement("div");
+            bloc.className = "amelioration";
+            bloc.id = type === "clic" ? "a-clic-" + index : "a-passif-" + index;
+
+            if (index > 1 && item.quantitePossedee === 0) {
+                bloc.classList.add("inconnu");
+            }
+
+            const imageItem = type === "passif"
+                ? `./static/images/items/Item${index}Passif.png`
+                : `./static/images/items/Item${index}.png`;
+
+            bloc.innerHTML = `
+            <img class="a-img" alt="a-img" src="${imageItem}">
+            <div class="a-nom-prix">
+                <p class="a-nom">${item.nom}</p>
+                <p class="a-prix">0 argents</p>
+            </div>
+            <div class="a-quantite">x0</div>
+        `;
+
+            liste.appendChild(bloc);
+            this.updateItem(bloc.id, item);
+
+            index++;
+        }
+    },
+
+    updateItem(idHtml, item) {
+        const bloc = document.getElementById(idHtml);
+        if (!bloc || !item) return;
+
+        const prixActuel = Math.round(
+            item.prixBase * Math.pow(item.multiplicateurPrix, item.quantitePossedee)
+        );
+
+        bloc.querySelector(".a-prix").textContent = prixActuel + " argents";
+        bloc.querySelector(".a-quantite").textContent = "x" + item.quantitePossedee;
     },
 
 

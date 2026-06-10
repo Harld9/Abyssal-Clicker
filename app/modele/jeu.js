@@ -121,13 +121,6 @@ const modele = {
                 quantitePossedee: 0,
                 multiplicateurPrix: 1.05,
             },
-            amelioration_13: {
-                nom: "Base sous-marine autonome",
-                bonusDPS: 30000,
-                prixBase: 10000000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            }
         },
         inventaireObjetClic: {
             amelioration_1: {
