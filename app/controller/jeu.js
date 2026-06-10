@@ -2,25 +2,20 @@ const controller = {
 
     initialiser() {
         const bouton = document.getElementById("imgPoisson")
-        // Au click sur le bouton, on appelle le modèle on rajoute 1 au score et on met à jour le résultat dans la vue
         bouton.addEventListener("click", function () {
-            modele.frapperPoisson(modele.joueur.dommagesActuels)
-            vue.damageFish()
-            let resultat = modele.obtenirNbClics()
-            vue.updateScore(resultat)
-            let mortPoisson = modele.obtenirMortPoisson()
-            vue.updateMortPoisson(mortPoisson)
-            // On récupère l'argent actuel du modèle et on le met à jour dans la vue
-            let argent = modele.joueur.argent;
-            vue.updateArgent(argent);
-            // On récupère le poisson actuel du modèle et on le met à jour dans la vue
-            let poisson = modele.obtenirFish()
-            vue.updateFish(poisson)
-            vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
+            modele.frapperPoisson(modele.joueur.dommagesActuels);
+            vue.damageFish();
 
-            let nbClic = modele.obtenirNbClics()
-            vue.updateClic(nbClic);
-        })
+            vue.updateScore(modele.obtenirScore());
+            vue.updateClic(modele.obtenirNbClics());
+            vue.updateArgent(modele.joueur.argent);
+            vue.updateFish(modele.obtenirFish());
+
+            vue.updateBoutonsPaliers(
+                modele.joueur.palierActuelAffiche,
+                modele.joueur.palier
+            );
+        });
 
         for (let i = 1; i <= 13; i++) {
             const boutonPalier = document.getElementById("palier-" + i);
@@ -91,7 +86,7 @@ const controller = {
         const donnees = JSON.parse(atob(localStorage.getItem("maSauvegarde")))
         console.log("Données de la fonction charger partie : " + donnees)
         modele.importerDonneesSauvegarde(donnees)
-        vue.updateScore(modele.obtenirMortPoisson())
+        vue.updateScore(modele.obtenirScore())
         vue.updateFish(modele.obtenirFish())
         vue.updateClic(modele.obtenirNbClics())
         //Penser a faire le getter

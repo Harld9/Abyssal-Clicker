@@ -1,19 +1,5 @@
 //Objet vue qui possède les infos visibles
 const vue = {
-    //Méthode qui met à jour le score dans l'affichage
-    updateClic(nouveauClic) {
-        const affichageClic = document.getElementById("nbClic")
-        affichageClic.textContent = nouveauClic
-        console.log("Nombre de clics : " + nouveauClic)
-    },
-
-    //Méthode qui met à jour le score dans l'affichage
-    updateScore(nouveauScore) {
-        const affichageScore = document.getElementById("nbScore")
-        affichageScore.textContent = nouveauScore
-        console.log("Score : " + nouveauScore)
-    },
-
     //Méthode qui met à jour l'argent' dans l'affichage
     updateArgent(nouveauArgent) {
         const affichageArgent = document.getElementById("argent")
@@ -45,11 +31,6 @@ const vue = {
         }
         console.log("Image changée vers :", imagePoisson.src);
     },
-    updateMortPoisson(nouveauMortPoisson) {
-        const affichageMortPoisson = document.getElementById('nbScore')
-        affichageMortPoisson.textContent = nouveauMortPoisson
-        console.log("Poissons morts : " + nouveauMortPoisson)
-    },
 
     updateFondPalier(palier) {
         const zonePoisson = document.getElementById("poisson-score");
@@ -57,7 +38,14 @@ const vue = {
         zonePoisson.style.backgroundImage =
             `url("./static/background/${palier}_profondeur.png")`;
     },
-    
+    updateScore(nouveauScore) {
+        document.getElementById("nbScore").textContent = nouveauScore;
+    },
+
+    updateClic(nouveauClic) {
+        document.getElementById("nbClic").textContent = nouveauClic;
+    },
+
     updateBoutonsPaliers(palierAffiche, palierMaxDebloque) {
         for (let i = 1; i <= 13; i++) {
             const bouton = document.getElementById("palier-" + i);
