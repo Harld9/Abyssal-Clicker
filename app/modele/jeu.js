@@ -537,7 +537,7 @@ const modele = {
         return this.joueur.palierActuelAffiche;
     },
 
-    frapperPoisson(damageAmount, compterClic) {
+    frapperPoisson(damageAmount, compterClic = true) {
         if (compterClic) {
             this.joueur.nbClics++;
         }
@@ -576,7 +576,6 @@ const modele = {
                 this.joueur.palier += 1;
                 console.log("Palier débloqué :", this.joueur.palier);
             }
-
             const nouveauPoisson = this.spawnFish(this.joueur.palierActuelAffiche);
             // On fait apparaître le nouveau poisson du bloc correspondant
             this.poisson.poissonActuel = nouveauPoisson;

@@ -4,8 +4,8 @@ const controller = {
         const bouton = document.getElementById("imgPoisson")
         // Au click sur le bouton, on appelle le modèle on rajoute 1 au score et on met à jour le résultat dans la vue
         bouton.addEventListener("click", function () {
-            modele.frapperPoisson(modele.joueur.dommagesActuels, true)
-            vue.damageFish()
+            modele.frapperPoisson(modele.joueur.dommagesActuels, true, true);
+            vue.damageFish();
 
             vue.updateScore(modele.obtenirMortPoisson());
             vue.updateArgent(modele.joueur.argent);
@@ -14,12 +14,10 @@ const controller = {
             vue.updateAmeliorations(modele.joueur.argent)
             vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
 
-
-        })
-
-        this.degat_passif()
+        });
 
         for (let i = 1; i <= 13; i++) {
+
             const boutonPalier = document.getElementById("palier-" + i);
 
             boutonPalier.addEventListener("click", function () {
@@ -50,11 +48,9 @@ const controller = {
         const item_clic1 = document.getElementById("a-clic-1");
         item_clic1.addEventListener("click", function () {
             modele.ajout_item_Clic("amelioration_1");
-
             vue.updateArgent(modele.joueur.argent);
             vue.updateAmeliorations(modele.joueur.argent);
             vue.updateDegatsClick(modele.joueur.dommagesActuels);
-
             console.log(modele.obteniritem_Clic("amelioration_1").quantitePossedee);
 
         });
@@ -63,11 +59,9 @@ const controller = {
         const itempassif1 = document.getElementById("a-passif-1");
         itempassif1.addEventListener("click", function () {
             modele.ajout_item_Passif("amelioration_1");
-
             vue.updateArgent(modele.joueur.argent);
             vue.updateAmeliorations(modele.joueur.argent);
             vue.updateDegatsPassif(modele.joueur.inventaireObjetPassif);
-
             console.log(modele.obteniritem_Passif("amelioration_1").quantitePossedee);
 
         });
@@ -100,6 +94,15 @@ const controller = {
 
     chargerPartie() {
         if (localStorage.getItem("maSauvegarde") === null) {
+            vue.updateScore(modele.obtenirScore())
+            vue.updateArgent(modele.joueur.argent)
+            vue.updateFish(modele.obtenirFish())
+            vue.updateClic(modele.obtenirNbClics())
+            vue.updateAmeliorations(modele.joueur.argent)
+            vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
+            vue.updateFondPalier(modele.joueur.palierActuelAffiche)
+            vue.updateDegatsClick(modele.joueur.dommagesActuels);
+            vue.updateDegatsPassif(modele.joueur.inventaireObjetPassif);
             return
         }
         const donnees = JSON.parse(atob(localStorage.getItem("maSauvegarde")))
@@ -130,6 +133,7 @@ const controller = {
                 vue.updateScore(modele.obtenirMortPoisson());
                 vue.updateArgent(modele.joueur.argent);
                 vue.updateFish(modele.obtenirFish());
+                vue.updateAmeliorations(modele.joueur.argent);
             }
         }, 200);
     }
@@ -138,3 +142,4 @@ const controller = {
 
 controller.chargerPartie()
 controller.initialiser()
+controller.degat_passif();
