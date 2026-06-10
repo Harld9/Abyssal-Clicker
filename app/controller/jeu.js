@@ -44,25 +44,49 @@ const controller = {
             });
         }
 
+        const boutonsQuantite = document.querySelectorAll(".btn-quantite");
+
+        boutonsQuantite.forEach(function (bouton) {
+            bouton.addEventListener("click", function () {
+                const quantite = Number(bouton.dataset.quantite);
+
+                const zone = bouton.closest("#a-clic, #a-passif");
+
+                if (zone.id === "a-clic") {
+                    modele.joueur.quantiteAchatClic = quantite;
+                }
+
+                if (zone.id === "a-passif") {
+                    modele.joueur.quantiteAchatPassif = quantite;
+                }
+
+                zone.querySelectorAll(".btn-quantite").forEach(function (btn) {
+                    btn.classList.remove("actif");
+                });
+
+                bouton.classList.add("actif");
+            });
+        });
+
         modele.degat_passif();
 >>>>>>> b7e5ec4a20216690d5fa94eadc1854cce0fec7ef
 
         const item_clic1 = document.getElementById("a-clic-1");
         item_clic1.addEventListener("click", function () {
-        modele.ajout_item_Clic("amelioration_1");
-        vue.updateArgent(modele.joueur.argent);
-        console.log(modele.obteniritem_Clic("amelioration_1").quantitePossedee
-    );
+            modele.ajout_item_Clic("amelioration_1");
+            vue.updateArgent(modele.joueur.argent);
+            console.log(modele.obteniritem_Clic("amelioration_1").quantitePossedee
+            );
 
-});
+        });
         const itempassif1 = document.getElementById("a-passif-1");
         itempassif1.addEventListener("click", function () {
-        modele.ajout_item_Passif("amelioration_1");
-        vue.updateArgent(modele.joueur.argent);
-        console.log(modele.obteniritem_Passif("amelioration_1").quantitePossedee
-    );
+            modele.ajout_item_Passif("amelioration_1");
+            vue.updateArgent(modele.joueur.argent);
+            console.log(modele.obteniritem_Passif("amelioration_1").quantitePossedee
+            );
 
-});
+        });
 
 <<<<<<< HEAD
         let exportSauvegarde = document.getElementById('recup-sauvegarde')
@@ -73,7 +97,7 @@ const controller = {
             navigator.clipboard.writeText(sauvegardePartieEncodé)
 =======
         let options = document.getElementById('recup-sauvegarde')
-            options.addEventListener("click", function () {
+        options.addEventListener("click", function () {
             console.log("Sauvegarde Exporté");
             modele.exporterDonneesSauvegarde()
             let codeSauvegarde = document.getElementById('output-sauvegarde')
