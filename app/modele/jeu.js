@@ -2,17 +2,17 @@
 const modele = {
     joueur: {
         sauvegardeChargee: false,
-        score: 0,
-        nbClics: 0,
-        dommagesActuels: 1,
+        score: 0, 
+        nbClics: 0, 
+        dommagesActuels: 1, 
         dommagesBase: 1,
-        argent: 0,
-        palier: 1,
+        argent: 0, 
+        palier: 1, 
         mortPoisson: 0,
         passifBonusDPS: 0,
         niveau_amelioration_clic: 1,
         niveau_amelioration_passif: 1,
-
+        palierActuelAffiche: 1,
 
         seuilPalier: {
             1: 0, 2: 10, 3: 25, 4: 45, 5: 70, 6: 100,
@@ -24,79 +24,92 @@ const modele = {
                 nom: "Cage a poisson",
                 bonusDPS: 1,
                 prixBase: 250,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_2: {
                 nom: "Filet de peche",
                 bonusDPS: 3,
                 prixBase: 800,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_3: {
                 nom: "Barque a rames avec filet",
                 bonusDPS: 6,
                 prixBase: 1800,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_4: {
                 nom: "Petit bateau a moteur",
                 bonusDPS: 10,
                 prixBase: 4500,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_5: {
                 nom: "Chalutier",
                 bonusDPS: 20,
                 prixBase: 8000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_6: {
                 nom: "Navire-usine",
                 bonusDPS: 75,
                 prixBase: 20000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_7: {
                 nom: "Ferme aquacole",
                 bonusDPS: 200,
                 prixBase: 50000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_8: {
                 nom: "Flotte de chalutiers",
                 bonusDPS: 500,
                 prixBase: 120000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_9: {
                 nom: "Station de pompage marine",
                 bonusDPS: 1500,
                 prixBase: 350000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_10: {
                 nom: "Sous-marin de chalutage",
                 bonusDPS: 4000,
                 prixBase: 1000000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_11: {
                 nom: "Canon a filet en titane",
                 bonusDPS: 6000,
                 prixBase: 1500000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_12: {
                 nom: "Mega-plateforme oceanique",
                 bonusDPS: 10000,
                 prixBase: 3000000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_13: {
                 nom: "Base sous-marine autonome",
                 bonusDPS: 30000,
                 prixBase: 10000000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             }
         },
         inventaireObjetClic: {
@@ -104,73 +117,85 @@ const modele = {
                 nom: "Peche a mains nues",
                 bonusDegat: 1,
                 prixBase: 15,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_2: {
                 nom: "Lance en bois taillee",
                 bonusDegat: 2,
                 prixBase: 50,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_3: {
                 nom: "Epuisette de plage",
                 bonusDegat: 4,
                 prixBase: 150,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_4: {
                 nom: "Canne a peche artisanale",
                 bonusDegat: 6,
                 prixBase: 400,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_5: {
                 nom: "Canne a peche avec moulinet",
                 bonusDegat: 10,
                 prixBase: 1200,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_6: {
                 nom: "Fusil-harpon de plongee",
                 bonusDegat: 25,
                 prixBase: 3000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_7: {
                 nom: "Appats aux pheromones",
                 bonusDegat: 50,
                 prixBase: 12000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_8: {
                 nom: "Canne en fibre de carbone",
                 bonusDegat: 120,
                 prixBase: 30000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_9: {
-                nom: "Harpon pneumatique",
+                nom: "Harpon pneumat,ique",
                 bonusDegat: 300,
                 prixBase: 75000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_10: {
                 nom: "Fusil a ondes soniques",
                 bonusDegat: 800,
                 prixBase: 180000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_11: {
                 nom: "Gantelet electrique",
                 bonusDegat: 2500,
                 prixBase: 500000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_12: {
                 nom: "Lance-torpilles cryogeniques",
                 bonusDegat: 15000,
                 prixBase: 4500000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             }
         },
     },
@@ -336,56 +361,56 @@ const modele = {
             }
         ],
 
-        Palier10: [
-            {
-                Nom: "Sir François le Gobelin des Profondeurs, l'Épouvantablement Laid",
-                Image: "./static/images/poissons/Poisson19.png",
-                ImageShiny: "./static/images/poissons/Poisson19Shiny.png",
-                ImageGolden: "./static/images/poissons/Poisson19Golden.png",
-                PV: 100000
-            },
-            {
-                Nom: "Moby le Carassin d'Azur, Archiduc de la Patrouille de Bulle",
-                Image: "./static/images/poissons/Poisson20.png",
-                ImageShiny: "./static/images/poissons/Poisson20Shiny.png",
-                ImageGolden: "./static/images/poissons/Poisson20Golden.png",
-                PV: 100000
-            }
-        ],
+    Palier10: [
+        {
+            Nom: "Sir François le Gobelin des Profondeurs, l'Épouvantablement Laid",
+            Image: "./static/images/poissons/Poisson19.png",
+            ImageShiny: "./static/images/poissons/Poisson19Shiny.png",
+            ImageGolden: "./static/images/poissons/Poisson19Golden.png",
+            PV: 100000
+        },
+        {
+            Nom: "Moby le Carassin d'Azur, Archiduc de la Patrouille de Bulle",
+            Image: "./static/images/poissons/Poisson20.png",
+            ImageShiny: "./static/images/poissons/Poisson20Shiny.png",
+            ImageGolden: "./static/images/poissons/Poisson20Golden.png",
+            PV: 100000
+        }
+    ],
 
-        Palier11: [
-            {
-                Nom: "Caelacanthe Cog-sworth, le Maréchal de la Rouille Éternelle",
-                Image: "./static/images/poissons/Poisson21.png",
-                ImageShiny: "./static/images/poissons/Poisson21Shiny.png",
-                ImageGolden: "./static/images/poissons/Poisson21Golden.png",
-                PV: 300000
-            },
-            {
-                Nom: "Grognon l'Esturgeon, Archimage de la Bave",
-                Image: "./static/images/poissons/Poisson22.png",
-                ImageShiny: "./static/images/poissons/Poisson22Shiny.png",
-                ImageGolden: "./static/images/poissons/Poisson22Golden.png",
-                PV: 300000
-            }
-        ],
+    Palier11: [
+        {
+            Nom: "Caelacanthe Cog-sworth, le Maréchal de la Rouille Éternelle",
+            Image: "./static/images/poissons/Poisson21.png",
+            ImageShiny: "./static/images/poissons/Poisson21Shiny.png",
+            ImageGolden: "./static/images/poissons/Poisson21Golden.png",
+            PV: 300000
+        },
+        {
+            Nom: "Grognon l'Esturgeon, Archimage de la Bave",
+            Image: "./static/images/poissons/Poisson22.png",
+            ImageShiny: "./static/images/poissons/Poisson22Shiny.png",
+            ImageGolden: "./static/images/poissons/Poisson22Golden.png",
+            PV: 300000
+        }
+    ],
 
-        Palier12: [
-            {
-                Nom: "Iggy le Ruban, Commandeur des Courants Électro-Punk",
-                Image: "./static/images/poissons/Poisson23.png",
-                ImageShiny: "./static/images/poissons/Poisson23Shiny.png",
-                ImageGolden: "./static/images/poissons/Poisson23Golden.png",
-                PV: 750000
-            },
-            {
-                Nom: "Jean le Grand Blanc, Baron des Balafres et de la Bavure",
-                Image: "./static/images/poissons/Poisson24.png",
-                ImageShiny: "./static/images/poissons/Poisson24Shiny.png",
-                ImageGolden: "./static/images/poissons/Poisson24Golden.png",
-                PV: 750000
-            }
-        ],
+    Palier12: [
+        {
+            Nom: "Iggy le Ruban, Commandeur des Courants Électro-Punk",
+            Image: "./static/images/poissons/Poisson23.png",
+            ImageShiny: "./static/images/poissons/Poisson23Shiny.png",
+            ImageGolden: "./static/images/poissons/Poisson23Golden.png",
+            PV: 750000
+        },
+        {
+            Nom: "Jean le Grand Blanc, Baron des Balafres et de la Bavure",
+            Image: "./static/images/poissons/Poisson24.png",
+            ImageShiny: "./static/images/poissons/Poisson24Shiny.png",
+            ImageGolden: "./static/images/poissons/Poisson24Golden.png",
+            PV: 750000
+        }
+    ],
 
         Palier13: [
             {
@@ -397,7 +422,24 @@ const modele = {
             }
         ]
     },
+    changerPalier(nouveauPalier) {
+        if (nouveauPalier === this.joueur.palierActuelAffiche) {
+            return;
+        }
+        if (nouveauPalier <= this.joueur.palier) {
 
+            this.joueur.palierActuelAffiche = nouveauPalier;
+
+            const nouveauPoisson = this.spawnFish(nouveauPalier);
+
+            this.poisson.poissonActuel = nouveauPoisson;
+            this.poisson.pvPoissonMax = nouveauPoisson.pvMax;
+            this.poisson.pvPoissonActuel = nouveauPoisson.pvMax;
+
+            console.log("Palier affiché :", nouveauPalier);
+            console.log("Nouveau poisson :", nouveauPoisson);
+        }
+    },
 
     degat_passif() {
         setInterval(function () {
@@ -406,7 +448,7 @@ const modele = {
                 modele.frapperPoisson(modele.joueur.passifBonusDPS);
                 vue.updateArgent(modele.joueur.argent);
                 vue.updateFish(modele.obtenirFish());
-                vue.updateScore(modele.obtenirScore());
+                vue.updateScore(modele.obtenirNbClics());
                 vue.updateMortPoisson(modele.obtenirMortPoisson());
             }
         }, 200);
@@ -427,73 +469,82 @@ const modele = {
             this.joueur.argent -= item.prixBase;
             // on augmente la quantité d'item que le joueur posséde de 1
             item.quantitePossedee += 1;
-            // on ajoute les degats a la constante de dommage actuel
-            this.recalculerDegatsPassif();
-            console.log("Achat réussi : " + item.nom);
-        } else {
-            console.log("Argent insuffisant pour acheter : " + item.nom);
-        }
-    },
+            if (this.joueur.argent >= item.prixActuel) {
+                this.joueur.argent -= item.prixActuel;
 
-    recalculerDegatsPassif() {
-        this.joueur.passifBonusDPS = 0;
-        for (const typeItem in this.joueur.inventaireObjetPassif) {
-            const item = this.joueur.inventaireObjetPassif[typeItem];
-            //on ajoute les degat en multipliant la quantité posséder et en ajoutant la somme au bonusDPS passif
-            this.joueur.passifBonusDPS += item.quantitePossedee * item.bonusDPS;
-        }
-        console.log("Bonus DPS passif recalculé (finaux passif) : " + this.joueur.passifBonusDPS);
-    },
+                item.quantitePossedee += 1;
 
-    ajout_item_Clic(typeItem) {
-        console.log("Tentative d'achat de l'item : " + typeItem);
-        console.log("id reçu :", typeItem);
-        console.log("item trouvé :", this.joueur.inventaireObjetClic[typeItem]);
-        const item = this.joueur.inventaireObjetClic[typeItem];
-        if (!item) {
-            console.error("Item introuvable :", typeItem);
-            return;
-        }
-        // si largent du joueur est plus grand ou egal au prix de l'item .
-        if (this.joueur.argent >= item.prixBase) {
-            //alors on retire l'argent du joueur 
-            this.joueur.argent -= item.prixBase;
-            // on augmente la quantité d'item que le joueur posséde de 1
-            item.quantitePossedee += 1;
-            // on ajoute les degats a la constante de dommage actuel
-            this.recalculerDegats();
-            console.log("Achat réussi : " + item.nom);
-        } else {
-            console.log("Argent insuffisant pour acheter : " + item.nom);
-        }
-    },
+                item.prixActuel = Math.round(
+                    item.prixBase * Math.pow(item.multiplicateurPrix, item.quantitePossedee)
+                );
+            }
+                // on ajoute les degats a la constante de dommage actuel
+                this.recalculerDegatsPassif();
+                console.log("Achat réussi : " + item.nom);
+            } else {
+                console.log("Argent insuffisant pour acheter : " + item.nom);
+            }
+        },
 
-    recalculerDegats() {
-        this.joueur.dommagesActuels = this.joueur.dommagesBase;
-        for (const typeItem in this.joueur.inventaireObjetClic) {
+        recalculerDegatsPassif() {
+            this.joueur.passifBonusDPS = 0;
+            for (const typeItem in this.joueur.inventaireObjetPassif) {
+                const item = this.joueur.inventaireObjetPassif[typeItem];
+                //on ajoute les degat en multipliant la quantité posséder et en ajoutant la somme au bonusDPS passif
+                this.joueur.passifBonusDPS += item.quantitePossedee * item.bonusDPS;
+            }
+            console.log("Bonus DPS passif recalculé (finaux passif) : " + this.joueur.passifBonusDPS);
+        },
+
+        ajout_item_Clic(typeItem) {
+            console.log("Tentative d'achat de l'item : " + typeItem);
+            console.log("id reçu :", typeItem);
+            console.log("item trouvé :", this.joueur.inventaireObjetClic[typeItem]);
             const item = this.joueur.inventaireObjetClic[typeItem];
-            //on ajoute les degat en multipliant la quantité posséder et en ajoutant la somme au dommage actuel
-            this.joueur.dommagesActuels += item.quantitePossedee * item.bonusDegat;
-        }
-        console.log("Dégâts actuels recalculés (finaux au clic) : " + this.joueur.dommagesActuels);
-    },
+            if (!item) {
+                console.error("Item introuvable :", typeItem);
+                return;
+            }
+            // si largent du joueur est plus grand ou egal au prix de l'item .
+            if (this.joueur.argent >= item.prixBase) {
+                //alors on retire l'argent du joueur
+                this.joueur.argent -= item.prixBase;
+                // on augmente la quantité d'item que le joueur posséde de 1
+                item.quantitePossedee += 1;
+                // on ajoute les degats a la constante de dommage actuel
+                this.recalculerDegats();
+                console.log("Achat réussi : " + item.nom);
+            } else {
+                console.log("Argent insuffisant pour acheter : " + item.nom);
+            }
+        },
 
-    frapperPoisson(damageAmount) {
-        console.log("damageAmount =", damageAmount);
-        console.log("PV avant =", this.poisson.pvPoissonActuel);
-        console.log("dommagesActuels joueur =", this.joueur.dommagesActuels);
-        this.joueur.nbClics++
-        // ASTUCE DE PRO : Math.min empêche de faire plus de dégâts que les HP restants
-        let dommagesActuels = Math.min(damageAmount, this.poisson.pvPoissonActuel);
+        recalculerDegats() {
+            this.joueur.dommagesActuels = this.joueur.dommagesBase;
+            for (const typeItem in this.joueur.inventaireObjetClic) {
+                const item = this.joueur.inventaireObjetClic[typeItem];
+                //on ajoute les degat en multipliant la quantité posséder et en ajoutant la somme au dommage actuel
+                this.joueur.dommagesActuels += item.quantitePossedee * item.bonusDegat;
+            }
+            console.log("Dégâts actuels recalculés (finaux au clic) : " + this.joueur.dommagesActuels);
+        },
 
-        // On retire la vie au poisson
-        this.poisson.pvPoissonActuel -= dommagesActuels;
+        frapperPoisson(damageAmount) {
+            console.log("damageAmount =", damageAmount);
+            console.log("PV avant =", this.poisson.pvPoissonActuel);
+            console.log("dommagesActuels joueur =", this.joueur.dommagesActuels);
+            this.joueur.nbClics++
+            // ASTUCE DE PRO : Math.min empêche de faire plus de dégâts que les HP restants
+            let dommagesActuels = Math.min(damageAmount, this.poisson.pvPoissonActuel);
 
-        // On donne l'argent immédiat (1 Dégât = 1 Argent)
-        this.joueur.argent += Math.round(dommagesActuels * this.poisson.poissonActuel.multiplicateurArgent)
+            // On retire la vie au poisson
+            this.poisson.pvPoissonActuel -= dommagesActuels;
+
+            // On donne l'argent immédiat (1 Dégât = 1 Argent)
+            this.joueur.argent += Math.round(dommagesActuels * this.poisson.poissonActuel.multiplicateurArgent)
 
 
-        console.log("PV restants :", this.poisson.pvPoissonActuel);
+            console.log("PV restants :", this.poisson.pvPoissonActuel);
 
         // Vérification de la mort du poisson
         if (this.poisson.pvPoissonActuel <= 0) {
@@ -512,16 +563,15 @@ const modele = {
                 console.log("Bravo ! Palier " + this.joueur.palier + " atteint !");
             }
 
-            const nouveauPoisson = this.spawnFish(this.joueur.palier);
-            // On fait apparaître le nouveau poisson du bloc correspondant
-            this.poisson.poissonActuel = nouveauPoisson;
-            // On réinitialise les PV du poisson
-            this.poisson.pvPoissonMax = this.poisson.poissonActuel.pvMax;
-            this.poisson.pvPoissonActuel = this.poisson.poissonActuel.pvMax;
-            console.log("Nouveau poisson modèle :", this.poisson.poissonActuel);
-        }
-
-    },
+                const nouveauPoisson = this.spawnFish(this.joueur.palierActuelAffiche);
+                // On fait apparaître le nouveau poisson du bloc correspondant
+                this.poisson.poissonActuel = nouveauPoisson;
+                // On réinitialise les PV du poisson
+                this.poisson.pvPoissonMax = this.poisson.poissonActuel.pvMax;
+                this.poisson.pvPoissonActuel = this.poisson.poissonActuel.pvMax;
+                console.log("Nouveau poisson modèle :", this.poisson.poissonActuel);
+            }
+        },
 
     obteniritem_Passif(typeItem) {
         return this.joueur.inventaireObjetPassif[typeItem];
