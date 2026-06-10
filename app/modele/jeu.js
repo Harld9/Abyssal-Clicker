@@ -2,17 +2,19 @@
 const modele = {
     joueur: {
         sauvegardeChargee: false,
-        score: 0, 
-        nbClics: 0, 
-        dommagesActuels: 1, 
+        score: 0,
+        nbClics: 0,
+        dommagesActuels: 1,
         dommagesBase: 1,
-        argent: 0, 
-        palier: 1, 
+        argent: 0,
+        palier: 1,
         mortPoisson: 0,
         passifBonusDPS: 0,
         niveau_amelioration_clic: 1,
         niveau_amelioration_passif: 1,
         palierActuelAffiche: 1,
+        quantiteAchatClic: 1,
+        quantiteAchatPassif: 1,
 
         seuilPalier: {
             1: 0, 2: 10, 3: 25, 4: 45, 5: 70, 6: 100,
@@ -361,56 +363,56 @@ const modele = {
             }
         ],
 
-    Palier10: [
-        {
-            Nom: "Sir François le Gobelin des Profondeurs, l'Épouvantablement Laid",
-            Image: "./static/images/poissons/Poisson19.png",
-            ImageShiny: "./static/images/poissons/Poisson19Shiny.png",
-            ImageGolden: "./static/images/poissons/Poisson19Golden.png",
-            PV: 100000
-        },
-        {
-            Nom: "Moby le Carassin d'Azur, Archiduc de la Patrouille de Bulle",
-            Image: "./static/images/poissons/Poisson20.png",
-            ImageShiny: "./static/images/poissons/Poisson20Shiny.png",
-            ImageGolden: "./static/images/poissons/Poisson20Golden.png",
-            PV: 100000
-        }
-    ],
+        Palier10: [
+            {
+                Nom: "Sir François le Gobelin des Profondeurs, l'Épouvantablement Laid",
+                Image: "./static/images/poissons/Poisson19.png",
+                ImageShiny: "./static/images/poissons/Poisson19Shiny.png",
+                ImageGolden: "./static/images/poissons/Poisson19Golden.png",
+                PV: 100000
+            },
+            {
+                Nom: "Moby le Carassin d'Azur, Archiduc de la Patrouille de Bulle",
+                Image: "./static/images/poissons/Poisson20.png",
+                ImageShiny: "./static/images/poissons/Poisson20Shiny.png",
+                ImageGolden: "./static/images/poissons/Poisson20Golden.png",
+                PV: 100000
+            }
+        ],
 
-    Palier11: [
-        {
-            Nom: "Caelacanthe Cog-sworth, le Maréchal de la Rouille Éternelle",
-            Image: "./static/images/poissons/Poisson21.png",
-            ImageShiny: "./static/images/poissons/Poisson21Shiny.png",
-            ImageGolden: "./static/images/poissons/Poisson21Golden.png",
-            PV: 300000
-        },
-        {
-            Nom: "Grognon l'Esturgeon, Archimage de la Bave",
-            Image: "./static/images/poissons/Poisson22.png",
-            ImageShiny: "./static/images/poissons/Poisson22Shiny.png",
-            ImageGolden: "./static/images/poissons/Poisson22Golden.png",
-            PV: 300000
-        }
-    ],
+        Palier11: [
+            {
+                Nom: "Caelacanthe Cog-sworth, le Maréchal de la Rouille Éternelle",
+                Image: "./static/images/poissons/Poisson21.png",
+                ImageShiny: "./static/images/poissons/Poisson21Shiny.png",
+                ImageGolden: "./static/images/poissons/Poisson21Golden.png",
+                PV: 300000
+            },
+            {
+                Nom: "Grognon l'Esturgeon, Archimage de la Bave",
+                Image: "./static/images/poissons/Poisson22.png",
+                ImageShiny: "./static/images/poissons/Poisson22Shiny.png",
+                ImageGolden: "./static/images/poissons/Poisson22Golden.png",
+                PV: 300000
+            }
+        ],
 
-    Palier12: [
-        {
-            Nom: "Iggy le Ruban, Commandeur des Courants Électro-Punk",
-            Image: "./static/images/poissons/Poisson23.png",
-            ImageShiny: "./static/images/poissons/Poisson23Shiny.png",
-            ImageGolden: "./static/images/poissons/Poisson23Golden.png",
-            PV: 750000
-        },
-        {
-            Nom: "Jean le Grand Blanc, Baron des Balafres et de la Bavure",
-            Image: "./static/images/poissons/Poisson24.png",
-            ImageShiny: "./static/images/poissons/Poisson24Shiny.png",
-            ImageGolden: "./static/images/poissons/Poisson24Golden.png",
-            PV: 750000
-        }
-    ],
+        Palier12: [
+            {
+                Nom: "Iggy le Ruban, Commandeur des Courants Électro-Punk",
+                Image: "./static/images/poissons/Poisson23.png",
+                ImageShiny: "./static/images/poissons/Poisson23Shiny.png",
+                ImageGolden: "./static/images/poissons/Poisson23Golden.png",
+                PV: 750000
+            },
+            {
+                Nom: "Jean le Grand Blanc, Baron des Balafres et de la Bavure",
+                Image: "./static/images/poissons/Poisson24.png",
+                ImageShiny: "./static/images/poissons/Poisson24Shiny.png",
+                ImageGolden: "./static/images/poissons/Poisson24Golden.png",
+                PV: 750000
+            }
+        ],
 
         Palier13: [
             {
@@ -422,6 +424,21 @@ const modele = {
             }
         ]
     },
+
+    calculerPrixAchatMultiple(item, quantite) {
+        let total = 0;
+
+        for (let i = 0; i < quantite; i++) {
+            total += Math.round(
+                item.prixBase * Math.pow(
+                    item.multiplicateurPrix,
+                    item.quantitePossedee + i
+                )
+            );
+        }
+        return total;
+    },
+
     changerPalier(nouveauPalier) {
         if (nouveauPalier === this.joueur.palierActuelAffiche) {
             return;
@@ -457,27 +474,20 @@ const modele = {
     ajout_item_Passif(typeItem) {
         const item = this.joueur.inventaireObjetPassif[typeItem];
 
-        if (!item) {
-            console.error("Item passif introuvable :", typeItem);
-            return;
-        }
+        if (!item) return;
 
-        const prixAchat = Math.round(
-            item.prixBase * Math.pow(item.multiplicateurPrix, item.quantitePossedee)
-        );
+        const quantite = this.joueur.quantiteAchatPassif;
+        const prixTotal = this.calculerPrixAchatMultiple(item, quantite);
 
-        if (this.joueur.argent >= prixAchat) {
-            this.joueur.argent -= prixAchat;
-            item.quantitePossedee += 1;
+        if (this.joueur.argent >= prixTotal) {
+            this.joueur.argent -= prixTotal;
+            item.quantitePossedee += quantite;
 
             this.recalculerDegatsPassif();
 
-            console.log("Achat passif réussi :", item.nom);
-            console.log("Nouveau prix :", Math.round(
-                item.prixBase * Math.pow(item.multiplicateurPrix, item.quantitePossedee)
-            ));
+            console.log("Achat x" + quantite + " réussi :", item.nom);
         } else {
-            console.log("Argent insuffisant pour acheter :", item.nom);
+            console.log("Argent insuffisant");
         }
     },
 
@@ -494,27 +504,20 @@ const modele = {
     ajout_item_Clic(typeItem) {
         const item = this.joueur.inventaireObjetClic[typeItem];
 
-        if (!item) {
-            console.error("Item introuvable :", typeItem);
-            return;
-        }
+        if (!item) return;
 
-        const prixAchat = Math.round(
-            item.prixBase * Math.pow(item.multiplicateurPrix, item.quantitePossedee)
-        );
+        const quantite = this.joueur.quantiteAchatClic;
+        const prixTotal = this.calculerPrixAchatMultiple(item, quantite);
 
-        if (this.joueur.argent >= prixAchat) {
-            this.joueur.argent -= prixAchat;
-            item.quantitePossedee += 1;
+        if (this.joueur.argent >= prixTotal) {
+            this.joueur.argent -= prixTotal;
+            item.quantitePossedee += quantite;
 
             this.recalculerDegats();
 
-            console.log("Achat réussi :", item.nom);
-            console.log("Nouveau prix :", Math.round(
-                item.prixBase * Math.pow(item.multiplicateurPrix, item.quantitePossedee)
-            ));
+            console.log("Achat x" + quantite + " réussi :", item.nom);
         } else {
-            console.log("Argent insuffisant pour acheter :", item.nom);
+            console.log("Argent insuffisant");
         }
     },
 
