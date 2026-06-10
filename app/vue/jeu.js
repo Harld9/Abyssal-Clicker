@@ -7,13 +7,6 @@ const vue = {
         console.log("Nombre de clics : " + nouveauClic)
     },
 
-    //Méthode qui met à jour le score dans l'affichage
-    updateScore(nouveauScore) {
-        const affichageScore = document.getElementById("nbScore")
-        affichageScore.textContent = nouveauScore
-        console.log("Score : " + nouveauScore)
-    },
-
     //Méthode qui met à jour l'argent' dans l'affichage
     updateArgent(nouveauArgent) {
         const affichageArgent = document.getElementById("argent")
@@ -45,9 +38,14 @@ const vue = {
         }
         console.log("Image changée vers :", imagePoisson.src);
     },
-    updateMortPoisson(nouveauMortPoisson) {
+    updateScore(nouveauMortPoisson) {
         const affichageMortPoisson = document.getElementById('nbScore')
         affichageMortPoisson.textContent = nouveauMortPoisson
         console.log("Poissons morts : " + nouveauMortPoisson)
     },
+
+    updateCodeSauvegarde(codePartie) {
+        const inputSauvegarde = document.getElementById('output-sauvegarde')
+        inputSauvegarde.textContent = codePartie
+    }
 }

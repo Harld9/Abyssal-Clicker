@@ -7,9 +7,8 @@ const controller = {
             modele.frapperPoisson(modele.joueur.dommagesActuels)
             vue.damageFish()
             let score = modele.obtenirScore()
-            vue.updateScore(score)
             let mortPoisson = modele.obtenirMortPoisson()
-            vue.updateMortPoisson(mortPoisson)
+            vue.updateScore(mortPoisson)
             // On récupère l'argent actuel du modèle et on le met à jour dans la vue
             let argent = modele.joueur.argent;
             vue.updateArgent(argent);
@@ -19,9 +18,12 @@ const controller = {
 
             let nbClic = modele.obtenirNbClics()
             vue.updateClic(nbClic);
+
+
         })
 
-        modele.degat_passif();
+        this.degat_passif()
+
 
         const item_clic1 = document.getElementById("a-clic-1");
         item_clic1.addEventListener("click", function () {
@@ -40,13 +42,27 @@ const controller = {
 
         });
 
-        let options = document.getElementById('recup-sauvegarde')
-        options.addEventListener("click", function () {
-            console.log("Sauvegarde Exporté");
-            modele.exporterDonneesSauvegarde()
-            let codeSauvegarde = document.getElementById('output-sauvegarde')
-            navigator.clipboard.writeText(codeSauvegarde.textContent)
+        let exportSauvegarde = document.getElementById('recup-sauvegarde')
+        exportSauvegarde.addEventListener("click", function () {
+            console.log("Sauvegarde Exportée");
+            let sauvegardePartieEncodé = modele.exporterDonneesSauvegarde()
+            vue.updateCodeSauvegarde(sauvegardePartieEncodé)
+            navigator.clipboard.writeText(sauvegardePartieEncodé)
         });
+
+        let importSauvegarde = document.getElementById('ajout-sauvegarde')
+        let inputSauvegarde = document.getElementById('input-sauvegarde')
+        importSauvegarde.addEventListener("click", function () {
+            console.log("Sauvegarde Importée");
+            donneesImportees = JSON.parse(atob(inputSauvegarde.value))
+            modele.importerDonneesSauvegarde(donneesImportees)
+            console.log("Sauvegarde importée avec ces données : " + donneesImportees);
+            vue.updateArgent(modele.joueur.argent)
+            vue.updateClic(modele.joueur.nbClics)
+            vue.updateScore(modele.joueur.score)
+            vue.updateFish(modele.obtenirFish())
+        });
+        modele.initialiserNouvellePartie()
     },
 
     chargerPartie() {
@@ -54,7 +70,7 @@ const controller = {
         const donnees = JSON.parse(atob(localStorage.getItem("maSauvegarde")))
         console.log("Données de la fonction charger partie : " + donnees)
         modele.importerDonneesSauvegarde(donnees)
-        vue.updateScore(modele.obtenirMortPoisson())
+        vue.updateScore(modele.obtenirScore())
         vue.updateFish(modele.obtenirFish())
         vue.updateClic(modele.obtenirNbClics())
         //Penser a faire le getter
@@ -64,7 +80,19 @@ const controller = {
     sauvegarderPartie() {
         const encode = btoa(JSON.stringify(modele.obtenirEtatPartie()))
         localStorage.setItem("maSauvegarde", encode)
+    },
+    degat_passif() {
+        setInterval(function () {
+            if (modele.joueur.passifBonusDPS > 0) {
+                vue.damageFish();
+                modele.frapperPoisson(modele.joueur.passifBonusDPS);
+                vue.updateArgent(modele.joueur.argent);
+                vue.updateFish(modele.obtenirFish());
+                vue.updateScore(modele.obtenirMortPoisson());
+            }
+        }, 200);
     }
+
 }
 
 controller.chargerPartie()

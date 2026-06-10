@@ -1,4 +1,4 @@
-//Objet modele qui possède les infos du joueur (score, argent, etc...), des poissons, etc...
+//Objet this qui possède les infos du joueur (score, argent, etc...), des poissons, etc...
 const modele = {
     joueur: {
         sauvegardeChargee: false,
@@ -399,18 +399,7 @@ const modele = {
     },
 
 
-    degat_passif() {
-        setInterval(function () {
-            if (modele.joueur.passifBonusDPS > 0) {
-                vue.damageFish();
-                modele.frapperPoisson(modele.joueur.passifBonusDPS);
-                vue.updateArgent(modele.joueur.argent);
-                vue.updateFish(modele.obtenirFish());
-                vue.updateScore(modele.obtenirScore());
-                vue.updateMortPoisson(modele.obtenirMortPoisson());
-            }
-        }, 200);
-    },
+
 
     ajout_item_Passif(typeItem) {
         console.log("Tentative d'achat de l'item : " + typeItem);
@@ -590,9 +579,12 @@ const modele = {
     },
 
     importerDonneesSauvegarde(donnees) {
+
         if (donnees.joueur === undefined) {
             return
         }
+
+
         this.joueur.score = donnees.joueur.score
         this.joueur.nbClics = donnees.joueur.nbClics
         this.joueur.dommagesActuels = donnees.joueur.dommagesActuels
@@ -607,11 +599,7 @@ const modele = {
         this.poisson.pvPoissonMax = donnees.poisson.pvPoissonMax
         this.poisson.pvPoissonActuel = donnees.poisson.pvPoissonActuel
         this.poisson.poissonActuel = donnees.poisson.poissonActuel
-        if (donnees.poisson.poissonActuel !== null) {
-            this.poisson.poissonActuel = donnees.poisson.poissonActuel;
-        } else {
-            this.poisson.poissonActuel = this.spawnFish(this.joueur.palier);
-        }
+
         this.joueur.sauvegardeChargee = true
     },
 
@@ -619,25 +607,27 @@ const modele = {
         let etatPartie = { joueur: this.joueur, poisson: this.poisson }
         let sauvegardePartie = JSON.stringify(etatPartie)
         let sauvegardePartieEncodé = btoa(sauvegardePartie)
-        let codeSauvegarde = document.getElementById('output-sauvegarde')
-        codeSauvegarde.textContent = sauvegardePartieEncodé
+        return sauvegardePartieEncodé
     },
     obtenirEtatPartie() {
         return { joueur: this.joueur, poisson: this.poisson }
+    },
+
+    initialiserNouvellePartie() {
+        if (this.joueur.sauvegardeChargee === false) {
+            // Création du premier poisson au lancement du jeu
+            this.poisson.poissonActuel =
+                this.spawnFish(this.joueur.palier);
+
+            this.poisson.pvPoissonMax =
+                this.poisson.poissonActuel.pvMax;
+
+            this.poisson.pvPoissonActuel =
+                this.poisson.poissonActuel.pvMax;
+
+            console.log("Premier poisson chargé :",
+                this.poisson.poissonActuel);
+        }
     }
 }
 
-if (modele.joueur.sauvegardeChargee === false) {
-    // Création du premier poisson au lancement du jeu
-    modele.poisson.poissonActuel =
-        modele.spawnFish(modele.joueur.palier);
-
-    modele.poisson.pvPoissonMax =
-        modele.poisson.poissonActuel.pvMax;
-
-    modele.poisson.pvPoissonActuel =
-        modele.poisson.poissonActuel.pvMax;
-
-    console.log("Premier poisson chargé :",
-        modele.poisson.poissonActuel);
-}
