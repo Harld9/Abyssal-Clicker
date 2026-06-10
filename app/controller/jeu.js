@@ -2,30 +2,23 @@ const controller = {
 
     initialiser() {
         const bouton = document.getElementById("imgPoisson")
-        // Au click sur le bouton, on appelle le modèle on rajoute 1 au score et on met à jour le résultat dans la vue
         bouton.addEventListener("click", function () {
-            modele.frapperPoisson(modele.joueur.dommagesActuels)
-            modele.joueur.nbClics++
-            vue.damageFish()
-            vue.updateScore(modele.obtenirMortPoisson());
-            vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
-            // On récupère l'argent actuel du modèle et on le met à jour dans la vue
-            let argent = modele.joueur.argent;
-            vue.updateArgent(argent);
-            vue.updateAmeliorations(modele.joueur.argent)
-            // On récupère le poisson actuel du modèle et on le met à jour dans la vue
-            let poisson = modele.obtenirFish()
-            vue.updateFish(poisson)
+            modele.frapperPoisson(modele.joueur.dommagesActuels, true);
+            vue.damageFish();
 
-            let nbClic = modele.obtenirNbClics()
-            vue.updateClic(nbClic);
+            vue.updateScore(modele.obtenirScore());
+            vue.updateClic(modele.obtenirNbClics());
+            vue.updateArgent(modele.joueur.argent);
+            vue.updateFish(modele.obtenirFish());
 
-
-        })
-
-        this.degat_passif()
+            vue.updateBoutonsPaliers(
+                modele.joueur.palierActuelAffiche,
+                modele.joueur.palier
+            );
+        });
 
         for (let i = 1; i <= 13; i++) {
+
             const boutonPalier = document.getElementById("palier-" + i);
 
             boutonPalier.addEventListener("click", function () {

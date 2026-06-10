@@ -21,97 +21,112 @@ const modele = {
             7: 140, 8: 190, 9: 250, 10: 320,
             11: 400, 12: 500, 13: 650
         },
+        //        {
+        //        Palier 1: 0,
+        //        Palier 2: 15,
+        //        Palier 3: 56,
+        //        Palier 4: 152,
+        //        Palier 5: 354,
+        //        Palier 6: 759,
+        //        Palier 7: 1595,
+        //        Palier 8: 3246,
+        //        Palier 9: 6407,
+        //        Palier 10: 12300,
+        //        Palier 11: 23066,
+        //        Palier 12: 43249,
+        //        Palier 13: 84302,
+        //        }
         inventaireObjetPassif: {
             amelioration_1: {
                 nom: "Cage a poisson",
                 bonusDPS: 1,
                 prixBase: 250,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_2: {
                 nom: "Filet de peche",
                 bonusDPS: 3,
                 prixBase: 800,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_3: {
                 nom: "Barque a rames avec filet",
                 bonusDPS: 6,
                 prixBase: 1800,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_4: {
                 nom: "Petit bateau a moteur",
                 bonusDPS: 10,
                 prixBase: 4500,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_5: {
                 nom: "Chalutier",
                 bonusDPS: 20,
                 prixBase: 8000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_6: {
                 nom: "Navire-usine",
                 bonusDPS: 75,
                 prixBase: 20000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_7: {
                 nom: "Ferme aquacole",
                 bonusDPS: 200,
                 prixBase: 50000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_8: {
                 nom: "Flotte de chalutiers",
                 bonusDPS: 500,
                 prixBase: 120000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_9: {
                 nom: "Station de pompage marine",
                 bonusDPS: 1500,
                 prixBase: 350000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_10: {
                 nom: "Sous-marin de chalutage",
                 bonusDPS: 4000,
                 prixBase: 1000000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_11: {
                 nom: "Canon a filet en titane",
                 bonusDPS: 6000,
                 prixBase: 1500000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_12: {
                 nom: "Mega-plateforme oceanique",
                 bonusDPS: 10000,
                 prixBase: 3000000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_13: {
                 nom: "Base sous-marine autonome",
                 bonusDPS: 30000,
                 prixBase: 10000000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             }
         },
         inventaireObjetClic: {
@@ -120,84 +135,84 @@ const modele = {
                 bonusDegat: 1,
                 prixBase: 15,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_2: {
                 nom: "Lance en bois taillee",
                 bonusDegat: 2,
                 prixBase: 50,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_3: {
                 nom: "Epuisette de plage",
                 bonusDegat: 4,
                 prixBase: 150,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_4: {
                 nom: "Canne a peche artisanale",
                 bonusDegat: 6,
                 prixBase: 400,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_5: {
                 nom: "Canne a peche avec moulinet",
                 bonusDegat: 10,
                 prixBase: 1200,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_6: {
                 nom: "Fusil-harpon de plongee",
                 bonusDegat: 25,
                 prixBase: 3000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_7: {
                 nom: "Appats aux pheromones",
                 bonusDegat: 50,
                 prixBase: 12000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_8: {
                 nom: "Canne en fibre de carbone",
                 bonusDegat: 120,
                 prixBase: 30000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_9: {
                 nom: "Harpon pneumat,ique",
                 bonusDegat: 300,
                 prixBase: 75000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_10: {
                 nom: "Fusil a ondes soniques",
                 bonusDegat: 800,
                 prixBase: 180000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_11: {
                 nom: "Gantelet electrique",
                 bonusDegat: 2500,
                 prixBase: 500000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             },
             amelioration_12: {
                 nom: "Lance-torpilles cryogeniques",
                 bonusDegat: 15000,
                 prixBase: 4500000,
                 quantitePossedee: 0,
-                multiplicateurPrix: 1.15,
+                multiplicateurPrix: 1.05,
             }
         },
     },
@@ -466,7 +481,7 @@ const modele = {
                 vue.updateArgent(modele.joueur.argent);
                 vue.updateFish(modele.obtenirFish());
                 vue.updateScore(modele.obtenirScore());
-
+                vue.updateClic(modele.obtenirNbClics());
             }
         }, 200);
     },
@@ -531,7 +546,15 @@ const modele = {
         console.log("Dégâts actuels recalculés (finaux au clic) : " + this.joueur.dommagesActuels);
     },
 
-    frapperPoisson(damageAmount) {
+    calculerScoreGagnePoisson() {
+        console.log("Palier affiché pour score :", this.joueur.palierActuelAffiche);
+        return this.joueur.palierActuelAffiche;
+    },
+
+    frapperPoisson(damageAmount, compterClic = true) {
+        if (compterClic) {
+            this.joueur.nbClics++;
+        }
         console.log("damageAmount =", damageAmount);
         console.log("PV avant =", this.poisson.pvPoissonActuel);
         console.log("dommagesActuels joueur =", this.joueur.dommagesActuels);
@@ -552,7 +575,7 @@ const modele = {
         if (this.poisson.pvPoissonActuel <= 0) {
 
             // LE POISSON EST MORT : On donne +1 au Score
-            this.joueur.score += 1;
+            this.joueur.score += this.calculerScoreGagnePoisson();
             this.joueur.mortPoisson += 1;
             console.log("Nombres de poissons tués : " + this.joueur.mortPoisson)
             console.log("Argent gagné :", this.joueur.argent);
