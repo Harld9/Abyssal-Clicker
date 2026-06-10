@@ -1,0 +1,32 @@
+jeu: 
+  vrai_damage: 1
+  passive_tick_ms: 200
+
+joueur:
+    score: 0
+    argent: 0
+    palier: 1
+    vrai_damage: 1
+
+rarete: 
+    shiny:
+      rarete: 0.5
+      multiplicateur_argent: 2
+    golden:
+      rarete: 0.1
+      multiplicateur_argent: 5
+
+paliers:
+            1: 0 
+            2: 10 
+            3: 25 
+            4: 45 
+            5: 70 
+            6: 100
+            7: 140 
+            8: 190 
+            9: 250 
+            10: 320
+            11: 400 
+            12: 500 
+            13: 650

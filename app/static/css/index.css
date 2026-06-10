@@ -495,7 +495,7 @@
    État du poisson
    ===================== */
 
-.dommage:hover {
+.dommage {
   filter: blur(1px) sepia(100%) saturate(300%) hue-rotate(300deg);
   scale: 0.9;
   transition:

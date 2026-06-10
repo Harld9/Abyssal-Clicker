@@ -16,18 +16,13 @@ const vue = {
     //Méthode qui met une animation de dégât au poisson.
     damageFish() {
         const poisson = document.getElementById("poisson")
+        void poisson.offsetWidth;
         poisson.classList.add("dommage")
         setTimeout(() => {
             poisson.classList.remove("dommage")
         }, 100)
     },
-
-    //Méthode qui met à jour les améliorations dans l'affichage selon l'argent disponible
-
-    //Méthode qui met à jour les succès dans l'affichage selon les succès débloqués par le joueur
-
-    //Méthode qui met à jour les paliers dans l'affichage selon les paliers débloqués par le joueur
-
+    //Méthode qui met à jour le poisson dans l'affichage
     updateFish(nouveauPoisson) {
         console.log("Poisson reçu dans la vue :", nouveauPoisson);
 
@@ -43,13 +38,9 @@ const vue = {
         }
         console.log("Image changée vers :", imagePoisson.src);
     },
-
     updateMortPoisson(nouveauMortPoisson) {
         const affichageMortPoisson = document.getElementById('nbScore')
         affichageMortPoisson.textContent = nouveauMortPoisson
         console.log("Poissons morts : " + nouveauMortPoisson)
-    }
+    },
 }
-
-
-
