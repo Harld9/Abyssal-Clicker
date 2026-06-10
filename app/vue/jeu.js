@@ -28,7 +28,7 @@ const vue = {
      *                   la classe "dommage" doit être définie dans index.css
      */
     damageFish() {
-        const poisson = document.getElementById("poisson")
+        const poisson = document.getElementById("imgPoisson")
         void poisson.offsetWidth;
         poisson.classList.add("dommage")
         setTimeout(() => {
