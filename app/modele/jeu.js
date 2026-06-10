@@ -487,7 +487,7 @@ const modele = {
 
             console.log("Achat x" + quantite + " réussi :", item.nom);
         } else {
-            console.log("Argent insuffisant");
+            console.log("Argent insuffisant - Prix total :" + prixTotal + " - Argent actuel :" + this.joueur.argent);
         }
     },
 
@@ -517,7 +517,7 @@ const modele = {
 
             console.log("Achat x" + quantite + " réussi :", item.nom);
         } else {
-            console.log("Argent insuffisant");
+            console.log("Argent insuffisant - Prix total :" + prixTotal + " - Argent actuel :" + this.joueur.argent);
         }
     },
 

@@ -172,4 +172,18 @@ const vue = {
         const affichage = document.querySelector("#a-passif .a-dps")
         if (affichage) affichage.textContent = totalDPS + " dégâts/s"
     },
+
+    /**
+     * Met à jour la surbrillance des boutons de quantité d'achat
+     * @param {HTMLElement} zone - l'élément #a-clic ou #a-passif
+     * @param {HTMLElement} boutonActif - le bouton sur lequel on vient de cliquer
+     * @returns {void} - retire "actif" de tous les .btn-quantite de la zone
+     *                   ajoute "actif" sur le bouton cliqué
+     */
+    updateBoutonsQuantite(zone, boutonActif) {
+        zone.querySelectorAll(".btn-quantite").forEach(function (btn) {
+            btn.classList.remove("actif");
+        });
+        boutonActif.classList.add("actif");
+    },
 }
