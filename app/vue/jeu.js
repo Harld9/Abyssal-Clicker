@@ -182,4 +182,18 @@ const vue = {
         });
         boutonActif.classList.add("actif");
     },
+
+    /**
+     * Joue l'animation de dégât passif sur l'image du poisson
+     * @param {void} - aucun paramètre requis
+     * @returns {void} - ajoute/retire la classe "dommage-passif" sur <img> dans <button id="imgPoisson">
+     *                   pas de rétrécissement, uniquement un effet de bordure
+     */
+    damageFishPassif() {
+        const bouton = document.querySelector("#imgPoisson")
+        bouton.classList.remove("dommage-passif")
+        void bouton.offsetWidth
+        bouton.classList.add("dommage-passif")
+        // pas de setTimeout — forwards garde le dernier état
+    },
 }

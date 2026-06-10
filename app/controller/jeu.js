@@ -109,6 +109,7 @@ const controller = {
         vue.updateAmeliorations(modele.joueur.argent)
         vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
         vue.updateDegatsClick(modele.joueur.dommagesActuels);
+        vue.updateDegatsPassif(modele.joueur.inventaireObjetPassif);
     },
 
     sauvegarderPartie() {
@@ -118,8 +119,8 @@ const controller = {
     degat_passif() {
         setInterval(function () {
             if (modele.joueur.passifBonusDPS > 0) {
-                vue.damageFish();
-                modele.frapperPoisson(modele.joueur.passifBonusDPS);
+                vue.damageFishPassif()
+                modele.frapperPoisson(modele.joueur.passifBonusDPS) ;
                 vue.updateArgent(modele.joueur.argent);
                 vue.updateFish(modele.obtenirFish());
                 vue.updateScore(modele.obtenirMortPoisson());

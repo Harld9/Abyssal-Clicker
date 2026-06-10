@@ -458,19 +458,6 @@ const modele = {
         }
     },
 
-    degat_passif() {
-        setInterval(function () {
-            if (modele.joueur.passifBonusDPS > 0) {
-                vue.damageFish();
-                modele.frapperPoisson(modele.joueur.passifBonusDPS);
-                vue.updateArgent(modele.joueur.argent);
-                vue.updateFish(modele.obtenirFish());
-                vue.updateScore(modele.obtenirScore());
-
-            }
-        }, 200);
-    },
-
     ajout_item_Passif(typeItem) {
         const item = this.joueur.inventaireObjetPassif[typeItem];
 
