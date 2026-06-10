@@ -196,4 +196,31 @@ const vue = {
         bouton.classList.add("dommage-passif")
         // pas de setTimeout — forwards garde le dernier état
     },
+
+    /**
+     * Affiche un pop-up de succès débloqué style Steam
+     * @param {string} titre - le nom du succès
+     * @param {string} desc - la condition du succès
+     * @param {string} icone - emoji ou chemin image du succès
+     * @returns {void} - crée un .succes-toast dans #succes-toast-container
+     *                   disparaît automatiquement après 3 secondes
+     */
+    afficherSuccesToast(titre, desc, icone = "🏆") {
+        const container = document.getElementById("succes-toast-container")
+        const toast = document.createElement("div")
+        toast.className = "succes-toast"
+        toast.innerHTML = `
+        <div class="succes-toast-icon">${icone}</div>
+        <div>
+            <div class="succes-toast-label">Succès débloqué</div>
+            <div class="succes-toast-titre">${titre}</div>
+            <div class="succes-toast-desc">${desc}</div>
+        </div>
+    `
+        container.appendChild(toast)
+        setTimeout(() => {
+            toast.classList.add("out")
+            setTimeout(() => toast.remove(), 400)
+        }, 3000)
+    },
 }

@@ -413,6 +413,78 @@
     display: block;
 }
 
+#succes-toast-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 300;
+    pointer-events: none;
+}
+
+@keyframes succes-slide-in {
+    from { transform: translateY(60px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes succes-slide-out {
+    from { transform: translateY(0);    opacity: 1; }
+    to   { transform: translateY(60px); opacity: 0; }
+}
+
+.succes-toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-image: url(../background/plank.webp);
+    background-size: cover;
+    border: 2px solid goldenrod;
+    padding: 10px 14px;
+    width: 300px;
+    animation: succes-slide-in 0.4s ease forwards;
+}
+
+.succes-toast.out {
+    animation: succes-slide-out 0.4s ease forwards;
+}
+
+.succes-toast-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    background-image: url(../background/patternwood.webp);
+    background-size: cover;
+    border: 2px solid goldenrod;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.succes-toast-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: goldenrod;
+    margin-bottom: 2px;
+}
+
+.succes-toast-titre {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.succes-toast-desc {
+    font-size: 11px;
+    color: var(--text-color);
+    opacity: 0.7;
+    margin-top: 1px;
+}
+
 
 /* --- Bouton options fixe en haut à droite --- */
 /* position: fixed = toujours visible, indépendant du scroll */
