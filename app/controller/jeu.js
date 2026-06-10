@@ -97,7 +97,9 @@ const controller = {
     },
 
     chargerPartie() {
-        if (localStorage.getItem("maSauvegarde") === null) return
+        if (localStorage.getItem("maSauvegarde") === null){
+            return
+        }
         const donnees = JSON.parse(atob(localStorage.getItem("maSauvegarde")))
         console.log("Données de la fonction charger partie : " + donnees)
         modele.importerDonneesSauvegarde(donnees)
@@ -121,7 +123,6 @@ const controller = {
     degat_passif() {
         setInterval(function () {
             if (modele.joueur.passifBonusDPS > 0) {
-                vue.damageFish();
                 vue.damageFishPassif();
                 modele.frapperPoisson(modele.joueur.passifBonusDPS);
                 vue.updateArgent(modele.joueur.argent);
