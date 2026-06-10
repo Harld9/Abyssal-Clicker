@@ -24,79 +24,92 @@ const modele = {
                 nom: "Cage a poisson",
                 bonusDPS: 1,
                 prixBase: 250,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_2: {
                 nom: "Filet de peche",
                 bonusDPS: 3,
                 prixBase: 800,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_3: {
                 nom: "Barque a rames avec filet",
                 bonusDPS: 6,
                 prixBase: 1800,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_4: {
                 nom: "Petit bateau a moteur",
                 bonusDPS: 10,
                 prixBase: 4500,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_5: {
                 nom: "Chalutier",
                 bonusDPS: 20,
                 prixBase: 8000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_6: {
                 nom: "Navire-usine",
                 bonusDPS: 75,
                 prixBase: 20000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_7: {
                 nom: "Ferme aquacole",
                 bonusDPS: 200,
                 prixBase: 50000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_8: {
                 nom: "Flotte de chalutiers",
                 bonusDPS: 500,
                 prixBase: 120000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_9: {
                 nom: "Station de pompage marine",
                 bonusDPS: 1500,
                 prixBase: 350000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_10: {
                 nom: "Sous-marin de chalutage",
                 bonusDPS: 4000,
                 prixBase: 1000000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_11: {
                 nom: "Canon a filet en titane",
                 bonusDPS: 6000,
                 prixBase: 1500000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_12: {
                 nom: "Mega-plateforme oceanique",
                 bonusDPS: 10000,
                 prixBase: 3000000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_13: {
                 nom: "Base sous-marine autonome",
                 bonusDPS: 30000,
                 prixBase: 10000000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             }
         },
         inventaireObjetClic: {
@@ -104,73 +117,85 @@ const modele = {
                 nom: "Peche a mains nues",
                 bonusDegat: 1,
                 prixBase: 15,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_2: {
                 nom: "Lance en bois taillee",
                 bonusDegat: 2,
                 prixBase: 50,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_3: {
                 nom: "Epuisette de plage",
                 bonusDegat: 4,
                 prixBase: 150,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_4: {
                 nom: "Canne a peche artisanale",
                 bonusDegat: 6,
                 prixBase: 400,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_5: {
                 nom: "Canne a peche avec moulinet",
                 bonusDegat: 10,
                 prixBase: 1200,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_6: {
                 nom: "Fusil-harpon de plongee",
                 bonusDegat: 25,
                 prixBase: 3000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_7: {
                 nom: "Appats aux pheromones",
                 bonusDegat: 50,
                 prixBase: 12000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_8: {
                 nom: "Canne en fibre de carbone",
                 bonusDegat: 120,
                 prixBase: 30000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_9: {
-                nom: "Harpon pneumatique",
+                nom: "Harpon pneumat,ique",
                 bonusDegat: 300,
                 prixBase: 75000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_10: {
                 nom: "Fusil a ondes soniques",
                 bonusDegat: 800,
                 prixBase: 180000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_11: {
                 nom: "Gantelet electrique",
                 bonusDegat: 2500,
                 prixBase: 500000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             },
             amelioration_12: {
                 nom: "Lance-torpilles cryogeniques",
                 bonusDegat: 15000,
                 prixBase: 4500000,
-                quantitePossedee: 0
+                quantitePossedee: 0,
+                multiplicateurPrix: 1.15,
             }
         },
     },
@@ -444,219 +469,228 @@ const modele = {
             this.joueur.argent -= item.prixBase;
             // on augmente la quantité d'item que le joueur posséde de 1
             item.quantitePossedee += 1;
-            // on ajoute les degats a la constante de dommage actuel
-            this.recalculerDegatsPassif();
-            console.log("Achat réussi : " + item.nom);
-        } else {
-            console.log("Argent insuffisant pour acheter : " + item.nom);
-        }
-    },
+            if (this.joueur.argent >= item.prixActuel) {
+                this.joueur.argent -= item.prixActuel;
 
-    recalculerDegatsPassif() {
-        this.joueur.passifBonusDPS = 0;
-        for (const typeItem in this.joueur.inventaireObjetPassif) {
-            const item = this.joueur.inventaireObjetPassif[typeItem];
-            //on ajoute les degat en multipliant la quantité posséder et en ajoutant la somme au bonusDPS passif
-            this.joueur.passifBonusDPS += item.quantitePossedee * item.bonusDPS;
-        }
-        console.log("Bonus DPS passif recalculé (finaux passif) : " + this.joueur.passifBonusDPS);
-    },
+                item.quantitePossedee += 1;
 
-    ajout_item_Clic(typeItem) {
-        console.log("Tentative d'achat de l'item : " + typeItem);
-        console.log("id reçu :", typeItem);
-        console.log("item trouvé :", this.joueur.inventaireObjetClic[typeItem]);
-        const item = this.joueur.inventaireObjetClic[typeItem];
-        if (!item) {
-            console.error("Item introuvable :", typeItem);
-            return;
-        }
-        // si largent du joueur est plus grand ou egal au prix de l'item .
-        if (this.joueur.argent >= item.prixBase) {
-            //alors on retire l'argent du joueur 
-            this.joueur.argent -= item.prixBase;
-            // on augmente la quantité d'item que le joueur posséde de 1
-            item.quantitePossedee += 1;
-            // on ajoute les degats a la constante de dommage actuel
-            this.recalculerDegats();
-            console.log("Achat réussi : " + item.nom);
-        } else {
-            console.log("Argent insuffisant pour acheter : " + item.nom);
-        }
-    },
-
-    recalculerDegats() {
-        this.joueur.dommagesActuels = this.joueur.dommagesBase;
-        for (const typeItem in this.joueur.inventaireObjetClic) {
-            const item = this.joueur.inventaireObjetClic[typeItem];
-            //on ajoute les degat en multipliant la quantité posséder et en ajoutant la somme au dommage actuel
-            this.joueur.dommagesActuels += item.quantitePossedee * item.bonusDegat;
-        }
-        console.log("Dégâts actuels recalculés (finaux au clic) : " + this.joueur.dommagesActuels);
-    },
-
-    frapperPoisson(damageAmount) {
-        console.log("damageAmount =", damageAmount);
-        console.log("PV avant =", this.poisson.pvPoissonActuel);
-        console.log("dommagesActuels joueur =", this.joueur.dommagesActuels);
-        this.joueur.nbClics++
-        // ASTUCE DE PRO : Math.min empêche de faire plus de dégâts que les HP restants
-        let dommagesActuels = Math.min(damageAmount, this.poisson.pvPoissonActuel);
-
-        // On retire la vie au poisson
-        this.poisson.pvPoissonActuel -= dommagesActuels;
-
-        // On donne l'argent immédiat (1 Dégât = 1 Argent)
-        this.joueur.argent += Math.round(dommagesActuels * this.poisson.poissonActuel.multiplicateurArgent)
-
-
-        console.log("PV restants :", this.poisson.pvPoissonActuel);
-
-        // Vérification de la mort du poisson
-        if (this.poisson.pvPoissonActuel <= 0) {
-
-            // LE POISSON EST MORT : On donne +1 au Score
-            this.joueur.score += 1;
-            this.joueur.mortPoisson += 1;
-            console.log("Nombres de poissons tués : " + this.joueur.mortPoisson)
-            console.log("Argent gagné :", this.joueur.argent);
-            console.log("Poisson tué ! Score total : " + this.joueur.score);
-
-            // On vérifie si on passe au Palier Supérieur
-            
-            while (
-                this.joueur.seuilPalier[this.joueur.palier + 1] &&
-                this.joueur.score >= this.joueur.seuilPalier[this.joueur.palier + 1]
-            ) {
-                this.joueur.palier += 1;
-                console.log("Palier débloqué :", this.joueur.palier);
+                item.prixActuel = Math.round(
+                    item.prixBase * Math.pow(item.multiplicateurPrix, item.quantitePossedee)
+                );
             }
+                // on ajoute les degats a la constante de dommage actuel
+                this.recalculerDegatsPassif();
+                console.log("Achat réussi : " + item.nom);
+            } else {
+                console.log("Argent insuffisant pour acheter : " + item.nom);
+            }
+        },
 
-            const nouveauPoisson = this.spawnFish(this.joueur.palierActuelAffiche);
-            // On fait apparaître le nouveau poisson du bloc correspondant
-            this.poisson.poissonActuel = nouveauPoisson;
-            // On réinitialise les PV du poisson
-            this.poisson.pvPoissonMax = this.poisson.poissonActuel.pvMax;
-            this.poisson.pvPoissonActuel = this.poisson.poissonActuel.pvMax;
-            console.log("Nouveau poisson modèle :", this.poisson.poissonActuel);
+        recalculerDegatsPassif() {
+            this.joueur.passifBonusDPS = 0;
+            for (const typeItem in this.joueur.inventaireObjetPassif) {
+                const item = this.joueur.inventaireObjetPassif[typeItem];
+                //on ajoute les degat en multipliant la quantité posséder et en ajoutant la somme au bonusDPS passif
+                this.joueur.passifBonusDPS += item.quantitePossedee * item.bonusDPS;
+            }
+            console.log("Bonus DPS passif recalculé (finaux passif) : " + this.joueur.passifBonusDPS);
+        },
+
+        ajout_item_Clic(typeItem) {
+            console.log("Tentative d'achat de l'item : " + typeItem);
+            console.log("id reçu :", typeItem);
+            console.log("item trouvé :", this.joueur.inventaireObjetClic[typeItem]);
+            const item = this.joueur.inventaireObjetClic[typeItem];
+            if (!item) {
+                console.error("Item introuvable :", typeItem);
+                return;
+            }
+            // si largent du joueur est plus grand ou egal au prix de l'item .
+            if (this.joueur.argent >= item.prixBase) {
+                //alors on retire l'argent du joueur 
+                this.joueur.argent -= item.prixBase;
+                // on augmente la quantité d'item que le joueur posséde de 1
+                item.quantitePossedee += 1;
+                // on ajoute les degats a la constante de dommage actuel
+                this.recalculerDegats();
+                console.log("Achat réussi : " + item.nom);
+            } else {
+                console.log("Argent insuffisant pour acheter : " + item.nom);
+            }
+        },
+
+        recalculerDegats() {
+            this.joueur.dommagesActuels = this.joueur.dommagesBase;
+            for (const typeItem in this.joueur.inventaireObjetClic) {
+                const item = this.joueur.inventaireObjetClic[typeItem];
+                //on ajoute les degat en multipliant la quantité posséder et en ajoutant la somme au dommage actuel
+                this.joueur.dommagesActuels += item.quantitePossedee * item.bonusDegat;
+            }
+            console.log("Dégâts actuels recalculés (finaux au clic) : " + this.joueur.dommagesActuels);
+        },
+
+        frapperPoisson(damageAmount) {
+            console.log("damageAmount =", damageAmount);
+            console.log("PV avant =", this.poisson.pvPoissonActuel);
+            console.log("dommagesActuels joueur =", this.joueur.dommagesActuels);
+            this.joueur.nbClics++
+            // ASTUCE DE PRO : Math.min empêche de faire plus de dégâts que les HP restants
+            let dommagesActuels = Math.min(damageAmount, this.poisson.pvPoissonActuel);
+
+            // On retire la vie au poisson
+            this.poisson.pvPoissonActuel -= dommagesActuels;
+
+            // On donne l'argent immédiat (1 Dégât = 1 Argent)
+            this.joueur.argent += Math.round(dommagesActuels * this.poisson.poissonActuel.multiplicateurArgent)
+
+
+            console.log("PV restants :", this.poisson.pvPoissonActuel);
+
+            // Vérification de la mort du poisson
+            if (this.poisson.pvPoissonActuel <= 0) {
+
+                // LE POISSON EST MORT : On donne +1 au Score
+                this.joueur.score += 1;
+                this.joueur.mortPoisson += 1;
+                console.log("Nombres de poissons tués : " + this.joueur.mortPoisson)
+                console.log("Argent gagné :", this.joueur.argent);
+                console.log("Poisson tué ! Score total : " + this.joueur.score);
+
+                // On vérifie si on passe au Palier Supérieur
+
+                while (
+                    this.joueur.seuilPalier[this.joueur.palier + 1] &&
+                    this.joueur.score >= this.joueur.seuilPalier[this.joueur.palier + 1]
+                ) {
+                    this.joueur.palier += 1;
+                    console.log("Palier débloqué :", this.joueur.palier);
+                }
+
+                const nouveauPoisson = this.spawnFish(this.joueur.palierActuelAffiche);
+                // On fait apparaître le nouveau poisson du bloc correspondant
+                this.poisson.poissonActuel = nouveauPoisson;
+                // On réinitialise les PV du poisson
+                this.poisson.pvPoissonMax = this.poisson.poissonActuel.pvMax;
+                this.poisson.pvPoissonActuel = this.poisson.poissonActuel.pvMax;
+                console.log("Nouveau poisson modèle :", this.poisson.poissonActuel);
+            }
+        },
+
+        obteniritem_Passif(typeItem) {
+            return this.joueur.inventaireObjetPassif[typeItem];
+        },
+
+        obteniritem_Clic(typeItem) {
+            return this.joueur.inventaireObjetClic[typeItem];
+        },
+        //Méthode qui permet d'obtenir le score
+        obtenirScore() {
+            return this.joueur.score
+        },
+
+        //Méthode qui permet d'obtenir le score
+        obtenirNbClics() {
+            return this.joueur.nbClics
+        },
+
+        obtenirFish() {
+            return this.poisson.poissonActuel
+        },
+
+        obtenirDonneesJoueur() {
+            return this.joueur
+        },
+        obtenirMortPoisson() {
+            return this.joueur.mortPoisson
+        },
+
+        //Méthode pour faire apparaître un poisson aléatoire en fonction du palier actuel du joueur
+        spawnFish(playerPalier) {
+            // Liste des poissons du palier actuel
+            const currentFishList =
+                this.catalogue["Palier" + playerPalier];
+            // Choix d'un poisson aléatoire
+            const randomIndex =
+                Math.floor(Math.random() * currentFishList.length);
+            const chosenFish =
+                currentFishList[randomIndex];
+            // Génération de la rareté
+            const randomRarete = Math.random();
+            let imageFinale = chosenFish.Image;
+            let rarete = "normal";
+            let multiplicateurArgent = 1;
+            // SHINY = 5%
+            if (randomRarete <= 0.05) {
+                imageFinale = chosenFish.ImageShiny;
+                rarete = "shiny";
+                multiplicateurArgent = 5;
+            }
+            // GOLDEN = 10%
+            else if (randomRarete <= 0.10) {
+                imageFinale = chosenFish.ImageGolden;
+                rarete = "golden";
+                multiplicateurArgent = 5;
+            }
+            // Retour du poisson final
+            return {
+                nom: chosenFish.Nom,
+                image: imageFinale,
+                rarete: rarete,
+                multiplicateurArgent: multiplicateurArgent,
+                pvMax: chosenFish.PV,
+                pvActuel: chosenFish.PV
+            };
+        },
+
+        importerDonneesSauvegarde(donnees) {
+            if (donnees.joueur === undefined) {
+                return
+            }
+            this.joueur.score = donnees.joueur.score
+            this.joueur.nbClics = donnees.joueur.nbClics
+            this.joueur.dommagesActuels = donnees.joueur.dommagesActuels
+            this.joueur.argent = donnees.joueur.argent
+            this.joueur.seuilPalier = donnees.joueur.seuilPalier
+            this.joueur.inventaireObjetClic = donnees.joueur.inventaireObjetClic
+            this.joueur.inventaireObjetPassif = donnees.joueur.inventaireObjetPassif
+            this.joueur.palier = donnees.joueur.palier
+            this.joueur.passifBonusDPS = donnees.joueur.passifBonusDPS
+            this.joueur.mortPoisson = donnees.joueur.mortPoisson
+            this.joueur.dommagesBase = donnees.joueur.dommagesBase
+            this.poisson.pvPoissonMax = donnees.poisson.pvPoissonMax
+            this.poisson.pvPoissonActuel = donnees.poisson.pvPoissonActuel
+            this.poisson.poissonActuel = donnees.poisson.poissonActuel
+            if (donnees.poisson.poissonActuel !== null) {
+                this.poisson.poissonActuel = donnees.poisson.poissonActuel;
+            } else {
+                this.poisson.poissonActuel = this.spawnFish(this.joueur.palier);
+            }
+            this.joueur.sauvegardeChargee = true
+        },
+
+        exporterDonneesSauvegarde() {
+            let etatPartie = { joueur: this.joueur, poisson: this.poisson }
+            let sauvegardePartie = JSON.stringify(etatPartie)
+            let sauvegardePartieEncodé = btoa(sauvegardePartie)
+            let codeSauvegarde = document.getElementById('output-sauvegarde')
+            codeSauvegarde.textContent = sauvegardePartieEncodé
+        },
+        obtenirEtatPartie() {
+            return { joueur: this.joueur, poisson: this.poisson }
         }
-    },
-
-    obteniritem_Passif(typeItem) {
-        return this.joueur.inventaireObjetPassif[typeItem];
-    },
-
-    obteniritem_Clic(typeItem) {
-        return this.joueur.inventaireObjetClic[typeItem];
-    },
-    //Méthode qui permet d'obtenir le score
-    obtenirScore() {
-        return this.joueur.score
-    },
-
-    //Méthode qui permet d'obtenir le score
-    obtenirNbClics() {
-        return this.joueur.nbClics
-    },
-
-    obtenirFish() {
-        return this.poisson.poissonActuel
-    },
-
-    obtenirDonneesJoueur() {
-        return this.joueur
-    },
-    obtenirMortPoisson() {
-        return this.joueur.mortPoisson
-    },
-
-    //Méthode pour faire apparaître un poisson aléatoire en fonction du palier actuel du joueur
-    spawnFish(playerPalier) {
-        // Liste des poissons du palier actuel
-        const currentFishList =
-            this.catalogue["Palier" + playerPalier];
-        // Choix d'un poisson aléatoire
-        const randomIndex =
-            Math.floor(Math.random() * currentFishList.length);
-        const chosenFish =
-            currentFishList[randomIndex];
-        // Génération de la rareté
-        const randomRarete = Math.random();
-        let imageFinale = chosenFish.Image;
-        let rarete = "normal";
-        let multiplicateurArgent = 1;
-        // SHINY = 5%
-        if (randomRarete <= 0.05) {
-            imageFinale = chosenFish.ImageShiny;
-            rarete = "shiny";
-            multiplicateurArgent = 5;
-        }
-        // GOLDEN = 10%
-        else if (randomRarete <= 0.10) {
-            imageFinale = chosenFish.ImageGolden;
-            rarete = "golden";
-            multiplicateurArgent = 5;
-        }
-        // Retour du poisson final
-        return {
-            nom: chosenFish.Nom,
-            image: imageFinale,
-            rarete: rarete,
-            multiplicateurArgent: multiplicateurArgent,
-            pvMax: chosenFish.PV,
-            pvActuel: chosenFish.PV
-        };
-    },
-
-    importerDonneesSauvegarde(donnees) {
-        if (donnees.joueur === undefined) {
-            return
-        }
-        this.joueur.score = donnees.joueur.score
-        this.joueur.nbClics = donnees.joueur.nbClics
-        this.joueur.dommagesActuels = donnees.joueur.dommagesActuels
-        this.joueur.argent = donnees.joueur.argent
-        this.joueur.seuilPalier = donnees.joueur.seuilPalier
-        this.joueur.inventaireObjetClic = donnees.joueur.inventaireObjetClic
-        this.joueur.inventaireObjetPassif = donnees.joueur.inventaireObjetPassif
-        this.joueur.palier = donnees.joueur.palier
-        this.joueur.passifBonusDPS = donnees.joueur.passifBonusDPS
-        this.joueur.mortPoisson = donnees.joueur.mortPoisson
-        this.joueur.dommagesBase = donnees.joueur.dommagesBase
-        this.poisson.pvPoissonMax = donnees.poisson.pvPoissonMax
-        this.poisson.pvPoissonActuel = donnees.poisson.pvPoissonActuel
-        this.poisson.poissonActuel = donnees.poisson.poissonActuel
-        if (donnees.poisson.poissonActuel !== null) {
-            this.poisson.poissonActuel = donnees.poisson.poissonActuel;
-        } else {
-            this.poisson.poissonActuel = this.spawnFish(this.joueur.palier);
-        }
-        this.joueur.sauvegardeChargee = true
-    },
-
-    exporterDonneesSauvegarde() {
-        let etatPartie = { joueur: this.joueur, poisson: this.poisson }
-        let sauvegardePartie = JSON.stringify(etatPartie)
-        let sauvegardePartieEncodé = btoa(sauvegardePartie)
-        let codeSauvegarde = document.getElementById('output-sauvegarde')
-        codeSauvegarde.textContent = sauvegardePartieEncodé
-    },
-    obtenirEtatPartie() {
-        return { joueur: this.joueur, poisson: this.poisson }
     }
-}
 
-if (modele.joueur.sauvegardeChargee === false) {
-    // Création du premier poisson au lancement du jeu
-    modele.poisson.poissonActuel =
+if(modele.joueur.sauvegardeChargee === false) {
+        // Création du premier poisson au lancement du jeu
+        modele.poisson.poissonActuel =
         modele.spawnFish(modele.joueur.palier);
 
-    modele.poisson.pvPoissonMax =
-        modele.poisson.poissonActuel.pvMax;
+modele.poisson.pvPoissonMax =
+    modele.poisson.poissonActuel.pvMax;
 
-    modele.poisson.pvPoissonActuel =
-        modele.poisson.poissonActuel.pvMax;
+modele.poisson.pvPoissonActuel =
+    modele.poisson.poissonActuel.pvMax;
 
-    console.log("Premier poisson chargé :",
-        modele.poisson.poissonActuel);
+console.log("Premier poisson chargé :",
+    modele.poisson.poissonActuel);
 }
