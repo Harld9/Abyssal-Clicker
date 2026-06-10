@@ -48,4 +48,31 @@ const vue = {
         const inputSauvegarde = document.getElementById('output-sauvegarde')
         inputSauvegarde.textContent = codePartie
     }
+
+    updateFondPalier(palier) {
+        const zonePoisson = document.getElementById("poisson-score");
+
+        zonePoisson.style.backgroundImage =
+            `url("./static/background/${palier}_profondeur.png")`;
+    },
+
+    updateBoutonsPaliers(palierAffiche, palierMaxDebloque) {
+        for (let i = 1; i <= 13; i++) {
+            const bouton = document.getElementById("palier-" + i);
+
+            if (i === palierAffiche - 1 || i === palierAffiche || i === palierAffiche + 1) {
+                bouton.classList.remove("hidden");
+            } else {
+                bouton.classList.add("hidden");
+            }
+
+            if (i <= palierMaxDebloque) {
+                bouton.disabled = false;
+                bouton.classList.remove("bloque");
+            } else {
+                bouton.disabled = true;
+                bouton.classList.add("bloque");
+            }
+        }
+    }
 }

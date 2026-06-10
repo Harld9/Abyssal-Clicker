@@ -22,18 +22,18 @@
       <!-- Colonne gauche : score + poisson cliquable -->
       <div id="poisson-score">
         <div id="score-bg">
-          <div id="score">
-            <p>Score</p>
-            <p id="nbScore">0</p>
-            <p>Nombre de clics</p>
-            <p id="nbClic">0</p>
-          </div>
+            <div id="score">
+                <p>Score</p>
+                <p id="nbScore">0</p>
+                <p>Nombre de clic</p>
+                <p id="nbClic">0</p>
+            </div>
         </div>
         <div id="poisson">
-          <button class="imgPoisson" id="imgPoisson">
-            <img src="./static/images/poissons/Poisson1.png" alt="Poisson1" />
-          </button>
-          <p id="nomPoisson"></p>
+            <button class="imgPoisson" id="imgPoisson">
+                <img src="./static/images/ui/wooden_play.png" alt="Poisson au chocolat">
+            </button>
+            <p id="nomPoisson">Commencez à jouer !</p>
         </div>
       </div>
 
@@ -54,69 +54,70 @@
         <button class="hidden palier" id="palier-13">13</button>
       </div>
 
-      <!-- Colonne droite : argent + améliorations -->
-      <div class="" id="ameliorations-argent">
-        <div id="argent">10 Argent</div>
+    <!-- Colonne droite : argent + améliorations -->
+    <div class="" id="ameliorations-argent">
+        <div id="argent">Argents :</div>
         <div id="a-titre"><p>Améliorations</p></div>
         <div id="amelioration-page">
-          <div id="a-clic">
-            <div class="a-cli-pas-titre">clic</div>
-            <div class="a-box">
-              <div class="amelioration" id="a-clic-1">
-                <img
-                  class="a-img"
-                  alt="a-img"
-                  src="./static/images/items/Item1.png"
-                />
-                <div class="a-nom-prix">
-                  <p class="a-nom">Pêche à mains nues</p>
-                  <p class="a-prix">15 argents</p>
+            <div id="a-clic">
+                <div class="a-cli-pas-titre">
+                    <p>Clic</p>
+                    <p class="a-dps">0 dégâts/clic</p>
                 </div>
-                <div class="a-quantite">x26</div>
-              </div>
-              <div class="amelioration inconnu" id="a-clic-2">
-                <img
-                  class="a-img"
-                  alt="a-img"
-                  src="./static/images/ui/question-mark.png"
-                />
-                <div class="a-nom-prix">
-                  <p class="a-nom">????</p>
-                  <p class="a-prix">15 argents</p>
+                <div class="a-quantite-achat">
+                    <button class="btn-quantite actif" data-quantite="1">x1</button>
+                    <button class="btn-quantite" data-quantite="10">x10</button>
+                    <button class="btn-quantite" data-quantite="100">x100</button>
                 </div>
-                <div class="a-quantite"></div>
-              </div>
+                <div class="a-box">
+                    <div class="amelioration" id="a-clic-1">
+                        <img class="a-img" alt="a-img" src="./static/images/items/Item1.png">
+                        <div class="a-nom-prix">
+                            <p class="a-nom">Pêche à mains nues</p>
+                            <p class="a-prix">15 argents</p>
+                        </div>
+                        <div class="a-quantite">x26</div>
+                    </div>
+                    <div class="amelioration inconnu" id="a-clic-2">
+                        <img class="a-img" alt="a-img" src="./static/images/ui/question-mark.png">
+                        <div class="a-nom-prix">
+                            <p class="a-nom">????</p>
+                            <p class="a-prix">15 argents</p>
+                        </div>
+                        <div class="a-quantite"></div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div id="a-passif">
-            <div class="a-cli-pas-titre">passif</div>
-            <div class="a-box">
-              <div class="amelioration" id="a-passif-1">
-                <img
-                  class="a-img"
-                  alt="a-img"
-                  src="./static/images/items/Item1.png"
-                />
-                <div class="a-nom-prix">
-                  <p class="a-nom">Pêche à mains nues</p>
-                  <p class="a-prix">15 argents</p>
+            <div id="a-passif">
+                <div class="a-cli-pas-titre">
+                    <p>Passif</p>
+                    <p class="a-dps">0 dégâts/s</p>
                 </div>
-                <div class="a-quantite">x20</div>
-              </div>
-              <div class="amelioration inconnu" id="a-passif-2">
-                <img
-                  class="a-img"
-                  alt="a-img"
-                  src="./static/images/ui/question-mark.png"
-                />
-                <div class="a-nom-prix">
-                  <p class="a-nom">????</p>
-                  <p class="a-prix">15 argents</p>
+                <div class="a-quantite-achat">
+                    <button class="btn-quantite actif" data-quantite="1">x1</button>
+                    <button class="btn-quantite" data-quantite="10">x10</button>
+                    <button class="btn-quantite" data-quantite="100">x100</button>
                 </div>
-                <div class="a-quantite"></div>
-              </div>
+                <div class="a-box">
+                    <div class="amelioration" id="a-passif-1">
+                        <img class="a-img" alt="a-img" src="./static/images/items/Item1.png">
+                        <div class="a-nom-prix">
+                            <p class="a-nom">Pêche à mains nues</p>
+                            <p class="a-prix">250 argents</p>
+                        </div>
+                        <div class="a-quantite">x26</div>
+                    </div>
+                    <div class="amelioration inconnu" id="a-passif-2">
+                        <img class="a-img" alt="a-img" src="./static/images/ui/question-mark.png">
+                        <div class="a-nom-prix">
+                            <p class="a-nom">????</p>
+                            <p class="a-prix">15 argents</p>
+                        </div>
+                        <div class="a-quantite"></div>
+                    </div>
+
+                </div>
             </div>
-          </div>
         </div>
       </div>
 
