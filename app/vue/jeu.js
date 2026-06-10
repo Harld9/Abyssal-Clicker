@@ -28,12 +28,11 @@ const vue = {
      *                   la classe "dommage" doit être définie dans index.css
      */
     damageFish() {
-        const poisson = document.getElementById("imgPoisson")
-        void poisson.offsetWidth;
-        poisson.classList.add("dommage")
-        setTimeout(() => {
-            poisson.classList.remove("dommage")
-        }, 100)
+        const bouton = document.getElementById("imgPoisson");
+        if (!bouton) return;
+        bouton.classList.remove("dommage");
+        void bouton.offsetWidth;
+        bouton.classList.add("dommage");
     },
 
     updateDeblocageItems(type, inventaire) {
@@ -300,10 +299,10 @@ const vue = {
      *                   pas de rétrécissement, uniquement un effet de bordure
      */
     damageFishPassif() {
-        const bouton = document.querySelector("#imgPoisson")
-        bouton.classList.remove("dommage-passif")
-        void bouton.offsetWidth
-        bouton.classList.add("dommage-passif")
-        // pas de setTimeout — forwards garde le dernier état
+        const bouton = document.getElementById("imgPoisson");
+        if (!bouton) return;
+        bouton.classList.remove("dommage-passif");
+        void bouton.offsetWidth;
+        bouton.classList.add("dommage-passif");
     },
 }

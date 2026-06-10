@@ -176,10 +176,13 @@ const controller = {
     degat_passif() {
         setInterval(function () {
             if (modele.joueur.passifBonusDPS > 0) {
-                vue.damageFish();
+                // On joue uniquement l'animation des demi-cercles (coins)
+                vue.damageFishPassif();
 
+                // On applique les dégâts sans compter comme un clic manuel
                 modele.frapperPoisson(modele.joueur.passifBonusDPS, false);
 
+                // Mises à jour des affichages
                 vue.updateScore(modele.obtenirScore());
                 vue.updateClic(modele.obtenirNbClics());
                 vue.updateArgent(modele.joueur.argent);
@@ -187,7 +190,7 @@ const controller = {
                 vue.updateAmeliorations(modele.joueur.argent);
             }
         }, 200);
-    }
+    },
 };
 
 controller.chargerPartie();
