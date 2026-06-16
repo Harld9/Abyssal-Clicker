@@ -19,6 +19,9 @@
     grid-template-areas: "poisson paliers ameliorations succes";
     color: var(--text-color);
     text-align: center;
+    background-image: url(../background/1_profondeur.png);
+    background-size: cover;
+    background-position: center;
 }
 
 /* On assigne chaque enfant à sa zone */
@@ -51,6 +54,27 @@
 #interface:has(#succes-page.hidden) {
     grid-template-columns: 100%;
     grid-template-areas: "poisson";
+}
+
+/* Animation d'apparition pour les sections du jeu */
+@keyframes apparition {
+    from {
+        opacity: 0;
+        transform: translateX(40px); /* commence à droite */
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0); /* finit à sa position normale */
+    }
+}
+
+/* Applique l'animation aux sections principales quand elles deviennent visibles */
+#succes-page,
+#ameliorations-argent,
+#paliers,
+#a-clic,
+#a-passif {
+    animation: apparition 0.5s ease-out;
 }
 
 /* --- Colonne gauche : score + poisson --- */
@@ -177,6 +201,11 @@
     display: flex;
     flex: 1;
     min-height: 0;
+}
+
+/* Quand a-passif est caché, a-clic prend toute la largeur */
+#amelioration-page:has(#a-passif.hidden) > #a-clic {
+    width: 100%;
 }
 
 #a-titre {

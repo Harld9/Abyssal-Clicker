@@ -668,10 +668,14 @@ const modele = {
         if (this.joueur.argent >= 5) this.debloquerSucces("Succes2");
         if (this.joueur.mortPoisson >= 1) this.debloquerSucces("Succes1");
 
-        //  Succès 3 et 4 : Achat de la première amélioration
-        if (this.joueur.argent >= 15) this.debloquerSucces("Succes3");
-        if (this.joueur.argent >= 25) this.debloquerSucces("Succes4");
-
+        //  Succès 3 : 15 d'argent OU palier 2 atteint
+        if (this.joueur.argent >= 15 || this.joueur.palier >= 2) {
+            this.debloquerSucces("Succes3");
+        }
+        // Succès 4 : 25 d'argent OU palier 2 atteint
+        if (this.joueur.argent >= 25 || this.joueur.palier >= 2) {
+            this.debloquerSucces("Succes4");
+        }
         // 5 à 17 : Paliers (Palier 1 = Succès 5)
         for (let i = 1; i <= 13; i++) {
             if (this.joueur.palier >= i) this.debloquerSucces("Succes" + (i + 4));

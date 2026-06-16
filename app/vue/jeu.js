@@ -122,10 +122,9 @@ const vue = {
      *                   les images doivent être dans static/background/ sous la forme {palier}_profondeur.png
      */
     updateFondPalier(palier) {
-        const zonePoisson = document.getElementById("poisson-score");
-
-        zonePoisson.style.backgroundImage =
-            `url("./static/background/${palier}_profondeur.png")`;
+        const url = `url("./static/background/${palier}_profondeur.png")`;
+        document.getElementById("interface").style.backgroundImage = url;
+        document.getElementById("poisson-score").style.backgroundImage = url;
     },
 
     creerItems(type, inventaire) {
@@ -365,7 +364,7 @@ const vue = {
         setTimeout(() => {
             toast.classList.add("out")
             setTimeout(() => toast.remove(), 400)
-        }, 3000)
+        }, 6000)
     },
 
     /**
@@ -407,6 +406,7 @@ const vue = {
         this.afficherSuccesToast(succes.Nom, succes.Objectif, succes.Emoji);
         // Régénère pour afficher les succès qui viennent de devenir visibles
         this.genererSucces(modele.joueur.succes);
+        this.updateAffichageInterface(modele.joueur.succes);
     },
 
     /**
@@ -460,5 +460,33 @@ const vue = {
         if (n === 72) return true;
 
         return false;
+    },
+
+    /**
+     * Affiche ou cache les sections de l'interface selon les succès débloqués
+     * @param {Object} succes - modele.joueur.succes
+     * @returns {void} - ajoute/retire "hidden" sur les sections selon la progression
+     */
+    updateAffichageInterface(succes) {
+        const succesPage = document.getElementById("succes-page");
+        const ameliorations = document.getElementById("ameliorations-argent");
+        const aClic = document.getElementById("a-clic");
+        const aPassif = document.getElementById("a-passif");
+        const paliers = document.getElementById("paliers");
+
+        // Succès 5 → afficher succes-page
+        succesPage.classList.toggle("hidden", !succes.Succes5.Debloque);
+
+        // Succès 3 OU Succès 4 → afficher ameliorations-argent
+        ameliorations.classList.toggle("hidden", !(succes.Succes3.Debloque || succes.Succes4.Debloque));
+
+        // Succès 3 → afficher a-clic
+        aClic.classList.toggle("hidden", !succes.Succes3.Debloque);
+
+        // Succès 4 → afficher a-passif
+        aPassif.classList.toggle("hidden", !succes.Succes4.Debloque);
+
+        // Succès 6 → afficher paliers
+        paliers.classList.toggle("hidden", !succes.Succes6.Debloque);
     },
 }

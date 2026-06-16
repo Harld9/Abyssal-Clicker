@@ -7,6 +7,7 @@ const controller = {
         vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
         this.brancherItems();
         vue.genererSucces(modele.joueur.succes)
+        vue.updateAffichageInterface(modele.joueur.succes);
         vue.updateAmeliorations(modele.joueur.argent);
 
         const bouton = document.getElementById("imgPoisson");
@@ -158,6 +159,8 @@ const controller = {
         vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
 
         vue.genererSucces(modele.joueur.succes)
+
+        vue.updateAffichageInterface(modele.joueur.succes);
 
         vue.updateAmeliorations(modele.joueur.argent);
 
