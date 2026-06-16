@@ -378,19 +378,45 @@ const vue = {
         box.innerHTML = ""
 
         Object.values(succes).forEach(s => {
-            if (!this.estVisible(s, succes)) return; // ← skip les succès non visibles
+            if (!this.estVisible(s, succes)) return;
 
             const div = document.createElement("div")
             div.classList.add("succes")
             div.id = "succes-" + s.Numero
             if (!s.Debloque) div.classList.add("inconnu")
 
-            div.innerHTML = `
-            <p>${s.Emoji}</p>
-            <p class="s-texte-hover">
-                <strong>${s.Nom}</strong><br>${s.Objectif}
-            </p>
-        `
+            div.innerHTML = `<p>${s.Emoji}</p>`
+
+            // Stocke le texte du tooltip dans des dataset
+            div.dataset.tooltipTitre = s.Nom
+            div.dataset.tooltipDesc = s.Objectif
+
+            // Listeners pour gérer le tooltip
+            div.addEventListener("mouseenter", function () {
+                const tooltip = document.getElementById("succes-tooltip")
+                tooltip.innerHTML = `<strong>${div.dataset.tooltipTitre}</strong><br>${div.dataset.tooltipDesc}`
+                tooltip.style.display = "block"
+
+                const rect = div.getBoundingClientRect()
+                const tooltipRect = tooltip.getBoundingClientRect()
+
+                let left = rect.left + rect.width / 2
+                // si le tooltip dépasse à droite, recule le
+                if (left + tooltipRect.width / 2 > window.innerWidth - 5) {
+                    left = window.innerWidth - tooltipRect.width / 2 - 5
+                }
+                // si le tooltip dépasse à gauche
+                if (left - tooltipRect.width / 2 < 5) {
+                    left = tooltipRect.width / 2 + 5
+                }
+
+                tooltip.style.top = `${rect.bottom + 5}px`
+                tooltip.style.left = `${left}px`
+            })
+            div.addEventListener("mouseleave", function () {
+                document.getElementById("succes-tooltip").style.display = "none"
+            })
+
             box.appendChild(div)
         })
     },

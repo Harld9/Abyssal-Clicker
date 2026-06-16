@@ -156,6 +156,18 @@
     background-image: url(../background/plank.webp);
 }
 
+#p-titre {
+    background-image: url(../background/patternwood.webp);
+    border: 2px solid black;
+    margin: 2% 5% 0;
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    align-content: center;
+    font-size: 70%;
+    height: 25px;
+}
+
 /* Chaque palier prend une part égale de la hauteur disponible */
 #paliers > button {
     text-align: center;
@@ -192,7 +204,7 @@
     min-height: 0;
     display: flex;
     flex-direction: column;
-    background-image: url(../background/plank.webp);
+    background-image: url(../background/plank.webp)
 }
 
 
@@ -254,7 +266,9 @@
 .a-dps {
     font-size: 80%;
     color: var(--text-color);
-    opacity: 0.8;
+
+    border: 2px solid black;
+    background-image: url(../background/lightwood.webp);
 }
 
 .a-quantite-achat {
@@ -378,6 +392,7 @@
     min-height: 0;
     background-image: url(../background/plank.webp);
     border: 1px solid black;
+    position: relative;
 }
 
 #s-titre {
@@ -414,8 +429,8 @@
     border-image: initial;
 
     margin: 1% 1%;
-    width: 75px;
-    height: 75px;
+    width: 50px;
+    height: 50px;
 
     position: relative;
     z-index: 1; /* niveau normal */
@@ -430,27 +445,20 @@
     z-index: 100; /* monte au-dessus des autres au survol */
 }
 
-.s-texte-hover {
-    position: absolute;
+#succes-tooltip {
+    position: fixed; /* relatif à la fenêtre — échappe à tous les overflow */
     display: none;
     background-image: url(../background/patternwood.webp);
-    top: 100%;
-    left: 50%; /*commence à 50% du parent*/
-    transform: translateX(-50%); /* recule de la moitié de sa propre largeur */
+    transform: translateX(-50%);
     width: max-content;
     max-width: 150px;
-    max-height: 120%;
     color: white;
     font-size: 12px;
     text-align: center;
     padding: 5px;
     border: 2px solid black;
-    overflow-y: auto;
-    z-index: 101; /* au-dessus de tout */
-}
-
-.succes:hover .s-texte-hover {
-    display: block;
+    z-index: 9999;
+    pointer-events: none; /* évite que le tooltip capture le mouseleave */
 }
 
 #succes-toast-container {
