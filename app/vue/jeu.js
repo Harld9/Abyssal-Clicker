@@ -1,12 +1,33 @@
 const vue = {
     /**
+     * Formate un nombre avec des points et sa définition en lettres
+     * Ex: 1500000 devient "1.500.000 (1.50 millions)"
+     */
+    formaterNombre(nombre) {
+        if (nombre >= 1000000000000000) {
+            return "(" + (nombre / 1000000000000000).toFixed(3).replace('.', ',') + " billiards)";
+        } else if (nombre >= 1000000000000) {
+            return "(" + (nombre / 1000000000000).toFixed(3).replace('.', ',') + " billions)";
+        } else if (nombre >= 1000000000) {
+            return "(" + (nombre / 1000000000).toFixed(3).replace('.', ',') + " milliards)";
+        } else if (nombre >= 1000000) {
+            return "(" + (nombre / 1000000).toFixed(3).replace('.', ',') + " millions)";
+        } else if (nombre >= 1000) {
+            return "(" + (nombre / 1000).toFixed(3).replace('.', ',') + " milliers)";
+        } else if (nombre >= 100) {
+            return "(" + (nombre / 100).toFixed(3).replace('.', ',') + " centaines)";
+        }
+
+        return nombre.toString();
+    },
+    /**
      * Met à jour l'affichage du nombre de clics
      * @param {number} nouveauClic - modele.joueur.nbClics
      * @returns {void} - met à jour le textContent de <p id="nbClic">
      */
     updateClic(nouveauClic) {
         const affichageClic = document.getElementById("nbClic")
-        affichageClic.textContent = nouveauClic
+        affichageClic.textContent = this.formaterNombre(nouveauClic);
         console.log("Nombre de clics : " + nouveauClic)
     },
 
@@ -17,7 +38,7 @@ const vue = {
      */
     updateArgent(nouveauArgent) {
         const affichageArgent = document.getElementById("argent")
-        affichageArgent.textContent = "Argent :" + nouveauArgent
+        affichageArgent.textContent = "Argent : " + this.formaterNombre(nouveauArgent);
         console.log(nouveauArgent + "argent")
     },
 
@@ -85,7 +106,7 @@ const vue = {
      */
     updateScore(nouveauMortPoisson) {
         const affichageMortPoisson = document.getElementById('nbScore')
-        affichageMortPoisson.textContent = nouveauMortPoisson
+        affichageMortPoisson.textContent = this.formaterNombre(nouveauMortPoisson);
         console.log("Poissons morts : " + nouveauMortPoisson)
     },
 
@@ -187,9 +208,14 @@ const vue = {
                     item.quantitePossedee + i
                 )
             );
+            bloc.querySelector(".a-prix").textContent = this.formaterNombre(prixTotal) + " argents";
+
+            bloc.dataset.prix = prixTotal;
+
+            bloc.querySelector(".a-quantite").textContent = "x" + item.quantitePossedee;
         }
 
-        bloc.querySelector(".a-prix").textContent = prixTotal + " argents";
+        bloc.querySelector(".a-prix").textContent = this.formaterNombre(prixTotal) + " argents";
         bloc.querySelector(".a-quantite").textContent = "x" + item.quantitePossedee;
     },
 
@@ -242,12 +268,16 @@ const vue = {
     updateAmeliorations(argent) {
         const ameliorations = document.querySelectorAll(".amelioration:not(.inconnu)")
         ameliorations.forEach(amelioration => {
-            const prixTexte = amelioration.querySelector(".a-prix").textContent
-            const prix = parseInt(prixTexte)
-            if (argent < prix) {
-                amelioration.classList.add("inaccessible")
-            } else {
-                amelioration.classList.remove("inaccessible")
+            // On récupère le prix brut qu'on a caché dans dataset.prix
+            const prix = parseInt(amelioration.dataset.prix);
+
+            // Sécurité : on s'assure que le prix a bien été chargé
+            if (!isNaN(prix)) {
+                if (argent < prix) {
+                    amelioration.classList.add("inaccessible")
+                } else {
+                    amelioration.classList.remove("inaccessible")
+                }
             }
         })
     },
@@ -260,7 +290,7 @@ const vue = {
      */
     updateDegatsClick(dommagesActuels) {
         const affichage = document.querySelector("#a-clic .a-dps")
-        if (affichage) affichage.textContent = dommagesActuels + " dégâts/clic"
+        if (affichage) affichage.textContent = this.formaterNombre(dommagesActuels) + " dégâts/clic";
     },
 
     /**
@@ -275,7 +305,7 @@ const vue = {
             totalDPS += item.bonusDPS * item.quantitePossedee
         })
         const affichage = document.querySelector("#a-passif .a-dps")
-        if (affichage) affichage.textContent = totalDPS + " dégâts/tick"
+        if (affichage) affichage.textContent = this.formaterNombre(totalDPS) + " dégâts/tick";
     },
 
     /**

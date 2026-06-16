@@ -189,7 +189,7 @@ const controller = {
                 vue.updateFish(modele.obtenirFish());
                 vue.updateAmeliorations(modele.joueur.argent);
             }
-        }, 200);
+        }, 50);
     },
 };
 
