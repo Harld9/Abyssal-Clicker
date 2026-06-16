@@ -330,10 +330,15 @@ const vue = {
      */
     damageFishPassif() {
         const bouton = document.getElementById("imgPoisson");
-        if (!bouton) return;
-        bouton.classList.remove("dommage-passif");
-        void bouton.offsetWidth;
+        // si l'animation est déjà en cours on ne fait rien
+        if (bouton.classList.contains("dommage-passif")) return
+
         bouton.classList.add("dommage-passif");
+        // retire la classe uniquement quand l'animation est terminée
+        bouton.addEventListener("animationend", function handler() {
+            bouton.classList.remove("dommage-passif")
+            bouton.removeEventListener("animationend", handler) // évite les doublons
+        })
     },
 
     /**

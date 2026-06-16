@@ -275,7 +275,7 @@
     border-color: black;
     margin: 1%;
     border-image: initial;
-    height: 70px;
+    height: auto;
 }
 
 .amelioration:hover {
@@ -296,8 +296,10 @@
 
 .a-img {
     height: 75px;
-    width: auto;
+    width: 75px;
     font-size: 10em;
+    object-fit: contain; /* garde les proportions sans déformer */
+    flex-shrink: 0;      /* empêche l'image de rétrécir dans le flex */
 }
 
 .a-nom-prix {
@@ -311,7 +313,7 @@
 }
 
 .a-nom {
-    height: 75px;
+    height: 50px;
     width: 100%;
     margin-top: 2%;
     font-size: 110%;
