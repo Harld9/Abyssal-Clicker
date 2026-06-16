@@ -31,6 +31,80 @@ const modele = {
             12: 7125,   // ~170 poissons P11 (+1870 pts)
             13: 9525    // ~200 poissons P12 pour le boss final
         },
+        succes: {
+            Succes1: { Numero: 1, Nom: "Un pêcheur sachant pêcher.", Objectif: "Pêcher votre premier poisson.", Emoji: "🐟", Debloque: false },
+            Succes2: { Numero: 2, Nom: "Début de la richesse.", Objectif: "Acquérir 15 argents.", Emoji: "🪙", Debloque: false },
+            Succes3: { Numero: 3, Nom: "Le marchand d'amélioration.", Objectif: "Débloquer les améliorations de clic.", Emoji: "🛒", Debloque: false },
+            Succes4: { Numero: 4, Nom: "Début de l'entreprenariat.", Objectif: "Débloquer les améliorations passives.", Emoji: "🏭", Debloque: false },
+            Succes5: { Numero: 5, Nom: "Les portes de la mer s'ouvre.", Objectif: "Débloquer le palier 1.", Emoji: "🚪", Debloque: false },
+            Succes6: { Numero: 6, Nom: "Les pieds dans l'eau.", Objectif: "Débloquer le palier 2.", Emoji: "🌊", Debloque: false },
+            Succes7: { Numero: 7, Nom: "Baptême marin.", Objectif: "Débloquer le palier 3.", Emoji: "💧", Debloque: false },
+            Succes8: { Numero: 8, Nom: "L'horizon s'efface.", Objectif: "Débloquer le palier 4.", Emoji: "🌅", Debloque: false },
+            Succes9: { Numero: 9, Nom: "Le soleil pâlit.", Objectif: "Débloquer le palier 5.", Emoji: "🌤️", Debloque: false },
+            Succes10: { Numero: 10, Nom: "La lumière hésite.", Objectif: "Débloquer le palier 6.", Emoji: "🕯️", Debloque: false },
+            Succes11: { Numero: 11, Nom: "Le silence commence.", Objectif: "Débloquer le palier 7.", Emoji: "🤫", Debloque: false },
+            Succes12: { Numero: 12, Nom: "Les ombres parlent.", Objectif: "Débloquer le palier 8.", Emoji: "👁️", Debloque: false },
+            Succes13: { Numero: 13, Nom: "Quelque chose remonte.", Objectif: "Débloquer le palier 9.", Emoji: "❓", Debloque: false },
+            Succes14: { Numero: 14, Nom: "Ne regarde pas en bas.", Objectif: "Débloquer le palier 10.", Emoji: "😰", Debloque: false },
+            Succes15: { Numero: 15, Nom: "Il n'y a plus de surface.", Objectif: "Débloquer le palier 11.", Emoji: "💀", Debloque: false },
+            Succes16: { Numero: 16, Nom: "Tu n'aurais pas dû descendre.", Objectif: "Débloquer le palier 12.", Emoji: "☠️", Debloque: false },
+            Succes17: { Numero: 17, Nom: "Les abysses t'ont choisi.", Objectif: "Débloquer le palier 13.", Emoji: "🔱", Debloque: false },
+            Succes18: { Numero: 18, Nom: "A mon époque on y allait à la main.", Objectif: "Acheter Pêche à mains nues.", Emoji: "🤲", Debloque: false },
+            Succes19: { Numero: 19, Nom: "L'homme des cavernes pêchait mieux.", Objectif: "Acheter Lance en bois taillée.", Emoji: "🪵", Debloque: false },
+            Succes20: { Numero: 20, Nom: "Pour les enfants, c'est suffisant.", Objectif: "Acheter Épuisette de plage.", Emoji: "🕸️", Debloque: false },
+            Succes21: { Numero: 21, Nom: "Un artisan du fond de l'eau.", Objectif: "Acheter Canne à pêche artisanale.", Emoji: "🎣", Debloque: false },
+            Succes22: { Numero: 22, Nom: "La technologie au service de la mort.", Objectif: "Acheter Canne à pêche avec moulinet.", Emoji: "⚙️", Debloque: false },
+            Succes23: { Numero: 23, Nom: "Ça commence à devenir sérieux.", Objectif: "Acheter Fusil-harpon de plongée.", Emoji: "🔱", Debloque: false },
+            Succes24: { Numero: 24, Nom: "Les poissons viennent d'eux-mêmes.", Objectif: "Acheter Appâts aux phéromones.", Emoji: "🧪", Debloque: false },
+            Succes25: { Numero: 25, Nom: "L'ingénierie au service du massacre.", Objectif: "Acheter Canne en fibre de carbone.", Emoji: "🏗️", Debloque: false },
+            Succes26: { Numero: 26, Nom: "Pan.", Objectif: "Acheter Harpon pneumatique.", Emoji: "💥", Debloque: false },
+            Succes27: { Numero: 27, Nom: "La mer tremble à ton passage.", Objectif: "Acheter Fusil à ondes soniques.", Emoji: "📡", Debloque: false },
+            Succes28: { Numero: 28, Nom: "Zeus pêchait-il ainsi ?", Objectif: "Acheter Gantelet électrique.", Emoji: "⚡", Debloque: false },
+            Succes29: { Numero: 29, Nom: "Le poisson ne souffre plus, il est gelé.", Objectif: "Acheter Lance-torpilles cryogéniques.", Emoji: "🧊", Debloque: false },
+            Succes30: { Numero: 30, Nom: "Cent mains dans l'eau.", Objectif: "Acheter 100x Pêche à mains nues.", Emoji: "👐", Debloque: false },
+            Succes31: { Numero: 31, Nom: "Une forêt sacrifiée pour la pêche.", Objectif: "Acheter 100x Lance en bois taillée.", Emoji: "🌲", Debloque: false },
+            Succes32: { Numero: 32, Nom: "L'épuisette ne suffit plus.", Objectif: "Acheter 100x Épuisette de plage.", Emoji: "🕸️", Debloque: false },
+            Succes33: { Numero: 33, Nom: "L'artisan est devenu industriel.", Objectif: "Acheter 100x Canne à pêche artisanale.", Emoji: "🏭", Debloque: false },
+            Succes34: { Numero: 34, Nom: "Le moulinet tourne sans fin.", Objectif: "Acheter 100x Canne à pêche avec moulinet.", Emoji: "🔄", Debloque: false },
+            Succes35: { Numero: 35, Nom: "Un arsenal sous-marin.", Objectif: "Acheter 100x Fusil-harpon de plongée.", Emoji: "⚔️", Debloque: false },
+            Succes36: { Numero: 36, Nom: "L'océan entier est attiré.", Objectif: "Acheter 100x Appâts aux phéromones.", Emoji: "🌀", Debloque: false },
+            Succes37: { Numero: 37, Nom: "La fibre craque sous le poids.", Objectif: "Acheter 100x Canne en fibre de carbone.", Emoji: "💢", Debloque: false },
+            Succes38: { Numero: 38, Nom: "Pan. Pan. Pan. Pan...", Objectif: "Acheter 100x Harpon pneumatique.", Emoji: "💣", Debloque: false },
+            Succes39: { Numero: 39, Nom: "Le silence est mort avec les poissons.", Objectif: "Acheter 100x Fusil à ondes soniques.", Emoji: "📢", Debloque: false },
+            Succes40: { Numero: 40, Nom: "La foudre frappe sans relâche.", Objectif: "Acheter 100x Gantelet électrique.", Emoji: "🌩️", Debloque: false },
+            Succes41: { Numero: 41, Nom: "L'océan commence à geler.", Objectif: "Acheter 100x Lance-torpilles cryogéniques.", Emoji: "❄️", Debloque: false },
+            Succes42: { Numero: 42, Nom: "Travaillez, mes fidèles employés.", Objectif: "Acheter Cage à poisson.", Emoji: "🪤", Debloque: false },
+            Succes43: { Numero: 43, Nom: "Le filet se resserre.", Objectif: "Acheter Filet de pêche.", Emoji: "🕸️", Debloque: false },
+            Succes44: { Numero: 44, Nom: "En avant, matelot.", Objectif: "Acheter Barque à rames avec filet.", Emoji: "🚣", Debloque: false },
+            Succes45: { Numero: 45, Nom: "Le moteur tourne, les poissons meurent.", Objectif: "Acheter Petit bateau à moteur.", Emoji: "🚤", Debloque: false },
+            Succes46: { Numero: 46, Nom: "Le fond de l'océan se vide.", Objectif: "Acheter Chalutier.", Emoji: "⚓", Debloque: false },
+            Succes47: { Numero: 47, Nom: "Une usine flottante de la mort.", Objectif: "Acheter Navire-usine.", Emoji: "🛳️", Debloque: false },
+            Succes48: { Numero: 48, Nom: "Élevés pour mourir.", Objectif: "Acheter Ferme aquacole.", Emoji: "🐠", Debloque: false },
+            Succes49: { Numero: 49, Nom: "Une armada de la destruction.", Objectif: "Acheter Flotte de chalutiers.", Emoji: "⚔️", Debloque: false },
+            Succes50: { Numero: 50, Nom: "Aspirer la mer entière.", Objectif: "Acheter Station de pompage marine.", Emoji: "🌊", Debloque: false },
+            Succes51: { Numero: 51, Nom: "Personne ne peut nous voir ici.", Objectif: "Acheter Sous-marin de chalutage.", Emoji: "🤿", Debloque: false },
+            Succes52: { Numero: 52, Nom: "Le titane ne pardonne pas.", Objectif: "Acheter Canon à filet en titane.", Emoji: "🔩", Debloque: false },
+            Succes53: { Numero: 53, Nom: "L'océan appartient à l'industrie.", Objectif: "Acheter Méga-plateforme océanique.", Emoji: "🏗️", Debloque: false },
+            Succes54: { Numero: 54, Nom: "Une prison sans fin.", Objectif: "Acheter 100x Cage à poisson.", Emoji: "🔒", Debloque: false },
+            Succes55: { Numero: 55, Nom: "L'océan est devenu un filet.", Objectif: "Acheter 100x Filet de pêche.", Emoji: "🌐", Debloque: false },
+            Succes56: { Numero: 56, Nom: "Une flottille de rameurs épuisés.", Objectif: "Acheter 100x Barque à rames avec filet.", Emoji: "😮‍💨", Debloque: false },
+            Succes57: { Numero: 57, Nom: "Le port est plein, la mer est vide.", Objectif: "Acheter 100x Petit bateau à moteur.", Emoji: "🏚️", Debloque: false },
+            Succes58: { Numero: 58, Nom: "Le fond marin n'existe plus.", Objectif: "Acheter 100x Chalutier.", Emoji: "🕳️", Debloque: false },
+            Succes59: { Numero: 59, Nom: "La mer est une chaîne de production.", Objectif: "Acheter 100x Navire-usine.", Emoji: "⚙️", Debloque: false },
+            Succes60: { Numero: 60, Nom: "L'élevage a remplacé l'océan.", Objectif: "Acheter 100x Ferme aquacole.", Emoji: "🏭", Debloque: false },
+            Succes61: { Numero: 61, Nom: "Une guerre déclarée à la mer.", Objectif: "Acheter 100x Flotte de chalutiers.", Emoji: "💀", Debloque: false },
+            Succes62: { Numero: 62, Nom: "La mer baisse à vue d'œil.", Objectif: "Acheter 100x Station de pompage marine.", Emoji: "📉", Debloque: false },
+            Succes63: { Numero: 63, Nom: "Les abysses sont à sec.", Objectif: "Acheter 100x Sous-marin de chalutage.", Emoji: "😱", Debloque: false },
+            Succes64: { Numero: 64, Nom: "Le titane a recouvert l'océan.", Objectif: "Acheter 100x Canon à filet en titane.", Emoji: "🔩", Debloque: false },
+            Succes65: { Numero: 65, Nom: "Plus d'eau, que du métal.", Objectif: "Acheter 100x Méga-plateforme océanique.", Emoji: "🦾", Debloque: false },
+            Succes66: { Numero: 66, Nom: "L'arsenal du pêcheur.", Objectif: "Acheter 1 fois toutes les améliorations clic.", Emoji: "🗡️", Debloque: false },
+            Succes67: { Numero: 67, Nom: "L'empire du large.", Objectif: "Acheter 1 fois toutes les améliorations passives.", Emoji: "👑", Debloque: false },
+            Succes68: { Numero: 68, Nom: "Le maître des abysses.", Objectif: "Acheter 1 fois toutes les améliorations (clic + passif).", Emoji: "🔱", Debloque: false },
+            Succes69: { Numero: 69, Nom: "L'industrie de la mort.", Objectif: "Acheter 100x toutes les améliorations clic.", Emoji: "💀", Debloque: false },
+            Succes70: { Numero: 70, Nom: "L'océan n'existe plus.", Objectif: "Acheter 100x toutes les améliorations passives.", Emoji: "🌑", Debloque: false },
+            Succes71: { Numero: 71, Nom: "Tu as tout consumé.", Objectif: "Acheter 100x toutes les améliorations (clic + passif).", Emoji: "🖤", Debloque: false },
+            Succes72: { Numero: 72, Nom: "Les abysses n'ont plus de secrets.", Objectif: "Obtenir tous les succès.", Emoji: "🏆", Debloque: false }
+        },
         inventaireObjetClic: {
             amelioration_1: { nom: "Peche a mains nues", bonusDegat: 1, prixBase: 15, quantitePossedee: 0, multiplicateurPrix: 1.15 },
             amelioration_2: { nom: "Lance en bois taillee", bonusDegat: 2, prixBase: 60, quantitePossedee: 0, multiplicateurPrix: 1.15 },
@@ -348,6 +422,8 @@ const modele = {
         } else {
             console.log("Argent insuffisant - Prix total :" + prixTotal + " - Argent actuel :" + this.joueur.argent);
         }
+        //on vrifie si on a bien débloqué un ou des succes
+        this.verifierLesSucces();
     },
 
     recalculerDegatsPassif() {
@@ -378,6 +454,9 @@ const modele = {
         } else {
             console.log("Argent insuffisant - Prix total :" + prixTotal + " - Argent actuel :" + this.joueur.argent);
         }
+
+        // on verifie si l'utilisateur a biend débloqué un/des succès
+        this.verifierLesSucces();
     },
 
     recalculerDegats() {
@@ -441,6 +520,8 @@ const modele = {
             this.poisson.pvPoissonMax = this.poisson.poissonActuel.pvMax;
             this.poisson.pvPoissonActuel = this.poisson.poissonActuel.pvMax;
             console.log("Nouveau poisson modèle :", this.poisson.poissonActuel);
+            // on vérifie si on a bien débloqué les succes
+            this.verifierLesSucces();
         }
     },
 
@@ -511,11 +592,9 @@ const modele = {
     },
 
     importerDonneesSauvegarde(donnees) {
-
         if (donnees.joueur === undefined) {
             return
         }
-
 
         this.joueur.score = donnees.joueur.score
         this.joueur.nbClics = donnees.joueur.nbClics
@@ -529,6 +608,11 @@ const modele = {
         this.joueur.mortPoisson = donnees.joueur.mortPoisson
         this.joueur.dommagesBase = donnees.joueur.dommagesBase
         this.joueur.palierActuelAffiche = this.joueur.palier
+
+        if (donnees.joueur.succes !== undefined) {
+            this.joueur.succes = donnees.joueur.succes;
+        }
+
         const nouveauPoisson = this.spawnFish(this.joueur.palier)
         this.poisson.poissonActuel = nouveauPoisson
         this.poisson.pvPoissonMax = nouveauPoisson.pvMax
@@ -540,9 +624,13 @@ const modele = {
     exporterDonneesSauvegarde() {
         let etatPartie = { joueur: this.joueur, poisson: this.poisson }
         let sauvegardePartie = JSON.stringify(etatPartie)
-        let sauvegardePartieEncodé = btoa(sauvegardePartie)
-        return sauvegardePartieEncodé
+
+        // On traduit d'abord les émojis/accents, puis on encode en base64
+        let sauvegardePartieEncode = btoa(encodeURIComponent(sauvegardePartie))
+
+        return sauvegardePartieEncode
     },
+
     obtenirEtatPartie() {
         return { joueur: this.joueur, poisson: this.poisson }
     },
@@ -562,6 +650,81 @@ const modele = {
             console.log("Premier poisson chargé :",
                 this.poisson.poissonActuel);
         }
+    },
+
+    debloquerSucces(idSucces) {
+        if (this.joueur.succes[idSucces] && this.joueur.succes[idSucces].Debloque === false) {
+            this.joueur.succes[idSucces].Debloque = true;
+            console.log("🏆 Succès Débloqué : " + this.joueur.succes[idSucces].Nom);
+            // Ton collègue pourra lier son affichage ici plus tard
+        }
+    },
+
+
+    verifierLesSucces() {
+        // Succès et 2
+        if (this.joueur.argent >= 15) this.debloquerSucces("Succes2");
+        if (this.joueur.mortPoisson >= 1) this.debloquerSucces("Succes1");
+
+        //  Succès 3 et 4 : Achat de la première amélioration
+        if (this.joueur.inventaireObjetClic.amelioration_1.quantitePossedee >= 1) this.debloquerSucces("Succes3");
+        if (this.joueur.inventaireObjetPassif.amelioration_1.quantitePossedee >= 1) this.debloquerSucces("Succes4");
+
+        // 5 à 17 : Paliers (Palier 1 = Succès 5)
+        for (let i = 1; i <= 13; i++) {
+            if (this.joueur.palier >= i) this.debloquerSucces("Succes" + (i + 4));
+        }
+
+        let toutClic1 = true, toutClic100 = true;
+        let toutPassif1 = true, toutPassif100 = true;
+
+        // Succès pour les Améliorations au Clic (dps)
+        for (let i = 1; i <= 12; i++) {
+            let item = this.joueur.inventaireObjetClic["amelioration_" + i];
+
+            // Succès 18 à 29 (1x)
+            if (item.quantitePossedee >= 1) this.debloquerSucces("Succes" + (17 + i));
+            else toutClic1 = false;
+
+            // Succès 30 à 41 (100x)
+            if (item.quantitePossedee >= 100) this.debloquerSucces("Succes" + (29 + i));
+            else toutClic100 = false;
+        }
+
+        // Succès pour les améliorations Passives
+        for (let i = 1; i <= 12; i++) {
+            let item = this.joueur.inventaireObjetPassif["amelioration_" + i];
+
+            // Succès 42 à 53 (1x)
+            if (item.quantitePossedee >= 1) this.debloquerSucces("Succes" + (41 + i));
+            else toutPassif1 = false;
+
+            // Succès 54 à 65 (100x) - Décalé suite à la suppression de l'objet 13
+            if (item.quantitePossedee >= 100) this.debloquerSucces("Succes" + (53 + i));
+            else toutPassif100 = false;
+        }
+
+        // Succès 66 à 71 : Succès d'achats
+        if (toutClic1) this.debloquerSucces("Succes66");
+        if (toutPassif1) this.debloquerSucces("Succes67");
+        if (toutClic1 && toutPassif1) this.debloquerSucces("Succes68");
+
+        if (toutClic100) this.debloquerSucces("Succes69");
+        if (toutPassif100) this.debloquerSucces("Succes70");
+        if (toutClic100 && toutPassif100) this.debloquerSucces("Succes71");
+
+        // Succès final 72 : Avoir tous les succes
+        let totalDebloques = 0;
+        for (let cle in this.joueur.succes) {
+            if (this.joueur.succes[cle].Debloque === true) totalDebloques++;
+        }
+
+        if (totalDebloques === 71 && !this.joueur.succes["Succes72"].Debloque) {
+            this.debloquerSucces("Succes72");
+        }
     }
+
+
+
 }
 

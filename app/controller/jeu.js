@@ -81,7 +81,7 @@ const controller = {
         importSauvegarde.addEventListener("click", function () {
             console.log("Sauvegarde Importée");
 
-            const donneesImportees = JSON.parse(atob(inputSauvegarde.value));
+            const donneesImportees = JSON.parse(decodeURIComponent(atob(inputSauvegarde.value)));
 
             modele.importerDonneesSauvegarde(donneesImportees);
 
@@ -142,7 +142,7 @@ const controller = {
     chargerPartie() {
         if (localStorage.getItem("maSauvegarde") === null) return;
 
-        const donnees = JSON.parse(atob(localStorage.getItem("maSauvegarde")));
+        const donnees = JSON.parse(decodeURIComponent(atob(localStorage.getItem("maSauvegarde"))));
 
         console.log("Données de la fonction charger partie : " + donnees);
 
@@ -169,7 +169,7 @@ const controller = {
     },
 
     sauvegarderPartie() {
-        const encode = btoa(JSON.stringify(modele.obtenirEtatPartie()));
+        const encode = btoa(encodeURIComponent(JSON.stringify(modele.obtenirEtatPartie())));
         localStorage.setItem("maSauvegarde", encode);
     },
 
