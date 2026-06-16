@@ -609,6 +609,7 @@
     overflow-x: auto;
     scrollbar-width: none;
     font-size: 20px;
+    user-select: all;
 }
 
 #recup-sauvegarde, #ajout-sauvegarde {
