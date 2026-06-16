@@ -367,4 +367,98 @@ const vue = {
             setTimeout(() => toast.remove(), 400)
         }, 3000)
     },
+
+    /**
+     * Génère dynamiquement la grille des succès dans #s-box
+     * @param {Object} succes - modele.joueur.succes — dictionnaire de tous les succès
+     * @returns {void} - vide #s-box et recrée toutes les .succes
+     *                   ajoute "inconnu" si Debloque === false
+     */
+    genererSucces(succes) {
+        const box = document.getElementById("s-box")
+        box.innerHTML = ""
+
+        Object.values(succes).forEach(s => {
+            if (!this.estVisible(s, succes)) return; // ← skip les succès non visibles
+
+            const div = document.createElement("div")
+            div.classList.add("succes")
+            div.id = "succes-" + s.Numero
+            if (!s.Debloque) div.classList.add("inconnu")
+
+            div.innerHTML = `
+            <p>${s.Emoji}</p>
+            <p class="s-texte-hover">
+                <strong>${s.Nom}</strong><br>${s.Objectif}
+            </p>
+        `
+            box.appendChild(div)
+        })
+    },
+
+    /**
+     * Débloque visuellement un succès et déclenche le toast
+     * @param {Object} succes - l'objet succès depuis modele.joueur.succes.SuccesX
+     *                          doit avoir : { Numero, Nom, Objectif, Emoji }
+     * @returns {void} - retire "inconnu" sur #succes-{Numero}
+     *                   appelle afficherSuccesToast()
+     */
+    debloquerSuccesVue(succes) {
+        this.afficherSuccesToast(succes.Nom, succes.Objectif, succes.Emoji);
+        // Régénère pour afficher les succès qui viennent de devenir visibles
+        this.genererSucces(modele.joueur.succes);
+    },
+
+    /**
+     * Détermine si un succès doit être affiché (débloqué ou en gris)
+     * @param {Object} succes - un succès depuis modele.joueur.succes
+     * @param {Object} allSucces - tous les succès depuis modele.joueur.succes
+     * @returns {boolean} - true si le succès doit apparaître dans le panneau
+     */
+    estVisible(succes, allSucces) {
+        const n = succes.Numero;
+
+        // Toujours visible si déjà débloqué
+        if (succes.Debloque) return true;
+
+        // Succès 1-4 (généraux) : toujours visibles
+        if (n >= 1 && n <= 4) return true;
+
+        // Succès 5-17 (paliers) : 5 toujours, puis N visible si N-1 débloqué
+        if (n === 5) return true;
+        if (n >= 6 && n <= 17) return allSucces["Succes" + (n - 1)].Debloque;
+
+        // Succès 18-29 (clic 1er achat) : 18 visible si Succès 3 débloqué
+        if (n === 18) return allSucces.Succes3.Debloque;
+        if (n >= 19 && n <= 29) return allSucces["Succes" + (n - 1)].Debloque;
+
+        // Succès 30-41 (clic 100x) : visible si le 1er achat correspondant est débloqué
+        // (Succès 30 ↔ Succès 18, Succès 31 ↔ Succès 19, etc.)
+        if (n >= 30 && n <= 41) return allSucces["Succes" + (n - 12)].Debloque;
+
+        // Succès 42-53 (passif 1er achat) : 42 visible si Succès 4 débloqué
+        if (n === 42) return allSucces.Succes4.Debloque;
+        if (n >= 43 && n <= 53) return allSucces["Succes" + (n - 1)].Debloque;
+
+        // Succès 54-65 (passif 100x) : visible si le 1er achat correspondant est débloqué
+        if (n >= 54 && n <= 65) return allSucces["Succes" + (n - 12)].Debloque;
+
+        // Succès 66 : toutes clic 1x → visible si 1er achat clic débloqué
+        if (n === 66) return allSucces.Succes18.Debloque;
+        // Succès 67 : toutes passif 1x → visible si 1er achat passif débloqué
+        if (n === 67) return allSucces.Succes42.Debloque;
+        // Succès 68 : toutes clic + passif 1x → visible si l'un ou l'autre débloqué
+        if (n === 68) return allSucces.Succes18.Debloque || allSucces.Succes42.Debloque;
+        // Succès 69 : toutes clic 100x → visible si 100x clic débloqué
+        if (n === 69) return allSucces.Succes30.Debloque;
+        // Succès 70 : toutes passif 100x → visible si 100x passif débloqué
+        if (n === 70) return allSucces.Succes54.Debloque;
+        // Succès 71 : toutes 100x → visible si l'un ou l'autre débloqué
+        if (n === 71) return allSucces.Succes30.Debloque || allSucces.Succes54.Debloque;
+
+        // Succès 72 : toujours visible
+        if (n === 72) return true;
+
+        return false;
+    },
 }

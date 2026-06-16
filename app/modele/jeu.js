@@ -33,7 +33,7 @@ const modele = {
         },
         succes: {
             Succes1: { Numero: 1, Nom: "Un pêcheur sachant pêcher.", Objectif: "Pêcher votre premier poisson.", Emoji: "🐟", Debloque: false },
-            Succes2: { Numero: 2, Nom: "Début de la richesse.", Objectif: "Acquérir 15 argents.", Emoji: "🪙", Debloque: false },
+            Succes2: { Numero: 2, Nom: "Début de la richesse.", Objectif: "Acquérir 5 argents.", Emoji: "🪙", Debloque: false },
             Succes3: { Numero: 3, Nom: "Le marchand d'amélioration.", Objectif: "Débloquer les améliorations de clic.", Emoji: "🛒", Debloque: false },
             Succes4: { Numero: 4, Nom: "Début de l'entreprenariat.", Objectif: "Débloquer les améliorations passives.", Emoji: "🏭", Debloque: false },
             Succes5: { Numero: 5, Nom: "Les portes de la mer s'ouvre.", Objectif: "Débloquer le palier 1.", Emoji: "🚪", Debloque: false },
@@ -494,6 +494,8 @@ const modele = {
 
         console.log("PV restants :", this.poisson.pvPoissonActuel);
 
+        this.verifierLesSucces();
+
         // Vérification de la mort du poisson
         if (this.poisson.pvPoissonActuel <= 0) {
 
@@ -656,19 +658,19 @@ const modele = {
         if (this.joueur.succes[idSucces] && this.joueur.succes[idSucces].Debloque === false) {
             this.joueur.succes[idSucces].Debloque = true;
             console.log("🏆 Succès Débloqué : " + this.joueur.succes[idSucces].Nom);
-            // Ton collègue pourra lier son affichage ici plus tard
+            vue.debloquerSuccesVue(this.joueur.succes[idSucces]);
         }
     },
 
 
     verifierLesSucces() {
         // Succès et 2
-        if (this.joueur.argent >= 15) this.debloquerSucces("Succes2");
+        if (this.joueur.argent >= 5) this.debloquerSucces("Succes2");
         if (this.joueur.mortPoisson >= 1) this.debloquerSucces("Succes1");
 
         //  Succès 3 et 4 : Achat de la première amélioration
-        if (this.joueur.inventaireObjetClic.amelioration_1.quantitePossedee >= 1) this.debloquerSucces("Succes3");
-        if (this.joueur.inventaireObjetPassif.amelioration_1.quantitePossedee >= 1) this.debloquerSucces("Succes4");
+        if (this.joueur.argent >= 15) this.debloquerSucces("Succes3");
+        if (this.joueur.argent >= 25) this.debloquerSucces("Succes4");
 
         // 5 à 17 : Paliers (Palier 1 = Succès 5)
         for (let i = 1; i <= 13; i++) {

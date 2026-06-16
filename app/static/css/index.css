@@ -344,12 +344,11 @@
 
 /* --- Panneau succès --- */
 #succes-page {
-    display: inline;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
     background-image: url(../background/plank.webp);
-    border-width: 1px;
-    border-style: solid;
-    border-color: black;
-    border-image: initial;
+    border: 1px solid black;
 }
 
 #s-titre {
@@ -367,8 +366,12 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
-
+    align-items: flex-start;
+    align-content: flex-start;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: none; /* cache la scrollbar comme pour les autres */
 }
 
 .succes {
@@ -386,11 +389,16 @@
     height: 75px;
 
     position: relative;
+    z-index: 1; /* niveau normal */
 }
 
 .succes.inconnu {
     filter: grayscale(100%);
     cursor: default;
+}
+
+.succes:hover {
+    z-index: 100; /* monte au-dessus des autres au survol */
 }
 
 .s-texte-hover {
@@ -409,6 +417,7 @@
     padding: 5px;
     border: 2px solid black;
     overflow-y: auto;
+    z-index: 101; /* au-dessus de tout */
 }
 
 .succes:hover .s-texte-hover {

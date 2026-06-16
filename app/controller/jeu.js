@@ -6,6 +6,7 @@ const controller = {
         vue.creerItems("clic", modele.joueur.inventaireObjetClic);
         vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
         this.brancherItems();
+        vue.genererSucces(modele.joueur.succes)
         vue.updateAmeliorations(modele.joueur.argent);
 
         const bouton = document.getElementById("imgPoisson");
@@ -156,6 +157,8 @@ const controller = {
         vue.creerItems("clic", modele.joueur.inventaireObjetClic);
         vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
 
+        vue.genererSucces(modele.joueur.succes)
+
         vue.updateAmeliorations(modele.joueur.argent);
 
         vue.updateBoutonsPaliers(
@@ -188,6 +191,7 @@ const controller = {
                 vue.updateArgent(modele.joueur.argent);
                 vue.updateFish(modele.obtenirFish());
                 vue.updateAmeliorations(modele.joueur.argent);
+                vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
             }
         }, 50);
     },
