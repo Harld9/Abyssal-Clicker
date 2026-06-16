@@ -1,31 +1,43 @@
 const controller = {
 
     initialiser() {
-        const bouton = document.getElementById("imgPoisson")
-        // Au click sur le bouton, on appelle le modèle on rajoute 1 au score et on met à jour le résultat dans la vue
+        modele.initialiserNouvellePartie();
+
+        vue.creerItems("clic", modele.joueur.inventaireObjetClic);
+        vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
+        this.brancherItems();
+        vue.updateAmeliorations(modele.joueur.argent);
+
+        const bouton = document.getElementById("imgPoisson");
+
         bouton.addEventListener("click", function () {
             modele.frapperPoisson(modele.joueur.dommagesActuels, true, true);
             vue.damageFish();
 
-            vue.updateScore(modele.obtenirMortPoisson());
-            vue.updateArgent(modele.joueur.argent);
+            vue.updateScore(modele.obtenirScore());
             vue.updateClic(modele.obtenirNbClics());
-            vue.updateFish(modele.obtenirFish())
-            vue.updateAmeliorations(modele.joueur.argent)
-            vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
+            vue.updateArgent(modele.joueur.argent);
+            vue.updateFish(modele.obtenirFish());
+            vue.updateAmeliorations(modele.joueur.argent);
 
+            vue.updateBoutonsPaliers(
+                modele.joueur.palierActuelAffiche,
+                modele.joueur.palier
+            );
         });
 
         for (let i = 1; i <= 13; i++) {
-
             const boutonPalier = document.getElementById("palier-" + i);
 
             boutonPalier.addEventListener("click", function () {
                 modele.changerPalier(i);
 
-                vue.updateFondPalier(modele.joueur.palierActuelAffiche);
                 vue.updateFish(modele.obtenirFish());
-                vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
+                vue.updateFondPalier(modele.joueur.palierActuelAffiche);
+                vue.updateBoutonsPaliers(
+                    modele.joueur.palierActuelAffiche,
+                    modele.joueur.palier
+                );
             });
         }
 
@@ -34,112 +46,153 @@ const controller = {
         boutonsQuantite.forEach(function (bouton) {
             bouton.addEventListener("click", function () {
                 const quantite = Number(bouton.dataset.quantite);
-
                 const zone = bouton.closest("#a-clic, #a-passif");
 
-                if (zone.id === "a-clic") modele.joueur.quantiteAchatClic = quantite;
-                if (zone.id === "a-passif") modele.joueur.quantiteAchatPassif = quantite;
+                if (zone.id === "a-clic") {
+                    modele.joueur.quantiteAchatClic = quantite;
+                }
 
-                vue.updateBoutonsQuantite(zone, bouton)
+                if (zone.id === "a-passif") {
+                    modele.joueur.quantiteAchatPassif = quantite;
+                }
+
+                vue.updateBoutonsQuantite(zone, bouton);
+                vue.creerItems("clic", modele.joueur.inventaireObjetClic);
+                vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
+                controller.brancherItems();
+                vue.updateAmeliorations(modele.joueur.argent);
             });
         });
 
-        // Achat de l'amélioration clic 1
-        const item_clic1 = document.getElementById("a-clic-1");
-        item_clic1.addEventListener("click", function () {
-            modele.ajout_item_Clic("amelioration_1");
-            vue.updateArgent(modele.joueur.argent);
-            vue.updateAmeliorations(modele.joueur.argent);
-            vue.updateDegatsClick(modele.joueur.dommagesActuels);
-            console.log(modele.obteniritem_Clic("amelioration_1").quantitePossedee);
+        let exportSauvegarde = document.getElementById("recup-sauvegarde");
 
-        });
-
-        // Achat de l'amélioration passif 1
-        const itempassif1 = document.getElementById("a-passif-1");
-        itempassif1.addEventListener("click", function () {
-            modele.ajout_item_Passif("amelioration_1");
-            vue.updateArgent(modele.joueur.argent);
-            vue.updateAmeliorations(modele.joueur.argent);
-            vue.updateDegatsPassif(modele.joueur.inventaireObjetPassif);
-            console.log(modele.obteniritem_Passif("amelioration_1").quantitePossedee);
-
-        });
-
-        let exportSauvegarde = document.getElementById('recup-sauvegarde')
         exportSauvegarde.addEventListener("click", function () {
             console.log("Sauvegarde Exportée");
-            let sauvegardePartieEncode = modele.exporterDonneesSauvegarde()
 
-            vue.updateCodeSauvegarde(sauvegardePartieEncode)
+            let sauvegardePartieEncode = modele.exporterDonneesSauvegarde();
 
-            navigator.clipboard.writeText(sauvegardePartieEncode)
+            vue.updateCodeSauvegarde(sauvegardePartieEncode);
+            navigator.clipboard.writeText(sauvegardePartieEncode);
         });
 
-        let importSauvegarde = document.getElementById('ajout-sauvegarde')
-        let inputSauvegarde = document.getElementById('input-sauvegarde')
+        let importSauvegarde = document.getElementById("ajout-sauvegarde");
+        let inputSauvegarde = document.getElementById("input-sauvegarde");
+
         importSauvegarde.addEventListener("click", function () {
             console.log("Sauvegarde Importée");
-            let donneesImportees = JSON.parse(atob(inputSauvegarde.value))
-            modele.importerDonneesSauvegarde(donneesImportees)
-            console.log("Sauvegarde importée avec ces données : " + donneesImportees);
 
-            vue.updateArgent(modele.joueur.argent)
-            vue.updateClic(modele.joueur.nbClics)
-            vue.updateScore(modele.joueur.score)
-            vue.updateFish(modele.obtenirFish())
+            const donneesImportees = JSON.parse(atob(inputSauvegarde.value));
+
+            modele.importerDonneesSauvegarde(donneesImportees);
+
+            vue.updateArgent(modele.joueur.argent);
+            vue.updateClic(modele.joueur.nbClics);
+            vue.updateScore(modele.joueur.score);
+            vue.updateFish(modele.obtenirFish());
+
+            vue.creerItems("clic", modele.joueur.inventaireObjetClic);
+            vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
+
+            controller.brancherItems();
+
+            vue.updateAmeliorations(modele.joueur.argent);
+            vue.updateDegatsClick(modele.joueur.dommagesActuels);
+            vue.updateDegatsPassif(modele.joueur.inventaireObjetPassif);
         });
-        modele.initialiserNouvellePartie()
+    },
+
+    brancherItems() {
+        for (let i = 1; i <= 12; i++) {
+            const blocClic = document.getElementById("a-clic-" + i);
+
+            if (blocClic) {
+                blocClic.addEventListener("click", function () {
+                    modele.ajout_item_Clic("amelioration_" + i);
+
+                    vue.creerItems("clic", modele.joueur.inventaireObjetClic);
+                    vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
+
+                    controller.brancherItems();
+
+                    vue.updateArgent(modele.joueur.argent);
+                    vue.updateAmeliorations(modele.joueur.argent);
+                    vue.updateDegatsClick(modele.joueur.dommagesActuels);
+                });
+            }
+
+            const blocPassif = document.getElementById("a-passif-" + i);
+
+            if (blocPassif) {
+                blocPassif.addEventListener("click", function () {
+                    modele.ajout_item_Passif("amelioration_" + i);
+
+                    vue.creerItems("clic", modele.joueur.inventaireObjetClic);
+                    vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
+
+                    controller.brancherItems();
+
+                    vue.updateArgent(modele.joueur.argent);
+                    vue.updateAmeliorations(modele.joueur.argent);
+                    vue.updateDegatsPassif(modele.joueur.inventaireObjetPassif);
+                });
+            }
+        }
     },
 
     chargerPartie() {
-        if (localStorage.getItem("maSauvegarde") === null) {
-            vue.updateScore(modele.obtenirScore())
-            vue.updateArgent(modele.joueur.argent)
-            vue.updateFish(modele.obtenirFish())
-            vue.updateClic(modele.obtenirNbClics())
-            vue.updateAmeliorations(modele.joueur.argent)
-            vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
-            vue.updateFondPalier(modele.joueur.palierActuelAffiche)
-            vue.updateDegatsClick(modele.joueur.dommagesActuels);
-            vue.updateDegatsPassif(modele.joueur.inventaireObjetPassif);
-            return
-        }
-        const donnees = JSON.parse(atob(localStorage.getItem("maSauvegarde")))
-        console.log("Données de la fonction charger partie : " + donnees)
-        modele.importerDonneesSauvegarde(donnees)
+        if (localStorage.getItem("maSauvegarde") === null) return;
 
-        vue.updateScore(modele.obtenirScore())
-        vue.updateArgent(modele.joueur.argent)
-        vue.updateFish(modele.obtenirFish())
-        vue.updateClic(modele.obtenirNbClics())
-        vue.updateAmeliorations(modele.joueur.argent)
-        vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
-        vue.updateFondPalier(modele.joueur.palierActuelAffiche)
+        const donnees = JSON.parse(atob(localStorage.getItem("maSauvegarde")));
+
+        console.log("Données de la fonction charger partie : " + donnees);
+
+        modele.importerDonneesSauvegarde(donnees);
+
+        vue.updateScore(modele.obtenirScore());
+        vue.updateFish(modele.obtenirFish());
+        vue.updateClic(modele.obtenirNbClics());
+        vue.updateArgent(modele.joueur.argent);
+
+        vue.creerItems("clic", modele.joueur.inventaireObjetClic);
+        vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
+
+        vue.updateAmeliorations(modele.joueur.argent);
+
+        vue.updateBoutonsPaliers(
+            modele.joueur.palierActuelAffiche,
+            modele.joueur.palier
+        );
+
         vue.updateDegatsClick(modele.joueur.dommagesActuels);
         vue.updateDegatsPassif(modele.joueur.inventaireObjetPassif);
+        vue.updateFondPalier(modele.joueur.palierActuelAffiche);
     },
 
     sauvegarderPartie() {
-        const encode = btoa(JSON.stringify(modele.obtenirEtatPartie()))
-        localStorage.setItem("maSauvegarde", encode)
+        const encode = btoa(JSON.stringify(modele.obtenirEtatPartie()));
+        localStorage.setItem("maSauvegarde", encode);
     },
+
     degat_passif() {
         setInterval(function () {
             if (modele.joueur.passifBonusDPS > 0) {
-                modele.frapperPoisson(modele.joueur.passifBonusDPS);
-
+                // On joue uniquement l'animation des demi-cercles (coins)
                 vue.damageFishPassif();
-                vue.updateScore(modele.obtenirMortPoisson());
+
+                // On applique les dégâts sans compter comme un clic manuel
+                modele.frapperPoisson(modele.joueur.passifBonusDPS, false);
+
+                // Mises à jour des affichages
+                vue.updateScore(modele.obtenirScore());
+                vue.updateClic(modele.obtenirNbClics());
                 vue.updateArgent(modele.joueur.argent);
                 vue.updateFish(modele.obtenirFish());
                 vue.updateAmeliorations(modele.joueur.argent);
             }
-        }, 200);
-    }
+        }, 50);
+    },
+};
 
-}
-
-controller.chargerPartie()
-controller.initialiser()
+controller.chargerPartie();
+controller.initialiser();
 controller.degat_passif();

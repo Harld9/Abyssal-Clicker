@@ -630,17 +630,36 @@
    État du poisson
    ===================== */
 
-.dommage {
-    filter: blur(1px) sepia(100%) saturate(300%) hue-rotate(300deg);
-    scale: 0.9;
-    transition: filter, scale 0.1s ease;
+/* Effet de base au survol */
+.imgPoisson:hover img {
+    scale: 0.95;
+    cursor: pointer;
 }
 
+/* Keyframes pour le clic manuel : Flash rouge/enfoncement puis retour immédiat à la normale */
+@keyframes clic-poisson {
+    0% {
+        filter: blur(1px) sepia(100%) saturate(300%) hue-rotate(300deg);
+        scale: 0.85; /* S'enfonce au maximum */
+    }
+    100% {
+        filter: none;
+        scale: 1; /* Revient à sa taille normale */
+    }
+}
+
+/* Quand on applique la classe .dommage, on lance l'animation sur l'image */
+.imgPoisson.dommage img {
+    animation: clic-poisson 0.1s ease-out forwards; /* Durée de 0.1s pour que ce soit ultra rapide */
+}
+
+/* Keyframes pour l'animation des demi-cercles passifs */
 @keyframes dommage-passif-anim {
     0%   { opacity: 1; transform: translate(0, 0); }
     100% { opacity: 0; transform: translate(var(--dx), var(--dy)); }
 }
 
+/* Base des 4 coins (cachés par défaut) */
 .coin {
     position: absolute;
     width: 50px;
@@ -651,42 +670,19 @@
     pointer-events: none;
 }
 
-.coin-hg {
-    top: 10px;
-    left: 10px;
-    --dx: 10px; --dy: 10px;
-    border-top-color: transparent !important;
-    border-left-color: transparent !important;
-}
+.coin-hg { top: 10px; left: 10px; --dx: -15px; --dy: -15px; }
+.coin-hd { top: 10px; right: 10px; --dx: 15px; --dy: -15px; }
+.coin-bg { bottom: 10px; left: 10px; --dx: -15px; --dy: 15px; }
+.coin-bd { bottom: 10px; right: 10px; --dx: 15px; --dy: 15px; }
 
-.coin-hd {
-    top: 10px;
-    right: 10px;
-    --dx: -10px; --dy: 10px;
-    border-top-color: transparent !important;
-    border-right-color: transparent !important;
-}
-
-.coin-bg {
-    bottom: 10px;
-    left: 10px;
-    --dx: 10px; --dy: -10px;
-    border-bottom-color: transparent !important;
-    border-left-color: transparent !important;
-}
-
-.coin-bd {
-    bottom: 10px;
-    right: 10px;
-    --dx: -10px; --dy: -10px;
-    border-bottom-color: transparent !important;
-    border-right-color: transparent !important;
-}
-
+/* Dégâts passifs : uniquement les demi-cercles */
 .dommage-passif .coin {
-    border-color: darkred;
-    animation: dommage-passif-anim 0.5s ease forwards;
+    animation: dommage-passif-anim 0.4s ease-out forwards;
 }
+.dommage-passif .coin-hg { border-top-color: darkred !important; border-left-color: darkred !important; }
+.dommage-passif .coin-hd { border-top-color: darkred !important; border-right-color: darkred !important; }
+.dommage-passif .coin-bg { border-bottom-color: darkred !important; border-left-color: darkred !important; }
+.dommage-passif .coin-bd { border-bottom-color: darkred !important; border-right-color: darkred !important; }
 
 
 

@@ -17,204 +17,48 @@ const modele = {
         quantiteAchatPassif: 1,
 
         seuilPalier: {
-            1: 0, 2: 10, 3: 25, 4: 45, 5: 70, 6: 100,
-            7: 140, 8: 190, 9: 250, 10: 320,
-            11: 400, 12: 500, 13: 650
-        },
-        //        {
-        //        Palier 1: 0,
-        //        Palier 2: 15,
-        //        Palier 3: 56,
-        //        Palier 4: 152,
-        //        Palier 5: 354,
-        //        Palier 6: 759,
-        //        Palier 7: 1595,
-        //        Palier 8: 3246,
-        //        Palier 9: 6407,
-        //        Palier 10: 12300,
-        //        Palier 11: 23066,
-        //        Palier 12: 43249,
-        //        Palier 13: 84302,
-        //        }
-        inventaireObjetPassif: {
-            amelioration_1: {
-                nom: "Cage a poisson",
-                bonusDPS: 1,
-                prixBase: 250,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_2: {
-                nom: "Filet de peche",
-                bonusDPS: 3,
-                prixBase: 800,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_3: {
-                nom: "Barque a rames avec filet",
-                bonusDPS: 6,
-                prixBase: 1800,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_4: {
-                nom: "Petit bateau a moteur",
-                bonusDPS: 10,
-                prixBase: 4500,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_5: {
-                nom: "Chalutier",
-                bonusDPS: 20,
-                prixBase: 8000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_6: {
-                nom: "Navire-usine",
-                bonusDPS: 75,
-                prixBase: 20000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_7: {
-                nom: "Ferme aquacole",
-                bonusDPS: 200,
-                prixBase: 50000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_8: {
-                nom: "Flotte de chalutiers",
-                bonusDPS: 500,
-                prixBase: 120000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_9: {
-                nom: "Station de pompage marine",
-                bonusDPS: 1500,
-                prixBase: 350000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_10: {
-                nom: "Sous-marin de chalutage",
-                bonusDPS: 4000,
-                prixBase: 1000000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_11: {
-                nom: "Canon a filet en titane",
-                bonusDPS: 6000,
-                prixBase: 1500000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_12: {
-                nom: "Mega-plateforme oceanique",
-                bonusDPS: 10000,
-                prixBase: 3000000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_13: {
-                nom: "Base sous-marine autonome",
-                bonusDPS: 30000,
-                prixBase: 10000000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            }
+            1: 0,
+            2: 25,      // ~25 poissons P1
+            3: 125,     // ~50 poissons P2 (+100 pts)
+            4: 275,     // ~50 poissons P3 (+150 pts)
+            5: 515,     // ~60 poissons P4 (+240 pts)
+            6: 865,     // ~70 poissons P5 (+350 pts)
+            7: 1345,    // ~80 poissons P6 (+480 pts)
+            8: 1975,    // ~90 poissons P7 (+630 pts)
+            9: 2775,    // ~100 poissons P8 (+800 pts)
+            10: 3855,   // ~120 poissons P9 (+1080 pts)
+            11: 5255,   // ~140 poissons P10 (+1400 pts)
+            12: 7125,   // ~170 poissons P11 (+1870 pts)
+            13: 9525    // ~200 poissons P12 pour le boss final
         },
         inventaireObjetClic: {
-            amelioration_1: {
-                nom: "Peche a mains nues",
-                bonusDegat: 1,
-                prixBase: 15,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_2: {
-                nom: "Lance en bois taillee",
-                bonusDegat: 2,
-                prixBase: 50,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_3: {
-                nom: "Epuisette de plage",
-                bonusDegat: 4,
-                prixBase: 150,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_4: {
-                nom: "Canne a peche artisanale",
-                bonusDegat: 6,
-                prixBase: 400,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_5: {
-                nom: "Canne a peche avec moulinet",
-                bonusDegat: 10,
-                prixBase: 1200,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_6: {
-                nom: "Fusil-harpon de plongee",
-                bonusDegat: 25,
-                prixBase: 3000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_7: {
-                nom: "Appats aux pheromones",
-                bonusDegat: 50,
-                prixBase: 12000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_8: {
-                nom: "Canne en fibre de carbone",
-                bonusDegat: 120,
-                prixBase: 30000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_9: {
-                nom: "Harpon pneumat,ique",
-                bonusDegat: 300,
-                prixBase: 75000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_10: {
-                nom: "Fusil a ondes soniques",
-                bonusDegat: 800,
-                prixBase: 180000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_11: {
-                nom: "Gantelet electrique",
-                bonusDegat: 2500,
-                prixBase: 500000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            },
-            amelioration_12: {
-                nom: "Lance-torpilles cryogeniques",
-                bonusDegat: 15000,
-                prixBase: 4500000,
-                quantitePossedee: 0,
-                multiplicateurPrix: 1.05,
-            }
+            amelioration_1: { nom: "Peche a mains nues", bonusDegat: 1, prixBase: 15, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_2: { nom: "Lance en bois taillee", bonusDegat: 2, prixBase: 60, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_3: { nom: "Epuisette de plage", bonusDegat: 4, prixBase: 200, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_4: { nom: "Canne a peche artisanale", bonusDegat: 10, prixBase: 700, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_5: { nom: "Canne a peche avec moulinet", bonusDegat: 25, prixBase: 2500, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_6: { nom: "Fusil-harpon de plongee", bonusDegat: 60, prixBase: 9000, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_7: { nom: "Appats aux pheromones", bonusDegat: 150, prixBase: 30000, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_8: { nom: "Canne en fibre de carbone", bonusDegat: 350, prixBase: 100000, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_9: { nom: "Harpon pneumatique", bonusDegat: 800, prixBase: 350000, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_10: { nom: "Fusil a ondes soniques", bonusDegat: 2000, prixBase: 1200000, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_11: { nom: "Gantelet electrique", bonusDegat: 5000, prixBase: 4000000, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_12: { nom: "Lance-torpilles cryogeniques", bonusDegat: 12000, prixBase: 12000000, quantitePossedee: 0, multiplicateurPrix: 1.15 }
         },
+        inventaireObjetPassif: {
+            amelioration_1: { nom: "Cage a poisson", bonusDPS: 1, prixBase: 25, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_2: { nom: "Filet de peche", bonusDPS: 2, prixBase: 100, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_3: { nom: "Barque a rames avec filet", bonusDPS: 5, prixBase: 400, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_4: { nom: "Petit bateau a moteur", bonusDPS: 12, prixBase: 1500, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_5: { nom: "Chalutier", bonusDPS: 30, prixBase: 6000, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_6: { nom: "Navire-usine", bonusDPS: 70, prixBase: 25000, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_7: { nom: "Ferme aquacole", bonusDPS: 180, prixBase: 100000, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_8: { nom: "Flotte de chalutiers", bonusDPS: 450, prixBase: 350000, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_9: { nom: "Station de pompage marine", bonusDPS: 1000, prixBase: 1200000, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_10: { nom: "Sous-marin de chalutage", bonusDPS: 2500, prixBase: 4000000, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_11: { nom: "Canon a filet en titane", bonusDPS: 6000, prixBase: 12000000, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+            amelioration_12: { nom: "Mega-plateforme oceanique", bonusDPS: 15000, prixBase: 35000000, quantitePossedee: 0, multiplicateurPrix: 1.15 },
+        }
     },
 
 
@@ -248,14 +92,14 @@ const modele = {
                 Image: "./static/images/poissons/Poisson3.png",
                 ImageShiny: "./static/images/poissons/Poisson3Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson3Golden.png",
-                PV: 80
+                PV: 100
             },
             {
                 Nom: "Barnabé l'Alose, Grand Argentier du Courant Froid.",
                 Image: "./static/images/poissons/Poisson4.png",
                 ImageShiny: "./static/images/poissons/Poisson4Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson4Golden.png",
-                PV: 80
+                PV: 100
             }
         ],
 
@@ -265,14 +109,14 @@ const modele = {
                 Image: "./static/images/poissons/Poisson5.png",
                 ImageShiny: "./static/images/poissons/Poisson5Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson5Golden.png",
-                PV: 200
+                PV: 500
             },
             {
                 Nom: "M. Saumon, le Grand Saumon Rose",
                 Image: "./static/images/poissons/Poisson6.png",
                 ImageShiny: "./static/images/poissons/Poisson6Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson6Golden.png",
-                PV: 200
+                PV: 500
             }
         ],
 
@@ -282,14 +126,14 @@ const modele = {
                 Image: "./static/images/poissons/Poisson7.png",
                 ImageShiny: "./static/images/poissons/Poisson7Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson7Golden.png",
-                PV: 500
+                PV: 2000
             },
             {
                 Nom: "Sa Majesté Finbar le Poisson Rouge Étincelant d'Écaille.",
                 Image: "./static/images/poissons/Poisson8.png",
                 ImageShiny: "./static/images/poissons/Poisson8Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson8Golden.png",
-                PV: 500
+                PV: 2000
             }
         ],
 
@@ -299,14 +143,14 @@ const modele = {
                 Image: "./static/images/poissons/Poisson9.png",
                 ImageShiny: "./static/images/poissons/Poisson9Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson9Golden.png",
-                PV: 1200
+                PV: 8000
             },
             {
                 Nom: "Godefroy le Brochet, Archiduc des Eaux Troubles et Pourfendeur de Hameçons",
                 Image: "./static/images/poissons/Poisson10.png",
                 ImageShiny: "./static/images/poissons/Poisson10Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson10Golden.png",
-                PV: 1200
+                PV: 8000
             }
         ],
 
@@ -316,14 +160,14 @@ const modele = {
                 Image: "./static/images/poissons/Poisson11.png",
                 ImageShiny: "./static/images/poissons/Poisson11Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson11Golden.png",
-                PV: 3000
+                PV: 30000
             },
             {
                 Nom: "Thon Thon, l'Oncle Aimant (et un peu gras)",
                 Image: "./static/images/poissons/Poisson12.png",
                 ImageShiny: "./static/images/poissons/Poisson12Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson12Golden.png",
-                PV: 3000
+                PV: 30000
             }
         ],
 
@@ -333,14 +177,14 @@ const modele = {
                 Image: "./static/images/poissons/Poisson13.png",
                 ImageShiny: "./static/images/poissons/Poisson13Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson13Golden.png",
-                PV: 7000
+                PV: 120000
             },
             {
                 Nom: "Mâchouille le Barracuda, Duc de la Mandibule Grognone",
                 Image: "./static/images/poissons/Poisson14.png",
                 ImageShiny: "./static/images/poissons/Poisson14Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson14Golden.png",
-                PV: 7000
+                PV: 120000
             }
         ],
 
@@ -350,14 +194,14 @@ const modele = {
                 Image: "./static/images/poissons/Poisson15.png",
                 ImageShiny: "./static/images/poissons/Poisson15Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson15Golden.png",
-                PV: 15000
+                PV: 450000
             },
             {
                 Nom: "Michel Requin-Baleine, Grand Intendant de la Copropriété Subaquatique",
                 Image: "./static/images/poissons/Poisson16.png",
                 ImageShiny: "./static/images/poissons/Poisson16Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson16Golden.png",
-                PV: 15000
+                PV: 450000
             }
         ],
 
@@ -367,14 +211,14 @@ const modele = {
                 Image: "./static/images/poissons/Poisson17.png",
                 ImageShiny: "./static/images/poissons/Poisson17Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson17Golden.png",
-                PV: 40000
+                PV: 1500000
             },
             {
                 Nom: "Albert le Cybéroche, Grand Architecte du Réseau de Neurones Marins",
                 Image: "./static/images/poissons/Poisson18.png",
                 ImageShiny: "./static/images/poissons/Poisson18Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson18Golden.png",
-                PV: 40000
+                PV: 1500000
             }
         ],
 
@@ -384,14 +228,14 @@ const modele = {
                 Image: "./static/images/poissons/Poisson19.png",
                 ImageShiny: "./static/images/poissons/Poisson19Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson19Golden.png",
-                PV: 100000
+                PV: 5000000
             },
             {
                 Nom: "Moby le Carassin d'Azur, Archiduc de la Patrouille de Bulle",
                 Image: "./static/images/poissons/Poisson20.png",
                 ImageShiny: "./static/images/poissons/Poisson20Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson20Golden.png",
-                PV: 100000
+                PV: 5000000
             }
         ],
 
@@ -401,14 +245,14 @@ const modele = {
                 Image: "./static/images/poissons/Poisson21.png",
                 ImageShiny: "./static/images/poissons/Poisson21Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson21Golden.png",
-                PV: 300000
+                PV: 15000000
             },
             {
                 Nom: "Grognon l'Esturgeon, Archimage de la Bave",
                 Image: "./static/images/poissons/Poisson22.png",
                 ImageShiny: "./static/images/poissons/Poisson22Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson22Golden.png",
-                PV: 300000
+                PV: 15000000
             }
         ],
 
@@ -418,14 +262,14 @@ const modele = {
                 Image: "./static/images/poissons/Poisson23.png",
                 ImageShiny: "./static/images/poissons/Poisson23Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson23Golden.png",
-                PV: 750000
+                PV: 35000000
             },
             {
                 Nom: "Jean le Grand Blanc, Baron des Balafres et de la Bavure",
                 Image: "./static/images/poissons/Poisson24.png",
                 ImageShiny: "./static/images/poissons/Poisson24Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson24Golden.png",
-                PV: 750000
+                PV: 35000000
             }
         ],
 
@@ -435,7 +279,7 @@ const modele = {
                 Image: "./static/images/poissons/Poisson25.png",
                 ImageShiny: "./static/images/poissons/Poisson25Shiny.png",
                 ImageGolden: "./static/images/poissons/Poisson25Golden.png",
-                PV: 3000000
+                PV: 80000000
             }
         ]
     },
@@ -472,6 +316,20 @@ const modele = {
             console.log("Nouveau poisson :", nouveauPoisson);
         }
     },
+
+    degat_passif() {
+        setInterval(function () {
+            if (modele.joueur.passifBonusDPS > 0) {
+                vue.damageFish();
+                modele.frapperPoisson(modele.joueur.passifBonusDPS);
+                vue.updateArgent(modele.joueur.argent);
+                vue.updateFish(modele.obtenirFish());
+                vue.updateScore(modele.obtenirScore());
+                vue.updateClic(modele.obtenirNbClics());
+            }
+        }, 50);
+    },
+
     ajout_item_Passif(typeItem) {
         const item = this.joueur.inventaireObjetPassif[typeItem];
 
@@ -633,13 +491,13 @@ const modele = {
         if (randomRarete <= 0.05) {
             imageFinale = chosenFish.ImageShiny;
             rarete = "shiny";
-            multiplicateurArgent = 5;
+            multiplicateurArgent = 20;
         }
         // GOLDEN = 10%
         else if (randomRarete <= 0.10) {
             imageFinale = chosenFish.ImageGolden;
             rarete = "golden";
-            multiplicateurArgent = 5;
+            multiplicateurArgent = 10;
         }
         // Retour du poisson final
         return {

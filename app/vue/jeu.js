@@ -1,12 +1,33 @@
 const vue = {
     /**
+     * Formate un nombre avec des points et sa définition en lettres
+     * Ex: 1500000 devient "1.500.000 (1.50 millions)"
+     */
+    formaterNombre(nombre) {
+        if (nombre >= 1000000000000000) {
+            return "(" + (nombre / 1000000000000000).toFixed(3).replace('.', ',') + " billiards)";
+        } else if (nombre >= 1000000000000) {
+            return "(" + (nombre / 1000000000000).toFixed(3).replace('.', ',') + " billions)";
+        } else if (nombre >= 1000000000) {
+            return "(" + (nombre / 1000000000).toFixed(3).replace('.', ',') + " milliards)";
+        } else if (nombre >= 1000000) {
+            return "(" + (nombre / 1000000).toFixed(3).replace('.', ',') + " millions)";
+        } else if (nombre >= 1000) {
+            return "(" + (nombre / 1000).toFixed(3).replace('.', ',') + " milliers)";
+        } else if (nombre >= 100) {
+            return "(" + (nombre / 100).toFixed(3).replace('.', ',') + " centaines)";
+        }
+
+        return nombre.toString();
+    },
+    /**
      * Met à jour l'affichage du nombre de clics
      * @param {number} nouveauClic - modele.joueur.nbClics
      * @returns {void} - met à jour le textContent de <p id="nbClic">
      */
     updateClic(nouveauClic) {
         const affichageClic = document.getElementById("nbClic")
-        affichageClic.textContent = nouveauClic
+        affichageClic.textContent = this.formaterNombre(nouveauClic);
         console.log("Nombre de clics : " + nouveauClic)
     },
 
@@ -17,7 +38,7 @@ const vue = {
      */
     updateArgent(nouveauArgent) {
         const affichageArgent = document.getElementById("argent")
-        affichageArgent.textContent = "Argent :" + nouveauArgent
+        affichageArgent.textContent = "Argent : " + this.formaterNombre(nouveauArgent);
         console.log(nouveauArgent + "argent")
     },
 
@@ -28,12 +49,35 @@ const vue = {
      *                   la classe "dommage" doit être définie dans index.css
      */
     damageFish() {
-        const poisson = document.getElementById("imgPoisson")
-        void poisson.offsetWidth;
-        poisson.classList.add("dommage")
-        setTimeout(() => {
-            poisson.classList.remove("dommage")
-        }, 100)
+        const bouton = document.getElementById("imgPoisson");
+        if (!bouton) return;
+        bouton.classList.remove("dommage");
+        void bouton.offsetWidth;
+        bouton.classList.add("dommage");
+    },
+
+    updateDeblocageItems(type, inventaire) {
+        const prefixHtml = type === "clic" ? "a-clic-" : "a-passif-";
+
+        for (let i = 1; i <= 12; i++) {
+            const bloc = document.getElementById(prefixHtml + i);
+            const item = inventaire["amelioration_" + i];
+
+            if (!bloc || !item) continue;
+
+            if (i === 1) {
+                bloc.classList.remove("inconnu");
+                continue;
+            }
+
+            const itemPrecedent = inventaire["amelioration_" + (i - 1)];
+
+            if (itemPrecedent && itemPrecedent.quantitePossedee > 0) {
+                bloc.classList.remove("inconnu");
+            } else {
+                bloc.classList.add("inconnu");
+            }
+        }
     },
 
     /**
@@ -62,7 +106,7 @@ const vue = {
      */
     updateScore(nouveauMortPoisson) {
         const affichageMortPoisson = document.getElementById('nbScore')
-        affichageMortPoisson.textContent = nouveauMortPoisson
+        affichageMortPoisson.textContent = this.formaterNombre(nouveauMortPoisson);
         console.log("Poissons morts : " + nouveauMortPoisson)
     },
 
@@ -82,6 +126,97 @@ const vue = {
 
         zonePoisson.style.backgroundImage =
             `url("./static/background/${palier}_profondeur.png")`;
+    },
+
+    creerItems(type, inventaire) {
+        const liste = document.getElementById(
+            type === "clic" ? "liste-clic" : "liste-passif"
+        );
+
+        liste.innerHTML = "";
+
+        for (let index = 1; index <= 12; index++) {
+            const item = inventaire["amelioration_" + index];
+            if (!item) continue;
+
+            const itemPrecedent = inventaire["amelioration_" + (index - 1)];
+
+            const estDebloque =
+                index === 1 || itemPrecedent.quantitePossedee > 0;
+
+            const estProchainMystere =
+                index > 1 &&
+                itemPrecedent &&
+                itemPrecedent.quantitePossedee === 0;
+
+            if (!estDebloque && !estProchainMystere) {
+                continue;
+            }
+
+            const bloc = document.createElement("div");
+            bloc.className = "amelioration";
+            bloc.id = type === "clic" ? "a-clic-" + index : "a-passif-" + index;
+
+            const imageItem = type === "passif"
+                ? `./static/images/items/Item${index}Passif.png`
+                : `./static/images/items/Item${index}.png`;
+
+            if (estDebloque) {
+                bloc.innerHTML = `
+                <img class="a-img" alt="a-img" src="${imageItem}">
+                <div class="a-nom-prix">
+                    <p class="a-nom">${item.nom}</p>
+                    <p class="a-prix">0 argents</p>
+                </div>
+                <div class="a-quantite">x0</div>
+            `;
+
+                liste.appendChild(bloc);
+                const quantiteAchat = type === "clic"
+                    ? modele.joueur.quantiteAchatClic
+                    : modele.joueur.quantiteAchatPassif;
+
+                this.updateItem(bloc.id, item, quantiteAchat);
+            } else {
+                bloc.classList.add("inconnu");
+
+                bloc.innerHTML = `
+                <img class="a-img" alt="a-img" src="./static/images/ui/question-mark.png">
+                <div class="a-nom-prix">
+                    <p class="a-nom">????</p>
+                    <p class="a-prix">????</p>
+                </div>
+                <div class="a-quantite"></div>
+            `;
+
+                liste.appendChild(bloc);
+                break;
+            }
+        }
+    },
+
+    updateItem(idHtml, item, quantiteAchat = 1) {
+        const bloc = document.getElementById(idHtml);
+        if (!bloc || !item) return;
+
+        let prixTotal = 0;
+
+        for (let i = 0; i < quantiteAchat; i++) {
+            prixTotal += Math.round(
+                item.prixBase * Math.pow(
+                    item.multiplicateurPrix,
+                    item.quantitePossedee + i
+                )
+            );
+            bloc.querySelector(".a-prix").textContent = this.formaterNombre(prixTotal) + " argents";
+
+            bloc.dataset.prix = prixTotal;
+
+            bloc.querySelector(".a-quantite").textContent = "x" + item.quantitePossedee;
+        }
+
+        bloc.querySelector(".a-prix").textContent = this.formaterNombre(prixTotal) + " argents";
+        bloc.querySelector(".a-quantite").textContent = "x" + item.quantitePossedee;
     },
 
 
@@ -133,12 +268,16 @@ const vue = {
     updateAmeliorations(argent) {
         const ameliorations = document.querySelectorAll(".amelioration:not(.inconnu)")
         ameliorations.forEach(amelioration => {
-            const prixTexte = amelioration.querySelector(".a-prix").textContent
-            const prix = parseInt(prixTexte)
-            if (argent < prix) {
-                amelioration.classList.add("inaccessible")
-            } else {
-                amelioration.classList.remove("inaccessible")
+            // On récupère le prix brut qu'on a caché dans dataset.prix
+            const prix = parseInt(amelioration.dataset.prix);
+
+            // Sécurité : on s'assure que le prix a bien été chargé
+            if (!isNaN(prix)) {
+                if (argent < prix) {
+                    amelioration.classList.add("inaccessible")
+                } else {
+                    amelioration.classList.remove("inaccessible")
+                }
             }
         })
     },
@@ -151,7 +290,7 @@ const vue = {
      */
     updateDegatsClick(dommagesActuels) {
         const affichage = document.querySelector("#a-clic .a-dps")
-        if (affichage) affichage.textContent = dommagesActuels + " dégâts/clic"
+        if (affichage) affichage.textContent = this.formaterNombre(dommagesActuels) + " dégâts/clic";
     },
 
     /**
@@ -166,7 +305,7 @@ const vue = {
             totalDPS += item.bonusDPS * item.quantitePossedee
         })
         const affichage = document.querySelector("#a-passif .a-dps")
-        if (affichage) affichage.textContent = totalDPS + " dégâts/tick"
+        if (affichage) affichage.textContent = this.formaterNombre(totalDPS) + " dégâts/tick";
     },
 
     /**
@@ -190,11 +329,11 @@ const vue = {
      *                   pas de rétrécissement, uniquement un effet de bordure
      */
     damageFishPassif() {
-        const bouton = document.querySelector("#imgPoisson")
-        bouton.classList.remove("dommage-passif")
-        void bouton.offsetWidth
-        bouton.classList.add("dommage-passif")
-        // pas de setTimeout — forwards garde le dernier état
+        const bouton = document.getElementById("imgPoisson");
+        if (!bouton) return;
+        bouton.classList.remove("dommage-passif");
+        void bouton.offsetWidth;
+        bouton.classList.add("dommage-passif");
     },
 
     /**

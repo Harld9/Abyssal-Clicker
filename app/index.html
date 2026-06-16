@@ -1,26 +1,24 @@
 <!doctype html>
 <html lang="fr">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- CSS -->
     <link href="./static/css/main.css" rel="stylesheet" />
     <link href="./static/css/index.css" rel="stylesheet" />
 
-    <!-- Police Poppins via Google Fonts -->
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     />
 
     <title>Abyssal Clicker</title>
-  </head>
+</head>
 
-  <body>
-    <div id="interface">
-      <!-- Colonne gauche : score + poisson cliquable -->
-      <div id="poisson-score">
+<body>
+<div id="interface">
+
+    <div id="poisson-score">
         <div id="score-bg">
             <div id="score">
                 <p>Score</p>
@@ -29,6 +27,7 @@
                 <p id="nbClic">0</p>
             </div>
         </div>
+
         <div id="poisson">
             <button class="imgPoisson" id="imgPoisson">
                 <img src="./static/images/ui/wooden_play.png" alt="Poisson au chocolat">
@@ -39,10 +38,9 @@
             </button>
             <p id="nomPoisson">Commencez à jouer !</p>
         </div>
-      </div>
+    </div>
 
-      <!-- Colonne centrale : barre des paliers -->
-      <div class="" id="paliers">
+    <div id="paliers">
         <button class="palier" id="palier-1">1</button>
         <button class="palier" id="palier-2">2</button>
         <button class="hidden palier" id="palier-3">3</button>
@@ -56,159 +54,99 @@
         <button class="hidden palier" id="palier-11">11</button>
         <button class="hidden palier" id="palier-12">12</button>
         <button class="hidden palier" id="palier-13">13</button>
-      </div>
+    </div>
 
-    <!-- Colonne droite : argent + améliorations -->
-    <div class="" id="ameliorations-argent">
+    <div id="ameliorations-argent">
         <div id="argent">Argents :</div>
-        <div id="a-titre"><p>Améliorations</p></div>
+
+        <div id="a-titre">
+            <p>Améliorations</p>
+        </div>
+
         <div id="amelioration-page">
             <div id="a-clic">
                 <div class="a-cli-pas-titre">
                     <p>Clic</p>
                     <p class="a-dps">0 dégâts/clic</p>
                 </div>
+
                 <div class="a-quantite-achat">
                     <button class="btn-quantite actif" data-quantite="1">x1</button>
                     <button class="btn-quantite" data-quantite="10">x10</button>
                     <button class="btn-quantite" data-quantite="100">x100</button>
                 </div>
-                <div class="a-box">
-                    <div class="amelioration" id="a-clic-1">
-                        <img class="a-img" alt="a-img" src="./static/images/items/Item1.png">
-                        <div class="a-nom-prix">
-                            <p class="a-nom">Pêche à mains nues</p>
-                            <p class="a-prix">15 argents</p>
-                        </div>
-                        <div class="a-quantite">x26</div>
-                    </div>
-                    <div class="amelioration inconnu" id="a-clic-2">
-                        <img class="a-img" alt="a-img" src="./static/images/ui/question-mark.png">
-                        <div class="a-nom-prix">
-                            <p class="a-nom">????</p>
-                            <p class="a-prix">15 argents</p>
-                        </div>
-                        <div class="a-quantite"></div>
-                    </div>
-                </div>
+
+                <div class="a-box" id="liste-clic"></div>
             </div>
+
             <div id="a-passif">
                 <div class="a-cli-pas-titre">
                     <p>Passif</p>
                     <p class="a-dps">0 dégâts/tick</p>
                 </div>
+
                 <div class="a-quantite-achat">
                     <button class="btn-quantite actif" data-quantite="1">x1</button>
                     <button class="btn-quantite" data-quantite="10">x10</button>
                     <button class="btn-quantite" data-quantite="100">x100</button>
                 </div>
-                <div class="a-box">
-                    <div class="amelioration" id="a-passif-1">
-                        <img class="a-img" alt="a-img" src="./static/images/items/Item1.png">
-                        <div class="a-nom-prix">
-                            <p class="a-nom">Pêche à mains nues</p>
-                            <p class="a-prix">250 argents</p>
-                        </div>
-                        <div class="a-quantite">x26</div>
-                    </div>
-                    <div class="amelioration inconnu" id="a-passif-2">
-                        <img class="a-img" alt="a-img" src="./static/images/ui/question-mark.png">
-                        <div class="a-nom-prix">
-                            <p class="a-nom">????</p>
-                            <p class="a-prix">15 argents</p>
-                        </div>
-                        <div class="a-quantite"></div>
-                    </div>
 
-                </div>
+                <div class="a-box" id="liste-passif"></div>
             </div>
         </div>
-      </div>
+    </div>
 
-      <!-- Panneau succès -->
-      <div class="" id="succes-page">
+    <div id="succes-page">
         <div id="s-titre">
-          <p>Succès</p>
+            <p>Succès</p>
         </div>
+
         <div id="s-box">
-          <div class="succes">
-            <p>succès n°1</p>
-            <p class="s-texte-hover">
-              Description du succès et franchement c'est génial que tu fart avec
-              les copains la nuit avec les copains, avec les copains on fait du
-              boudin avec les copains, c'est rien, c'est les copains
-            </p>
-          </div>
-          <div class="succes inconnu">
-            <p>succès n°2</p>
-            <p class="s-texte-hover">c'est rien, c'est les copains</p>
-          </div>
+            <div class="succes">
+                <p>succès n°1</p>
+                <p class="s-texte-hover">
+                    Description du succès et franchement c'est génial que tu fart avec
+                    les copains la nuit avec les copains, avec les copains on fait du
+                    boudin avec les copains, c'est rien, c'est les copains
+                </p>
+            </div>
+
+            <div class="succes inconnu">
+                <p>succès n°2</p>
+                <p class="s-texte-hover">c'est rien, c'est les copains</p>
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
-    <!-- Bouton options fixe, en dehors du flux de la grille -->
+<button id="options">
+    ⚙
+</button>
 
-    <button id="options">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-settings-icon lucide-settings"
-      >
-        <path
-          d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"
-        />
-        <circle cx="12" cy="12" r="3" />
-      </svg>
-    </button>
+<div id="modale-options" class="hidden">
+    <div id="modale-bg">
+        <button id="fermer-options">X</button>
 
-    <div id="modale-options" class="hidden">
-      <div id="modale-bg">
-        <button id="fermer-options">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-x-icon lucide-x"
-          >
-            <path d="M18 6 6 18" />
-            <path d="m6 6 12 12" />
-          </svg>
-        </button>
         <div id="modale-contenu">
-          <h2>OPTIONS</h2>
-          <div class="modale-sauvegarde">
-            <button id="recup-sauvegarde">Récupérer ma sauvegarde</button>
-            <div class="modale-i-o" id="output-sauvegarde"></div>
-          </div>
-          <div class="modale-sauvegarde">
-            <label for="input-sauvegarde"></label>
-            <input class="modale-i-o" type="text" id="input-sauvegarde" />
-            <button id="ajout-sauvegarde">Utiliser ma sauvegarde</button>
-          </div>
+            <h2>OPTIONS</h2>
+
+            <div class="modale-sauvegarde">
+                <button id="recup-sauvegarde">Récupérer ma sauvegarde</button>
+                <div class="modale-i-o" id="output-sauvegarde"></div>
+            </div>
+
+            <div class="modale-sauvegarde">
+                <label for="input-sauvegarde"></label>
+                <input class="modale-i-o" type="text" id="input-sauvegarde" />
+                <button id="ajout-sauvegarde">Utiliser ma sauvegarde</button>
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
-    <div id="succes-toast-container"></div>
-
-    <!-- Scripts JS dans l'ordre de dépendance -->
-    <script src="./modele/jeu.js"></script>
-    <script src="./vue/jeu.js"></script>
-    <script src="./controller/jeu.js"></script>
-    <script src="./static/js/jeu.js" defer></script>
-  </body>
+<script src="./modele/jeu.js"></script>
+<script src="./vue/jeu.js"></script>
+<script src="./controller/jeu.js"></script>
+<script src="./static/js/jeu.js" defer></script>
+</body>
 </html>
