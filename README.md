@@ -2,6 +2,8 @@
 
 Un jeu de type clicker sur le thème des profondeurs marines. Affrontez des poissons de plus en plus redoutables, améliorez votre équipement et plongez toujours plus loin dans les abysses.
 
+🎮 **Jouer en ligne** : [https://harld9.github.io/Abyssal-Clicker/](https://harld9.github.io/Abyssal-Clicker/)
+
 ---
 
 ## 🎮 Gameplay
@@ -132,7 +134,9 @@ Il est possible d'**exporter** et d'**importer** manuellement une sauvegarde via
 
 ## 🚀 Lancer le projet
 
-Aucune dépendance, aucun build requis. Ouvre simplement `index.html` dans un navigateur.
+Le jeu est jouable directement en ligne via **GitHub Pages** : [https://harld9.github.io/Abyssal-Clicker/](https://harld9.github.io/Abyssal-Clicker/)
+
+Pour le lancer localement, aucune dépendance ni build n'est requis. Ouvre simplement `index.html` dans un navigateur.
 
 Pour éviter les restrictions de sécurité sur les fichiers locaux, utilise un serveur local :
 
