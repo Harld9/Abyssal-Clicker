@@ -1,30 +1,39 @@
 /* =====================
    index.css
-   Layout de l'interface
+   Layout de l'interface du jeu Abyssal Clicker
    ===================== */
 
 
+/* Classe utilitaire — cache complètement un élément (pas d'espace réservé) */
+/* !important pour qu'elle prime sur toute autre règle d'affichage */
 .hidden {
     display: none !important;
 }
 
-/* --- Grille principale --- */
-/* 4 colonnes : poisson-score | paliers (fine) | améliorations | succès */
+/* =====================================================================
+   GRILLE PRINCIPALE
+   ===================================================================== */
+
+/* Conteneur principal de l'interface : grille à 4 colonnes
+   poisson-score (gauche) | paliers (étroite) | améliorations | succès (droite) */
 #interface {
-    width: 100dvw; /* dynamic viewport width  = largeur de l'écran */
-    height: 100dvh; /* dynamic viewport height = hauteur de l'écran */
+    width: 100dvw;  /* dvw = dynamic viewport width — largeur de l'écran */
+    height: 100dvh; /* dvh = dynamic viewport height — hauteur de l'écran */
     display: grid;
+    /* 2fr = 2 parts, 3% = 3% de la largeur, 1fr = 1 part */
     grid-template-columns: 2fr 3% 2fr 1fr;
     grid-template-rows: 1fr;
+    /* Définit les zones nommées de la grille */
     grid-template-areas: "poisson paliers ameliorations succes";
     color: var(--text-color);
     text-align: center;
+    /* Image de fond de palier — visible derrière les sections lors des transitions */
     background-image: url(../background/1_profondeur.png);
     background-size: cover;
     background-position: center;
 }
 
-/* On assigne chaque enfant à sa zone */
+/* Assignation de chaque enfant à sa zone nommée dans la grille */
 #poisson-score {
     grid-area: poisson;
 }
@@ -41,26 +50,39 @@
     grid-area: succes;
 }
 
+/* =====================================================================
+   GRILLE ADAPTATIVE
+   La grille se redéfinit automatiquement quand des sections sont cachées
+   grâce à :has() qui détecte la présence de la classe "hidden"
+   ===================================================================== */
+
+/* Quand les paliers sont cachés : grille à 3 colonnes */
 #interface:has(#paliers.hidden) {
     grid-template-columns: 2fr 2fr 1fr;
     grid-template-areas: "poisson ameliorations succes";
 }
 
+/* Quand les améliorations sont cachées : grille à 2 colonnes */
 #interface:has(#ameliorations-argent.hidden) {
     grid-template-columns: 4fr 1fr;
     grid-template-areas: "poisson succes";
 }
 
+/* Quand la page succès est cachée : une seule colonne pleine largeur */
 #interface:has(#succes-page.hidden) {
     grid-template-columns: 100%;
     grid-template-areas: "poisson";
 }
 
-/* Animation d'apparition pour les sections du jeu */
+/* =====================================================================
+   ANIMATION D'APPARITION DES SECTIONS
+   ===================================================================== */
+
+/* Keyframes : glissement depuis la droite avec fondu */
 @keyframes apparition {
     from {
         opacity: 0;
-        transform: translateX(40px); /* commence à droite */
+        transform: translateX(40px); /* commence 40px à droite */
     }
     to {
         opacity: 1;
@@ -68,7 +90,7 @@
     }
 }
 
-/* Applique l'animation aux sections principales quand elles deviennent visibles */
+/* Applique l'animation à chaque section principale lors de son apparition */
 #succes-page,
 #ameliorations-argent,
 #paliers,
@@ -77,22 +99,28 @@
     animation: apparition 0.5s ease-out;
 }
 
-/* --- Colonne gauche : score + poisson --- */
+/* =====================================================================
+   COLONNE GAUCHE — SCORE + POISSON
+   ===================================================================== */
+
+/* Zone du poisson : grille à 2 lignes (score en haut, poisson en bas) */
 #poisson-score {
     display: grid;
     justify-content: center;
     align-content: center;
     justify-items: center;
     align-items: center;
-    /*auto → la première ligne prend exactement la hauteur de son contenu (#score-bg)
-    1fr → la deuxième ligne prend tout l'espace restant (#poisson)*/
+    /* auto → la ligne 1 prend la hauteur du contenu (#score-bg)
+       1fr → la ligne 2 prend tout le reste (#poisson) */
     grid-template-rows: auto 1fr;
+    /* Image de fond du palier — même que #interface mais affichée localement */
     background-image: url(../background/1_profondeur.png);
     background-size: cover;
     background-position: center center;
     width: 100%;
 }
 
+/* Encadrement bois (planche) du score */
 #score-bg {
     display: flex;
     flex-direction: column;
@@ -100,11 +128,12 @@
     align-items: center;
     background-image: url(../background/plank.webp);
     margin: 10px;
-    width: fit-content;
+    width: fit-content;  /* ne prend que la largeur de son contenu */
     height: fit-content;
     border: 2px solid black;
 }
 
+/* Encadrement intérieur du score avec motif bois */
 #score {
     margin: 5px;
     padding: 2px;
@@ -115,9 +144,9 @@
     background-image: url(../background/patternwood.webp);
     border: 2px solid black;
     background-position: center;
-
 }
 
+/* Conteneur du poisson cliquable */
 #poisson {
     display: flex;
     flex-direction: column;
@@ -126,8 +155,9 @@
     width: 100%;
 }
 
+/* Bouton qui contient l'image du poisson */
 .imgPoisson {
-    position: relative;
+    position: relative; /* nécessaire pour positionner les .coin enfants en absolute */
     background: none;
     width: 100%;
     display: flex;
@@ -136,26 +166,32 @@
     border: none;
 }
 
+/* Image du poisson */
 .imgPoisson img {
     display: block;
     width: 80%;
-    transition: scale 0.1s ease;
+    transition: scale 0.1s ease; /* transition fluide pour l'effet hover */
     margin: 3em;
     height: 200px;
 }
 
+/* Effet de zoom léger au survol */
 .imgPoisson:hover img {
     scale: 0.9;
     cursor: pointer;
 }
 
-/* --- Barre des paliers (colonne centrale fine) --- */
+/* =====================================================================
+   BARRE DES PALIERS — COLONNE CENTRALE FINE
+   ===================================================================== */
+
 #paliers {
     display: flex;
     flex-direction: column;
     background-image: url(../background/plank.webp);
 }
 
+/* Titre "Paliers" en haut de la barre */
 #p-titre {
     background-image: url(../background/patternwood.webp);
     border: 2px solid black;
@@ -168,12 +204,12 @@
     height: 25px;
 }
 
-/* Chaque palier prend une part égale de la hauteur disponible */
+/* Chaque bouton de palier prend une part égale de la hauteur disponible */
 #paliers > button {
     text-align: center;
     align-content: center;
     background-image: url(../background/lightwood.webp);
-    flex: 1 1 0;
+    flex: 1 1 0; /* tous les boutons partagent l'espace équitablement */
     margin: 5%;
     border-width: 2px;
     border-style: solid;
@@ -183,43 +219,49 @@
     color: var(--text-color);
 }
 
+/* Survol : assombrissement léger */
 #paliers > button:hover {
     cursor: pointer;
     filter: brightness(0.9);
 }
 
+/* Palier verrouillé : grisé et non cliquable */
 .palier.inaccessible {
     filter: brightness(0.5);
     cursor: not-allowed;
-    pointer-events: none;
+    pointer-events: none; /* bloque tous les événements souris */
 }
 
+/* Palier actif (celui actuellement affiché) : bordure blanche */
 .palier.actif {
     border: 3px solid white;
 }
 
-/* --- barre : argent + améliorations --- */
+/* =====================================================================
+   ZONE DES AMÉLIORATIONS (clic + passif) + ARGENT
+   ===================================================================== */
+
 #ameliorations-argent {
     height: 100%;
-    min-height: 0;
+    min-height: 0; /* permet à flex de bien gérer l'overflow */
     display: flex;
     flex-direction: column;
     background-image: url(../background/plank.webp)
 }
 
-
-/* Améliorations clic et passif côte à côte */
+/* Conteneur des deux colonnes (clic et passif) côte à côte */
 #amelioration-page {
     display: flex;
     flex: 1;
     min-height: 0;
 }
 
-/* Quand a-passif est caché, a-clic prend toute la largeur */
+/* Quand a-passif est caché, a-clic prend toute la largeur disponible */
 #amelioration-page:has(#a-passif.hidden) > #a-clic {
     width: 100%;
 }
 
+/* Titre "Améliorations" */
 #a-titre {
     background-image: url(../background/patternwood.webp);
     border: 2px solid black;
@@ -228,6 +270,7 @@
     background-size: cover;
 }
 
+/* Chaque colonne (clic et passif) prend 50% de la largeur par défaut */
 #amelioration-page > div {
     height: 100%;
     min-height: 0;
@@ -251,9 +294,10 @@
     flex-direction: column;
 }
 
+/* Titre de chaque colonne (Clic / Passif) avec le compteur de dégâts */
 .a-cli-pas-titre {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* espace les éléments aux extrémités */
     align-items: center;
     padding: 0 5%;
     background-image: url(../background/patternwood.webp);
@@ -263,22 +307,24 @@
     background-size: cover;
 }
 
+/* Affichage du DPS (dégâts par seconde / par clic) */
 .a-dps {
     font-size: 80%;
     color: var(--text-color);
-
     border: 2px solid black;
     background-image: url(../background/lightwood.webp);
 }
 
+/* Conteneur des boutons x1 / x10 / x100 */
 .a-quantite-achat {
     display: flex;
     gap: 4px;
     margin: 2%;
 }
 
+/* Boutons de sélection de quantité d'achat */
 .btn-quantite {
-    flex: 1;
+    flex: 1; /* prennent une part égale de la largeur */
     background-image: url(../background/lightwood.webp);
     background-size: cover;
     background-position: center;
@@ -292,25 +338,29 @@
     filter: brightness(0.9);
 }
 
-/* Bouton sélectionné */
+/* Bouton de quantité actuellement sélectionné */
 .btn-quantite.actif {
     border: 2px solid white;
     filter: brightness(0.8);
 }
 
+/* Liste scrollable des améliorations */
 .a-box {
     display: flex;
     flex-direction: column;
     flex: 1; /* prend tout l'espace restant sous le titre */
     min-height: 0; /* crucial pour que overflow fonctionne dans un flex */
     overflow-y: auto;
-    scrollbar-width: none;
+    scrollbar-width: none; /* cache la scrollbar (Firefox) */
 }
 
-/*----- Amélioration ------*/
+/* =====================================================================
+   ITEMS D'AMÉLIORATION (lignes dans la boutique)
+   ===================================================================== */
+
 .amelioration {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* image gauche, prix milieu, quantité droite */
     align-items: center;
     background-image: url(../background/lightwood.webp);
     border-width: 2px;
@@ -326,17 +376,20 @@
     cursor: pointer;
 }
 
+/* Amélioration trop chère (pas assez d'argent) */
 .amelioration.inaccessible {
     filter: brightness(0.5);
     cursor: not-allowed;
     pointer-events: none; /* bloque le clic */
 }
 
+/* Amélioration pas encore débloquée (affichée avec "????") */
 .amelioration.inconnu {
     filter: grayscale(100%);
     cursor: default;
 }
 
+/* Image de l'amélioration */
 .a-img {
     height: 75px;
     width: 75px;
@@ -345,6 +398,7 @@
     flex-shrink: 0;      /* empêche l'image de rétrécir dans le flex */
 }
 
+/* Conteneur du nom + prix */
 .a-nom-prix {
     display: flex;
     flex-direction: column;
@@ -355,6 +409,7 @@
     margin: 2%;
 }
 
+/* Nom de l'amélioration */
 .a-nom {
     height: 50px;
     width: 100%;
@@ -362,6 +417,7 @@
     font-size: 110%;
 }
 
+/* Prix de l'amélioration */
 .a-prix {
     width: 100%;
     font-size: 80%;
@@ -369,13 +425,13 @@
     border-top: 1px solid black;
 }
 
+/* Quantité possédée (x0, x5, etc.) */
 .a-quantite {
-
     width: 15%;
     margin-right: 2%;
 }
 
-/*----------*/
+/* Encadrement de l'argent en haut de la zone améliorations */
 #argent {
     background-image: url(../background/patternwood.webp);
     border-width: 2px;
@@ -384,17 +440,20 @@
     border-image: initial;
 }
 
+/* =====================================================================
+   PANNEAU DES SUCCÈS
+   ===================================================================== */
 
-/* --- Panneau succès --- */
 #succes-page {
     display: flex;
     flex-direction: column;
     min-height: 0;
     background-image: url(../background/plank.webp);
     border: 1px solid black;
-    position: relative;
+    position: relative; /* nécessaire pour le bon empilement des enfants */
 }
 
+/* Titre "Succès" */
 #s-titre {
     background-image: url(../background/patternwood.webp);
     border-width: 2px;
@@ -405,19 +464,21 @@
     background-position: center;
 }
 
+/* Grille des succès — scrollable verticalement */
 #s-box {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;             /* passe à la ligne quand plus de place */
     flex-direction: row;
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start;     /* alignement en haut, pas centré verticalement */
     align-content: flex-start;
     flex: 1;
     min-height: 0;
     overflow-y: auto;
-    scrollbar-width: none; /* cache la scrollbar comme pour les autres */
+    scrollbar-width: none;
 }
 
+/* Case d'un succès individuel */
 .succes {
     display: flex;
     align-items: center;
@@ -427,29 +488,31 @@
     border-style: solid;
     border-color: black;
     border-image: initial;
-
     margin: 1% 1%;
     width: 50px;
     height: 50px;
-
     position: relative;
     z-index: 1; /* niveau normal */
 }
 
+/* Succès non débloqué : grisé */
 .succes.inconnu {
     filter: grayscale(100%);
     cursor: default;
 }
 
+/* Au survol : monte au-dessus des autres succès */
 .succes:hover {
-    z-index: 100; /* monte au-dessus des autres au survol */
+    z-index: 100;
 }
 
+/* Tooltip flottant (un seul élément réutilisé pour tous les succès) */
+/* Position fixed = relatif à la fenêtre, échappe à tous les overflow */
 #succes-tooltip {
-    position: fixed; /* relatif à la fenêtre — échappe à tous les overflow */
+    position: fixed;
     display: none;
     background-image: url(../background/patternwood.webp);
-    transform: translateX(-50%);
+    transform: translateX(-50%); /* centre horizontalement sur sa position left */
     width: max-content;
     max-width: 150px;
     color: white;
@@ -461,29 +524,36 @@
     pointer-events: none; /* évite que le tooltip capture le mouseleave */
 }
 
+/* =====================================================================
+   POPUP DE SUCCÈS DÉBLOQUÉ (style Steam, en bas de l'écran)
+   ===================================================================== */
+
 #succes-toast-container {
     position: fixed;
     bottom: 20px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); /* centre horizontalement */
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
     z-index: 300;
-    pointer-events: none;
+    pointer-events: none; /* le toast ne bloque pas les clics derrière */
 }
 
+/* Animation d'entrée : glissement depuis le bas + fondu */
 @keyframes succes-slide-in {
     from { transform: translateY(60px); opacity: 0; }
     to   { transform: translateY(0);    opacity: 1; }
 }
 
+/* Animation de sortie : glissement vers le bas + fondu */
 @keyframes succes-slide-out {
     from { transform: translateY(0);    opacity: 1; }
     to   { transform: translateY(60px); opacity: 0; }
 }
 
+/* Le toast lui-même */
 .succes-toast {
     display: flex;
     align-items: center;
@@ -496,10 +566,12 @@
     animation: succes-slide-in 0.4s ease forwards;
 }
 
+/* Quand le toast doit disparaître */
 .succes-toast.out {
     animation: succes-slide-out 0.4s ease forwards;
 }
 
+/* Icône emoji dans le toast */
 .succes-toast-icon {
     width: 44px;
     height: 44px;
@@ -513,6 +585,7 @@
     font-size: 22px;
 }
 
+/* Texte "Succès débloqué" (petit titre doré) */
 .succes-toast-label {
     font-size: 10px;
     font-weight: 500;
@@ -520,12 +593,14 @@
     margin-bottom: 2px;
 }
 
+/* Nom du succès débloqué */
 .succes-toast-titre {
     font-size: 13px;
     font-weight: 500;
     color: var(--text-color);
 }
 
+/* Description / objectif du succès */
 .succes-toast-desc {
     font-size: 11px;
     color: var(--text-color);
@@ -533,8 +608,10 @@
     margin-top: 1px;
 }
 
+/* =====================================================================
+   BOUTON OPTIONS (en haut à droite, toujours visible)
+   ===================================================================== */
 
-/* --- Bouton options fixe en haut à droite --- */
 /* position: fixed = toujours visible, indépendant du scroll */
 #options {
     position: fixed;
@@ -552,20 +629,25 @@
     filter: brightness(0.9);
 }
 
-/* Fond semi-transparent derrière la modale */
+/* =====================================================================
+   MODALE DES OPTIONS (popup pour exporter/importer la sauvegarde)
+   ===================================================================== */
+
+/* Fond semi-transparent qui couvre tout l'écran */
 #modale-options {
     position: fixed;
     top: 0;
     left: 0;
     width: 100dvw;
     height: 100dvh;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.6); /* noir transparent */
     z-index: 200;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* Encadrement principal de la modale */
 #modale-bg {
     background-image: url(../background/plank.webp);
     background-size: cover;
@@ -573,10 +655,10 @@
     border: 2px solid black;
     padding: 20px;
     width: 400px;
-    position: relative;
+    position: relative; /* pour positionner le bouton fermer en absolute */
 }
 
-/* La boîte de la modale */
+/* Contenu interne de la modale */
 #modale-contenu {
     background-image: url(../background/patternwood.webp);
     border: 2px solid black;
@@ -586,6 +668,7 @@
     align-items: center;
 }
 
+/* Sections individuelles de sauvegarde (export et import) */
 .modale-sauvegarde {
     border-top: 1px solid black;
     display: flex;
@@ -598,6 +681,7 @@
 #modale-contenu > h2 {
 }
 
+/* Input/output de sauvegarde (texte affiché ou à coller) */
 .modale-i-o {
     background: white;
     border: 1px solid black;
@@ -606,19 +690,19 @@
     height: 30px;
     display: flex;
     align-items: center;
-    overflow-x: auto;
+    overflow-x: auto; /* scroll horizontal pour les longues sauvegardes */
     scrollbar-width: none;
     font-size: 20px;
-    user-select: all;
+    user-select: all; /* sélectionne tout le texte au clic */
 }
 
+/* Boutons "Récupérer ma sauvegarde" et "Utiliser ma sauvegarde" */
 #recup-sauvegarde, #ajout-sauvegarde {
     background-image: url(../background/lightwood.webp);
     color: var(--text-color);
     border: 2px solid black;
     margin-bottom: 10px;
     width: 100%;
-
 }
 
 .modale-sauvegarde button:hover {
@@ -626,7 +710,7 @@
     filter: brightness(0.9);
 }
 
-/* Bouton fermer */
+/* Bouton fermer (X) en haut à droite de la modale */
 #fermer-options {
     position: absolute;
     top: 8px;
@@ -642,119 +726,127 @@
     color: black;
 }
 
-/* =====================
-   Scrollbar
-   ===================== */
+/* =====================================================================
+   PERSONNALISATION DES SCROLLBARS (Chrome/Safari)
+   ===================================================================== */
 
+/* Largeur de la scrollbar */
 .a-box::-webkit-scrollbar,
 .s-texte-hover::-webkit-scrollbar {
     width: 6px;
 }
 
-/* Cache les flèches */
+/* Cache les flèches haut/bas */
 .a-box::-webkit-scrollbar-button,
 .s-texte-hover::-webkit-scrollbar-button {
     display: none;
 }
 
-/* Fond transparent */
+/* Fond de la scrollbar transparent */
 .a-box::-webkit-scrollbar-track,
 .s-texte-hover::-webkit-scrollbar-track {
     background: transparent;
 }
 
-/* La barre */
+/* La barre de scroll elle-même */
 .a-box::-webkit-scrollbar-thumb,
 .s-texte-hover::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.3);
     border-radius: 4px;
 }
 
+/* Au survol de la scrollbar : un peu plus sombre */
 .a-box::-webkit-scrollbar-thumb:hover,
 .s-texte-hover::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 0, 0, 0.5);
 }
 
-/* =====================
-   État du poisson
-   ===================== */
+/* =====================================================================
+   ANIMATIONS DU POISSON (clic + dégâts passifs)
+   ===================================================================== */
 
-/* Effet de base au survol */
+/* Effet de zoom léger au survol du poisson */
 .imgPoisson:hover img {
     scale: 0.95;
     cursor: pointer;
 }
 
-/* Keyframes pour le clic manuel : Flash rouge/enfoncement puis retour immédiat à la normale */
+/* Animation du clic : flash rouge + enfoncement + retour normal */
 @keyframes clic-poisson {
     0% {
+        /* effet rouge cramoisi avec léger flou */
         filter: blur(1px) sepia(100%) saturate(300%) hue-rotate(300deg);
-        scale: 0.85; /* S'enfonce au maximum */
+        scale: 0.85; /* enfonce au maximum */
     }
     100% {
         filter: none;
-        scale: 1; /* Revient à sa taille normale */
+        scale: 1; /* revient à sa taille normale */
     }
 }
 
-/* Quand on applique la classe .dommage, on lance l'animation sur l'image */
+/* Applique l'animation quand la classe .dommage est ajoutée */
 .imgPoisson.dommage img {
-    animation: clic-poisson 0.1s ease-out forwards; /* Durée de 0.1s pour que ce soit ultra rapide */
+    animation: clic-poisson 0.1s ease-out forwards; /* ultra rapide */
 }
 
-/* Keyframes pour l'animation des demi-cercles passifs */
+/* Animation des 4 demi-cercles aux coins (dégâts passifs) */
+/* Les demi-cercles partent du centre et s'écartent vers leur coin */
 @keyframes dommage-passif-anim {
     0%   { opacity: 1; transform: translate(0, 0); }
     100% { opacity: 0; transform: translate(var(--dx), var(--dy)); }
 }
 
-/* Base des 4 coins (cachés par défaut) */
+/* Style de base des 4 coins (cachés par défaut) */
 .coin {
     position: absolute;
     width: 50px;
     height: 50px;
     border: 3px solid transparent;
-    border-radius: 50%;
+    border-radius: 50%; /* cercle complet */
     opacity: 0;
     pointer-events: none;
 }
 
-.coin-hg { top: 10px; left: 10px; --dx: -15px; --dy: -15px; }
-.coin-hd { top: 10px; right: 10px; --dx: 15px; --dy: -15px; }
-.coin-bg { bottom: 10px; left: 10px; --dx: -15px; --dy: 15px; }
-.coin-bd { bottom: 10px; right: 10px; --dx: 15px; --dy: 15px; }
+/* Position et direction de déplacement de chaque coin */
+/* --dx et --dy = variables CSS utilisées par l'animation */
+.coin-hg { top: 10px; left: 10px; --dx: -15px; --dy: -15px; }     /* haut gauche */
+.coin-hd { top: 10px; right: 10px; --dx: 15px; --dy: -15px; }     /* haut droite */
+.coin-bg { bottom: 10px; left: 10px; --dx: -15px; --dy: 15px; }   /* bas gauche */
+.coin-bd { bottom: 10px; right: 10px; --dx: 15px; --dy: 15px; }   /* bas droite */
 
-/* Dégâts passifs : uniquement les demi-cercles */
+/* Animation déclenchée par la classe .dommage-passif sur le parent */
 .dommage-passif .coin {
     animation: dommage-passif-anim 0.4s ease-out forwards;
 }
+
+/* Couleur des demi-cercles pour chaque coin (uniquement les bords concernés) */
+/* !important pour surcharger le "border: 3px solid transparent" de base */
 .dommage-passif .coin-hg { border-top-color: darkred !important; border-left-color: darkred !important; }
 .dommage-passif .coin-hd { border-top-color: darkred !important; border-right-color: darkred !important; }
 .dommage-passif .coin-bg { border-bottom-color: darkred !important; border-left-color: darkred !important; }
 .dommage-passif .coin-bd { border-bottom-color: darkred !important; border-right-color: darkred !important; }
 
-
-
+/* Palier bloqué : grisé semi-transparent */
 .palier.bloque {
     filter: grayscale(100%);
     cursor: not-allowed;
     opacity: 0.5;
 }
 
-/* =====================
-   Responsive
-   ===================== */
+/* =====================================================================
+   RESPONSIVE — ADAPTATION TABLETTE
+   ===================================================================== */
 
-/* Tablette */
 @media (max-width: 768px) {
+    /* Sur tablette : grille à 2 colonnes au lieu de 4 */
     #interface {
-        /* paliers passent en bas sur petits écrans */
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr auto;
     }
 
+    /* Paliers en bas, horizontalement */
     #paliers {
-        flex-direction: row; /* paliers horizontaux sur tablette */
-        grid-column: span 2;
+        flex-direction: row;
+        grid-column: span 2; /* prend les 2 colonnes */
     }
 }
