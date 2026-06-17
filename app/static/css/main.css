@@ -1,29 +1,34 @@
 /* =====================
    main.css
-   Reset + base globale
+   Reset CSS + styles globaux du site
    ===================== */
+
+/* Variables CSS globales — réutilisables partout avec var(--nom) */
+/* Définies sur :root pour être accessibles dans tout le document */
 :root {
-    --color-primary: #000000;
-    --color-secondary: #ffffff;
-    --text-color: #ffffff;
+    --color-primary: #000000;   /* couleur principale (noir) */
+    --color-secondary: #ffffff; /* couleur secondaire (blanc) */
+    --text-color: #ffffff;      /* couleur du texte par défaut (blanc) */
 }
 
+/* Reset universel — s'applique à TOUS les éléments de la page */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    user-select: none;
+    margin: 0;              /* supprime les marges par défaut du navigateur */
+    padding: 0;             /* supprime les paddings par défaut du navigateur */
+    box-sizing: border-box; /* la bordure et le padding sont inclus dans la largeur/hauteur */
+    user-select: none;      /* empêche la sélection de texte avec la souris */
 }
 
 /* html et body doivent avoir une hauteur définie
    pour que height: 100% fonctionne dans les enfants */
 html, body {
-    width: 100dvw;   /* dynamic viewport width  = largeur de l'écran */
-    height: 100dvh;  /* dynamic viewport height = hauteur de l'écran */
-    overflow: hidden; /* empêche le scroll global */
-    font-family: 'Poppins', sans-serif;
+    width: 100dvw;    /* dvw = dynamic viewport width  → largeur de l'écran */
+    height: 100dvh;   /* dvh = dynamic viewport height → hauteur de l'écran */
+    overflow: hidden; /* empêche le scroll global (tout reste dans le viewport) */
+    font-family: 'Poppins', sans-serif; /* police importée dans index.html */
 }
 
+/* Empêche le drag-and-drop des images (utile pour les images du jeu) */
 img {
     -webkit-user-drag: none;
 }

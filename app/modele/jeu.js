@@ -1,21 +1,33 @@
-//Objet this qui possède les infos du joueur (score, argent, etc...), des poissons, etc...
-const modele = {
-    joueur: {
-        sauvegardeChargee: false,
-        score: 0,
-        nbClics: 0,
-        dommagesActuels: 1,
-        dommagesBase: 1,
-        argent: 0,
-        palier: 1,
-        mortPoisson: 0,
-        passifBonusDPS: 0,
-        niveau_amelioration_clic: 1,
-        niveau_amelioration_passif: 1,
-        palierActuelAffiche: 1,
-        quantiteAchatClic: 1,
-        quantiteAchatPassif: 1,
+// ============================================================
+// modele/jeu.js
+// Couche MODÈLE du pattern MVC.
+// Contient toutes les données du jeu (joueur, poissons, succès)
+// et toute la logique métier (calculs, achats, sauvegarde, etc.)
+// Ne touche JAMAIS au DOM (sauf via vue.debloquerSuccesVue, exception assumée).
+// ============================================================
 
+const modele = {
+    // ============================================================
+    // DONNÉES DU JOUEUR
+    // ============================================================
+    joueur: {
+        sauvegardeChargee: false,    // true si on a chargé une sauvegarde au démarrage
+        score: 0,                    // score total (sert pour débloquer les paliers)
+        nbClics: 0,                  // compteur de clics manuels (pour affichage uniquement)
+        dommagesActuels: 1,          // dégâts infligés par clic (base + bonus améliorations)
+        dommagesBase: 1,             // dégâts de base sans aucune amélioration
+        argent: 0,                   // argent gagné en tuant les poissons
+        palier: 1,                   // palier max débloqué par le joueur
+        mortPoisson: 0,              // nombre total de poissons tués
+        passifBonusDPS: 0,           // dégâts passifs par tick (somme des améliorations passives)
+        niveau_amelioration_clic: 1, // niveau d'amélioration clic (non utilisé actuellement)
+        niveau_amelioration_passif: 1, // niveau d'amélioration passive (non utilisé actuellement)
+        palierActuelAffiche: 1,      // palier actuellement affiché (peut être < palier pour revoir un ancien)
+        quantiteAchatClic: 1,        // quantité d'achat sélectionnée pour les améliorations clic (1, 10 ou 100)
+        quantiteAchatPassif: 1,      // quantité d'achat sélectionnée pour les améliorations passives
+
+        // Seuils de score nécessaires pour débloquer chaque palier
+        // Le commentaire indique combien de poissons du palier précédent il faut tuer
         seuilPalier: {
             1: 0,
             2: 25,      // ~25 poissons P1
@@ -31,6 +43,20 @@ const modele = {
             12: 7125,   // ~170 poissons P11 (+1870 pts)
             13: 9525    // ~200 poissons P12 pour le boss final
         },
+
+        // ============================================================
+        // LES 72 SUCCÈS DU JEU
+        // Chaque succès a : Numero, Nom (titre affiché), Objectif (description), Emoji, Debloque
+        // Catégories :
+        //   1-4   : généraux
+        //   5-17  : déblocage des paliers (1 succès par palier)
+        //   18-29 : 1er achat de chaque amélioration de clic
+        //   30-41 : 100x achats de chaque amélioration de clic
+        //   42-53 : 1er achat de chaque amélioration passive
+        //   54-65 : 100x achats de chaque amélioration passive
+        //   66-71 : succès de collection (tout acheter)
+        //   72    : succès final (avoir tous les autres)
+        // ============================================================
         succes: {
             Succes1: { Numero: 1, Nom: "Un pêcheur sachant pêcher.", Objectif: "Pêcher votre premier poisson.", Emoji: "🐟", Debloque: false },
             Succes2: { Numero: 2, Nom: "Début de la richesse.", Objectif: "Acquérir 5 argents.", Emoji: "🪙", Debloque: false },
@@ -105,6 +131,16 @@ const modele = {
             Succes71: { Numero: 71, Nom: "Tu as tout consumé.", Objectif: "Acheter 100x toutes les améliorations (clic + passif).", Emoji: "🖤", Debloque: false },
             Succes72: { Numero: 72, Nom: "Les abysses n'ont plus de secrets.", Objectif: "Obtenir tous les succès.", Emoji: "🏆", Debloque: false }
         },
+
+        // ============================================================
+        // INVENTAIRE DES AMÉLIORATIONS DE CLIC (12 améliorations)
+        // Chaque item a :
+        //   nom              : nom affiché
+        //   bonusDegat       : dégâts ajoutés par exemplaire possédé
+        //   prixBase         : prix du 1er exemplaire
+        //   quantitePossedee : nombre acheté
+        //   multiplicateurPrix : facteur d'augmentation du prix à chaque achat (1.15 = +15%)
+        // ============================================================
         inventaireObjetClic: {
             amelioration_1: { nom: "Peche a mains nues", bonusDegat: 1, prixBase: 15, quantitePossedee: 0, multiplicateurPrix: 1.15 },
             amelioration_2: { nom: "Lance en bois taillee", bonusDegat: 2, prixBase: 60, quantitePossedee: 0, multiplicateurPrix: 1.15 },
@@ -119,6 +155,12 @@ const modele = {
             amelioration_11: { nom: "Gantelet electrique", bonusDegat: 5000, prixBase: 4000000, quantitePossedee: 0, multiplicateurPrix: 1.15 },
             amelioration_12: { nom: "Lance-torpilles cryogeniques", bonusDegat: 12000, prixBase: 12000000, quantitePossedee: 0, multiplicateurPrix: 1.15 }
         },
+
+        // ============================================================
+        // INVENTAIRE DES AMÉLIORATIONS PASSIVES (12 améliorations)
+        // Même structure que les améliorations clic, mais bonusDPS au lieu de bonusDegat
+        // bonusDPS = dégâts passifs par tick (= 50ms dans le setInterval)
+        // ============================================================
         inventaireObjetPassif: {
             amelioration_1: { nom: "Cage a poisson", bonusDPS: 1, prixBase: 25, quantitePossedee: 0, multiplicateurPrix: 1.15 },
             amelioration_2: { nom: "Filet de peche", bonusDPS: 2, prixBase: 100, quantitePossedee: 0, multiplicateurPrix: 1.15 },
@@ -135,12 +177,28 @@ const modele = {
         }
     },
 
-
+    // ============================================================
+    // ÉTAT DU POISSON ACTUEL
+    // pvPoissonMax    : points de vie maximum du poisson en cours
+    // pvPoissonActuel : points de vie restants
+    // poissonActuel   : objet poisson avec nom, image, rareté, etc.
+    // ============================================================
     poisson: {
         pvPoissonMax: 10,
         pvPoissonActuel: 10,
         poissonActuel: null,
     },
+
+    // ============================================================
+    // CATALOGUE DES POISSONS
+    // Structuré par palier (1 à 13)
+    // Chaque poisson a :
+    //   Nom         : nom complet (souvent humoristique)
+    //   Image       : image normale
+    //   ImageShiny  : image rare (5% de chance)
+    //   ImageGolden : image dorée (10% de chance)
+    //   PV          : points de vie
+    // ============================================================
     catalogue: {
 
         Palier1: [
@@ -347,6 +405,7 @@ const modele = {
             }
         ],
 
+        // Palier 13 = boss final, un seul poisson
         Palier13: [
             {
                 Nom: "Sir Gilbert le Kraken-Dragon, Premier de Son Nom, Fléau Insignifiant des Poissons-Bulle",
@@ -358,6 +417,18 @@ const modele = {
         ]
     },
 
+    // ============================================================
+    // MÉTHODES DU MODÈLE
+    // ============================================================
+
+    /**
+     * Calcule le prix TOTAL pour acheter quantite exemplaires d'un item
+     * Chaque exemplaire coûte plus cher à cause du multiplicateurPrix (1.15 = +15% à chaque achat)
+     *
+     * Formule pour le i-ème achat : prixBase × multiplicateur^(quantitePossedee + i)
+     * Math.pow(base, exp) = base à la puissance exp
+     * Math.round arrondit à l'entier le plus proche
+     */
     calculerPrixAchatMultiple(item, quantite) {
         let total = 0;
 
@@ -372,14 +443,21 @@ const modele = {
         return total;
     },
 
+    /**
+     * Change le palier affiché (navigation entre paliers déjà débloqués)
+     * Vérifie qu'on ne change pas pour le même palier et qu'on a bien débloqué le palier cible
+     */
     changerPalier(nouveauPalier) {
+        // Si on clique sur le palier actuel, rien à faire
         if (nouveauPalier === this.joueur.palierActuelAffiche) {
             return;
         }
+        // On vérifie que le palier est débloqué (≤ palier max)
         if (nouveauPalier <= this.joueur.palier) {
 
             this.joueur.palierActuelAffiche = nouveauPalier;
 
+            // Spawn d'un nouveau poisson du palier cible
             const nouveauPoisson = this.spawnFish(nouveauPalier);
 
             this.poisson.poissonActuel = nouveauPoisson;
@@ -391,6 +469,10 @@ const modele = {
         }
     },
 
+    /**
+     * Boucle de dégâts passifs (DUPLICATA — la version utilisée est dans le contrôleur)
+     * setInterval lance la fonction à intervalle régulier (toutes les 50ms ici)
+     */
     degat_passif() {
         setInterval(function () {
             if (modele.joueur.passifBonusDPS > 0) {
@@ -404,14 +486,24 @@ const modele = {
         }, 50);
     },
 
+    /**
+     * Achète une amélioration passive
+     * - calcule le prix selon la quantité d'achat (x1, x10 ou x100)
+     * - vérifie que le joueur a assez d'argent
+     * - applique l'achat et recalcule les dégâts passifs
+     * - vérifie les succès
+     */
     ajout_item_Passif(typeItem) {
+        // Récupère l'item par son nom (ex: "amelioration_3")
         const item = this.joueur.inventaireObjetPassif[typeItem];
 
-        if (!item) return;
+        if (!item) return; // sécurité
 
+        // Récupère la quantité d'achat sélectionnée (1, 10 ou 100)
         const quantite = this.joueur.quantiteAchatPassif;
         const prixTotal = this.calculerPrixAchatMultiple(item, quantite);
 
+        // Vérifie l'argent disponible
         if (this.joueur.argent >= prixTotal) {
             this.joueur.argent -= prixTotal;
             item.quantitePossedee += quantite;
@@ -422,20 +514,27 @@ const modele = {
         } else {
             console.log("Argent insuffisant - Prix total :" + prixTotal + " - Argent actuel :" + this.joueur.argent);
         }
-        //on vrifie si on a bien débloqué un ou des succes
+        // On vérifie si on a débloqué des succès suite à l'achat
         this.verifierLesSucces();
     },
 
+    /**
+     * Recalcule la somme totale des dégâts passifs en parcourant tout l'inventaire passif
+     * for...in itère sur les CLÉS d'un objet
+     */
     recalculerDegatsPassif() {
         this.joueur.passifBonusDPS = 0;
         for (const typeItem in this.joueur.inventaireObjetPassif) {
             const item = this.joueur.inventaireObjetPassif[typeItem];
-            //on ajoute les degat en multipliant la quantité posséder et en ajoutant la somme au bonusDPS passif
+            // bonus DPS de cet item × quantité possédée
             this.joueur.passifBonusDPS += item.quantitePossedee * item.bonusDPS;
         }
         console.log("Bonus DPS passif recalculé (finaux passif) : " + this.joueur.passifBonusDPS);
     },
 
+    /**
+     * Achète une amélioration de clic (même logique qu'ajout_item_Passif)
+     */
     ajout_item_Clic(typeItem) {
         const item = this.joueur.inventaireObjetClic[typeItem];
 
@@ -455,25 +554,37 @@ const modele = {
             console.log("Argent insuffisant - Prix total :" + prixTotal + " - Argent actuel :" + this.joueur.argent);
         }
 
-        // on verifie si l'utilisateur a biend débloqué un/des succès
         this.verifierLesSucces();
     },
 
+    /**
+     * Recalcule les dégâts par clic à partir des dommagesBase + bonus des améliorations
+     */
     recalculerDegats() {
         this.joueur.dommagesActuels = this.joueur.dommagesBase;
         for (const typeItem in this.joueur.inventaireObjetClic) {
             const item = this.joueur.inventaireObjetClic[typeItem];
-            //on ajoute les degat en multipliant la quantité posséder et en ajoutant la somme au dommage actuel
+            // bonus de dégâts de cet item × quantité possédée
             this.joueur.dommagesActuels += item.quantitePossedee * item.bonusDegat;
         }
         console.log("Dégâts actuels recalculés (finaux au clic) : " + this.joueur.dommagesActuels);
     },
 
+    /**
+     * Score gagné quand le poisson est tué = numéro du palier actuel
+     * (un poisson palier 5 vaut 5 points)
+     */
     calculerScoreGagnePoisson() {
         console.log("Palier affiché pour score :", this.joueur.palierActuelAffiche);
         return this.joueur.palierActuelAffiche;
     },
 
+    /**
+     * Cœur du gameplay : frappe le poisson actuel
+     *
+     * @param {number} damageAmount - quantité de dégâts à infliger
+     * @param {boolean} compterClic - true si c'est un clic manuel (incrémente nbClics)
+     */
     frapperPoisson(damageAmount, compterClic = true) {
         if (compterClic) {
             this.joueur.nbClics++;
@@ -482,50 +593,56 @@ const modele = {
         console.log("PV avant =", this.poisson.pvPoissonActuel);
         console.log("dommagesActuels joueur =", this.joueur.dommagesActuels);
 
-        // ASTUCE DE PRO : Math.min empêche de faire plus de dégâts que les HP restants
+        // ASTUCE : Math.min empêche de faire plus de dégâts que les HP restants
+        // (sinon on aurait des HP négatifs et de l'argent en trop)
         let dommagesActuels = Math.min(damageAmount, this.poisson.pvPoissonActuel);
 
-        // On retire la vie au poisson
+        // Application des dégâts
         this.poisson.pvPoissonActuel -= dommagesActuels;
 
-        // On donne l'argent immédiat (1 Dégât = 1 Argent)
+        // Argent gagné = dégâts infligés × multiplicateur (selon rareté du poisson)
+        // Math.round pour avoir un entier
         this.joueur.argent += Math.round(dommagesActuels * this.poisson.poissonActuel.multiplicateurArgent)
 
 
         console.log("PV restants :", this.poisson.pvPoissonActuel);
 
+        // Vérification des succès À CHAQUE COUP (pour détecter par exemple le succès "15 argents")
         this.verifierLesSucces();
 
-        // Vérification de la mort du poisson
+        // ----- POISSON TUÉ -----
         if (this.poisson.pvPoissonActuel <= 0) {
 
-            // LE POISSON EST MORT : On donne +1 au Score
+            // Le score augmente du numéro du palier actuel
             this.joueur.score += this.calculerScoreGagnePoisson();
             this.joueur.mortPoisson += 1;
             console.log("Nombres de poissons tués : " + this.joueur.mortPoisson)
             console.log("Argent gagné :", this.joueur.argent);
             console.log("Poisson tué ! Score total : " + this.joueur.score);
 
-            // On vérifie si on passe au Palier Supérieur
-
+            // Vérification du passage au(x) palier(s) supérieur(s)
+            // Le while permet de passer plusieurs paliers d'un coup si le score est très élevé
             while (
                 this.joueur.seuilPalier[this.joueur.palier + 1] &&
                 this.joueur.score >= this.joueur.seuilPalier[this.joueur.palier + 1]
-            ) {
+                ) {
                 this.joueur.palier += 1;
                 console.log("Palier débloqué :", this.joueur.palier);
             }
+
+            // Apparition d'un nouveau poisson du palier actuellement affiché
             const nouveauPoisson = this.spawnFish(this.joueur.palierActuelAffiche);
-            // On fait apparaître le nouveau poisson du bloc correspondant
             this.poisson.poissonActuel = nouveauPoisson;
-            // On réinitialise les PV du poisson
+            // Réinitialisation des PV
             this.poisson.pvPoissonMax = this.poisson.poissonActuel.pvMax;
             this.poisson.pvPoissonActuel = this.poisson.poissonActuel.pvMax;
             console.log("Nouveau poisson modèle :", this.poisson.poissonActuel);
-            // on vérifie si on a bien débloqué les succes
+            // Re-vérification des succès après la mort (palier débloqué, score atteint, etc.)
             this.verifierLesSucces();
         }
     },
+
+    // ----- GETTERS (méthodes qui retournent des données du modèle) -----
 
     obteniritem_Passif(typeItem) {
         return this.joueur.inventaireObjetPassif[typeItem];
@@ -534,12 +651,13 @@ const modele = {
     obteniritem_Clic(typeItem) {
         return this.joueur.inventaireObjetClic[typeItem];
     },
-    //Méthode qui permet d'obtenir le score
+
+    // Méthode qui permet d'obtenir le score
     obtenirScore() {
         return this.joueur.score
     },
 
-    //Méthode qui permet d'obtenir le score
+    // Méthode qui permet d'obtenir le nombre de clics
     obtenirNbClics() {
         return this.joueur.nbClics
     },
@@ -551,38 +669,51 @@ const modele = {
     obtenirDonneesJoueur() {
         return this.joueur
     },
+
     obtenirMortPoisson() {
         return this.joueur.mortPoisson
     },
 
-    //Méthode pour faire apparaître un poisson aléatoire en fonction du palier actuel du joueur
+    /**
+     * Fait apparaître un poisson aléatoire pour le palier donné
+     * Détermine aussi la rareté (normal / golden / shiny) qui influence l'argent gagné
+     */
     spawnFish(playerPalier) {
-        // Liste des poissons du palier actuel
+        // Récupère la liste des poissons du palier
+        // Notation crochets : accès dynamique à une propriété ("Palier" + 5 = "Palier5")
         const currentFishList =
             this.catalogue["Palier" + playerPalier];
-        // Choix d'un poisson aléatoire
+
+        // Choix d'un poisson aléatoire dans la liste
+        // Math.random() retourne un nombre entre 0 et 1
+        // Math.floor() arrondit vers le bas
         const randomIndex =
             Math.floor(Math.random() * currentFishList.length);
         const chosenFish =
             currentFishList[randomIndex];
-        // Génération de la rareté
+
+        // Génération de la rareté (autre Math.random pour avoir un nouveau hasard)
         const randomRarete = Math.random();
-        let imageFinale = chosenFish.Image;
+        let imageFinale = chosenFish.Image;        // image normale par défaut
         let rarete = "normal";
         let multiplicateurArgent = 1;
-        // SHINY = 5%
+
+        // SHINY = 5% de chance (0 → 0.05)
         if (randomRarete <= 0.05) {
             imageFinale = chosenFish.ImageShiny;
             rarete = "shiny";
-            multiplicateurArgent = 20;
+            multiplicateurArgent = 20;  // shiny = argent x20
         }
-        // GOLDEN = 10%
+            // GOLDEN = 10% de chance (0.05 → 0.10)
+        // else if = sinon, si shiny n'est pas sorti, on tente golden
         else if (randomRarete <= 0.10) {
             imageFinale = chosenFish.ImageGolden;
             rarete = "golden";
-            multiplicateurArgent = 10;
+            multiplicateurArgent = 10;  // golden = argent x10
         }
-        // Retour du poisson final
+        // Sinon : normal (90% de chance)
+
+        // Retourne un nouvel objet poisson prêt à l'emploi
         return {
             nom: chosenFish.Nom,
             image: imageFinale,
@@ -593,11 +724,17 @@ const modele = {
         };
     },
 
+    /**
+     * Importe une sauvegarde dans le modèle (depuis localStorage ou import manuel)
+     * @param {Object} donnees - objet désérialisé contenant { joueur, poisson }
+     */
     importerDonneesSauvegarde(donnees) {
+        // Sécurité : si pas de "joueur" dans les données, on annule
         if (donnees.joueur === undefined) {
             return
         }
 
+        // Restauration de toutes les propriétés du joueur
         this.joueur.score = donnees.joueur.score
         this.joueur.nbClics = donnees.joueur.nbClics
         this.joueur.dommagesActuels = donnees.joueur.dommagesActuels
@@ -609,20 +746,31 @@ const modele = {
         this.joueur.passifBonusDPS = donnees.joueur.passifBonusDPS
         this.joueur.mortPoisson = donnees.joueur.mortPoisson
         this.joueur.dommagesBase = donnees.joueur.dommagesBase
+        // palierActuelAffiche = palier max (on affiche le dernier débloqué)
         this.joueur.palierActuelAffiche = this.joueur.palier
 
+        // Restauration des succès (avec vérification de présence pour compatibilité)
         if (donnees.joueur.succes !== undefined) {
             this.joueur.succes = donnees.joueur.succes;
         }
 
+        // Spawn d'un nouveau poisson du palier actuel
         const nouveauPoisson = this.spawnFish(this.joueur.palier)
         this.poisson.poissonActuel = nouveauPoisson
         this.poisson.pvPoissonMax = nouveauPoisson.pvMax
         this.poisson.pvPoissonActuel = nouveauPoisson.pvMax
 
+        // Marqueur pour ne pas regénérer un poisson de départ
         this.joueur.sauvegardeChargee = true
     },
 
+    /**
+     * Exporte la sauvegarde en chaîne encodée (pour copier-coller ou localStorage)
+     * Encodage en 3 étapes :
+     * 1. JSON.stringify : objet → chaîne JSON
+     * 2. encodeURIComponent : encode emojis et accents (sinon btoa plante)
+     * 3. btoa : encode en base64 (chaîne universelle copiable)
+     */
     exporterDonneesSauvegarde() {
         let etatPartie = { joueur: this.joueur, poisson: this.poisson }
         let sauvegardePartie = JSON.stringify(etatPartie)
@@ -633,10 +781,17 @@ const modele = {
         return sauvegardePartieEncode
     },
 
+    /**
+     * Retourne un objet contenant l'état complet du jeu (joueur + poisson)
+     * Utilisé pour la sauvegarde automatique
+     */
     obtenirEtatPartie() {
         return { joueur: this.joueur, poisson: this.poisson }
     },
 
+    /**
+     * Initialise une nouvelle partie : crée le premier poisson si on n'a pas chargé de sauvegarde
+     */
     initialiserNouvellePartie() {
         if (this.joueur.sauvegardeChargee === false) {
             // Création du premier poisson au lancement du jeu
@@ -654,77 +809,96 @@ const modele = {
         }
     },
 
+    /**
+     * Débloque un succès et notifie la vue
+     * @param {string} idSucces - ex: "Succes5"
+     *
+     * VIOLATION MVC volontaire : le modèle appelle directement la vue
+     * (devrait passer par le contrôleur mais on simplifie ici)
+     */
     debloquerSucces(idSucces) {
+        // Vérifie que le succès existe ET n'est pas déjà débloqué (évite les doublons)
         if (this.joueur.succes[idSucces] && this.joueur.succes[idSucces].Debloque === false) {
             this.joueur.succes[idSucces].Debloque = true;
             console.log("🏆 Succès Débloqué : " + this.joueur.succes[idSucces].Nom);
+            // Notification de la vue (toast + régénération du panneau succès)
             vue.debloquerSuccesVue(this.joueur.succes[idSucces]);
         }
     },
 
 
+    /**
+     * Vérifie TOUS les succès du jeu et débloque ceux qui sont atteints
+     * Appelée à chaque action significative (clic, achat, mort de poisson)
+     */
     verifierLesSucces() {
-        // Succès et 2
+        // ----- Succès 1 et 2 (généraux argent et poisson) -----
         if (this.joueur.argent >= 5) this.debloquerSucces("Succes2");
         if (this.joueur.mortPoisson >= 1) this.debloquerSucces("Succes1");
 
-        //  Succès 3 : 15 d'argent OU palier 2 atteint
+        // ----- Succès 3 : débloqué dès 15 argents OU palier 2 atteint -----
         if (this.joueur.argent >= 15 || this.joueur.palier >= 2) {
             this.debloquerSucces("Succes3");
         }
-        // Succès 4 : 25 d'argent OU palier 2 atteint
+        // ----- Succès 4 : débloqué dès 25 argents OU palier 2 atteint -----
         if (this.joueur.argent >= 25 || this.joueur.palier >= 2) {
             this.debloquerSucces("Succes4");
         }
-        // 5 à 17 : Paliers (Palier 1 = Succès 5)
+
+        // ----- Succès 5 à 17 : 1 succès par palier débloqué -----
+        // Palier 1 = Succès 5, Palier 2 = Succès 6, ..., Palier 13 = Succès 17
         for (let i = 1; i <= 13; i++) {
             if (this.joueur.palier >= i) this.debloquerSucces("Succes" + (i + 4));
         }
 
+        // Variables pour les succès de collection (66 à 71)
+        // On les passe à false dès qu'on trouve un item non possédé
         let toutClic1 = true, toutClic100 = true;
         let toutPassif1 = true, toutPassif100 = true;
 
-        // Succès pour les Améliorations au Clic (dps)
+        // ----- Succès améliorations CLIC -----
         for (let i = 1; i <= 12; i++) {
             let item = this.joueur.inventaireObjetClic["amelioration_" + i];
 
-            // Succès 18 à 29 (1x)
+            // Succès 18 à 29 : 1x acheté (Succes18 = amelioration_1, Succes19 = amelioration_2...)
             if (item.quantitePossedee >= 1) this.debloquerSucces("Succes" + (17 + i));
-            else toutClic1 = false;
+            else toutClic1 = false; // s'il manque un item, on note que la collection n'est pas complète
 
-            // Succès 30 à 41 (100x)
+            // Succès 30 à 41 : 100x acheté
             if (item.quantitePossedee >= 100) this.debloquerSucces("Succes" + (29 + i));
             else toutClic100 = false;
         }
 
-        // Succès pour les améliorations Passives
+        // ----- Succès améliorations PASSIVES -----
         for (let i = 1; i <= 12; i++) {
             let item = this.joueur.inventaireObjetPassif["amelioration_" + i];
 
-            // Succès 42 à 53 (1x)
+            // Succès 42 à 53 : 1x acheté
             if (item.quantitePossedee >= 1) this.debloquerSucces("Succes" + (41 + i));
             else toutPassif1 = false;
 
-            // Succès 54 à 65 (100x) - Décalé suite à la suppression de l'objet 13
+            // Succès 54 à 65 : 100x acheté
             if (item.quantitePossedee >= 100) this.debloquerSucces("Succes" + (53 + i));
             else toutPassif100 = false;
         }
 
-        // Succès 66 à 71 : Succès d'achats
-        if (toutClic1) this.debloquerSucces("Succes66");
-        if (toutPassif1) this.debloquerSucces("Succes67");
-        if (toutClic1 && toutPassif1) this.debloquerSucces("Succes68");
+        // ----- Succès 66 à 71 : succès de collection -----
+        if (toutClic1) this.debloquerSucces("Succes66");       // toutes clic 1x
+        if (toutPassif1) this.debloquerSucces("Succes67");     // toutes passif 1x
+        if (toutClic1 && toutPassif1) this.debloquerSucces("Succes68"); // tout 1x
 
-        if (toutClic100) this.debloquerSucces("Succes69");
-        if (toutPassif100) this.debloquerSucces("Succes70");
-        if (toutClic100 && toutPassif100) this.debloquerSucces("Succes71");
+        if (toutClic100) this.debloquerSucces("Succes69");     // toutes clic 100x
+        if (toutPassif100) this.debloquerSucces("Succes70");   // toutes passif 100x
+        if (toutClic100 && toutPassif100) this.debloquerSucces("Succes71"); // tout 100x
 
-        // Succès final 72 : Avoir tous les succes
+        // ----- Succès final 72 : avoir tous les autres succès -----
+        // On compte combien de succès sont débloqués
         let totalDebloques = 0;
         for (let cle in this.joueur.succes) {
             if (this.joueur.succes[cle].Debloque === true) totalDebloques++;
         }
 
+        // Si 71 succès débloqués (= tous sauf le 72) et que le 72 ne l'est pas encore
         if (totalDebloques === 71 && !this.joueur.succes["Succes72"].Debloque) {
             this.debloquerSucces("Succes72");
         }
@@ -733,4 +907,3 @@ const modele = {
 
 
 }
-
