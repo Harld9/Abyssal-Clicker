@@ -14,23 +14,59 @@ const vue = {
      * @returns {string} - la chaîne formatée
      */
     formaterNombre(nombre) {
-        // Les conditions sont en ordre DÉCROISSANT pour attraper d'abord les plus gros nombres
-        // toFixed(3) garde 3 décimales, .replace remplace le point par une virgule (format français)
-        if (nombre >= 1000000000000000) {
-            return (nombre / 1000000000000000).toFixed(3).replace('.', ',') + " billiards";
-        } else if (nombre >= 1000000000000) {
-            return (nombre / 1000000000000).toFixed(3).replace('.', ',') + " billions";
-        } else if (nombre >= 1000000000) {
-            return (nombre / 1000000000).toFixed(3).replace('.', ',') + " milliards";
-        } else if (nombre >= 1000000) {
-            return (nombre / 1000000).toFixed(3).replace('.', ',') + " millions";
-        } else if (nombre >= 1000) {
-            return (nombre / 1000).toFixed(3).replace('.', ',') + " milliers";
-        } else if (nombre >= 100) {
-            return (nombre / 100).toFixed(3).replace('.', ',') + " centaines";
+        /**
+         * Fonction interne (= déclarée à l'intérieur de formaterNombre)
+         * Évite de répéter 6 fois la même logique de formatage
+         *
+         * @param {number} valeur - le nombre déjà divisé (ex: 1.5 pour 1500/1000)
+         * @param {string} unite - le suffixe à coller (ex: "milliers")
+         * @returns {string} - le nombre formaté en français
+         */
+        function formater(valeur, unite) {
+            // ÉTAPE 1 — valeur.toFixed(3) : convertit en chaîne avec EXACTEMENT 3 décimales
+            //   ex: 1 → "1.000", 1.5 → "1.500", 1.234567 → "1.235" (arrondi)
+            //
+            // ÉTAPE 2 — parseFloat(...) : reconvertit la chaîne en nombre,
+            //   ce qui supprime les zéros inutiles à la fin
+            //   ex: "1.000" → 1, "1.500" → 1.5, "1.235" → 1.235
+            //
+            // ÉTAPE 3 — .toString() : reconvertit en chaîne (parseFloat donnait un nombre)
+            //   ex: 1 → "1", 1.5 → "1.5"
+            //
+            // ÉTAPE 4 — .replace('.', ',') : remplace le point par une virgule (format français)
+            //   ex: "1.5" → "1,5"
+            //
+            // ÉTAPE 5 — + " " + unite : ajoute un espace puis le suffixe
+            //   ex: "1,5" + " " + "milliers" → "1,5 milliers"
+            return parseFloat(valeur.toFixed(3)).toString().replace('.', ',') + " " + unite;
         }
 
-        // Si le nombre est < 100, on le retourne tel quel converti en chaîne
+        // Conditions en ordre DÉCROISSANT pour attraper d'abord les plus gros nombres
+        // (si on commençait par 1000, un milliard rentrerait dans la 1ère condition par erreur)
+
+        // 1 000 000 000 000 000 → billiards (10^15)
+        if (nombre >= 1000000000000000) {
+            return formater(nombre / 1000000000000000, "billiards");
+        }
+        // 1 000 000 000 000 → billions (10^12)
+        else if (nombre >= 1000000000000) {
+            return formater(nombre / 1000000000000, "billions");
+        }
+        // 1 000 000 000 → milliards (10^9)
+        else if (nombre >= 1000000000) {
+            return formater(nombre / 1000000000, "milliards");
+        }
+        // 1 000 000 → millions (10^6)
+        else if (nombre >= 1000000) {
+            return formater(nombre / 1000000, "millions");
+        }
+        // 1 000 → milliers (10^3)
+        else if (nombre >= 1000) {
+            return formater(nombre / 1000, "milliers");
+        }
+
+        // Si le nombre est < 1000, on le retourne tel quel converti en chaîne
+        // .toString() transforme 999 (nombre) en "999" (chaîne)
         return nombre.toString();
     },
 
