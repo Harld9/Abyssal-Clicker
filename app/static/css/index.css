@@ -833,6 +833,13 @@
     opacity: 0.5;
 }
 
+.imgPoisson,
+.btn-quantite,
+.amelioration,
+.palier {
+    touch-action: manipulation;
+}
+
 /* =====================================================================
    RESPONSIVE MOBILE — adaptations pour écrans < 768px
    ===================================================================== */
