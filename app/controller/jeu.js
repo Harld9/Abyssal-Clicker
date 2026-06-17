@@ -94,8 +94,12 @@ const controller = {
 
             vue.creerItems("clic", modele.joueur.inventaireObjetClic);
             vue.creerItems("passif", modele.joueur.inventaireObjetPassif);
-
             controller.brancherItems();
+
+            vue.genererSucces(modele.joueur.succes);
+            vue.updateAffichageInterface(modele.joueur.succes);
+            vue.updateBoutonsPaliers(modele.joueur.palierActuelAffiche, modele.joueur.palier);
+            vue.updateFondPalier(modele.joueur.palierActuelAffiche);
 
             vue.updateAmeliorations(modele.joueur.argent);
             vue.updateDegatsClick(modele.joueur.dommagesActuels);
