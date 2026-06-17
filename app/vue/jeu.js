@@ -400,17 +400,22 @@ const vue = {
                 const rect = div.getBoundingClientRect()
                 const tooltipRect = tooltip.getBoundingClientRect()
 
+                // Position horizontale (avec clampage gauche/droite)
                 let left = rect.left + rect.width / 2
-                // si le tooltip dépasse à droite, recule le
                 if (left + tooltipRect.width / 2 > window.innerWidth - 5) {
                     left = window.innerWidth - tooltipRect.width / 2 - 5
                 }
-                // si le tooltip dépasse à gauche
                 if (left - tooltipRect.width / 2 < 5) {
                     left = tooltipRect.width / 2 + 5
                 }
 
-                tooltip.style.top = `${rect.bottom + 5}px`
+                // Position verticale : par défaut en dessous, sinon au-dessus
+                let top = rect.bottom + 5
+                if (top + tooltipRect.height > window.innerHeight - 5) {
+                    top = rect.top - tooltipRect.height - 5
+                }
+
+                tooltip.style.top = `${top}px`
                 tooltip.style.left = `${left}px`
             })
             div.addEventListener("mouseleave", function () {
@@ -473,13 +478,13 @@ const vue = {
         if (n === 66) return allSucces.Succes18.Debloque;
         // Succès 67 : toutes passif 1x → visible si 1er achat passif débloqué
         if (n === 67) return allSucces.Succes42.Debloque;
-        // Succès 68 : toutes clic + passif 1x → visible si l'un ou l'autre débloqué
+        // Succès 68 : tout clic + passif 1x → visible si l'un ou l'autre débloqué
         if (n === 68) return allSucces.Succes18.Debloque || allSucces.Succes42.Debloque;
-        // Succès 69 : toutes clic 100x → visible si 100x clic débloqué
+        // Succès 69 : tout clic 100x → visible si 100x clic débloqué
         if (n === 69) return allSucces.Succes30.Debloque;
-        // Succès 70 : toutes passif 100x → visible si 100x passif débloqué
+        // Succès 70 : tout passif 100x → visible si 100x passif débloqué
         if (n === 70) return allSucces.Succes54.Debloque;
-        // Succès 71 : toutes 100x → visible si l'un ou l'autre débloqué
+        // Succès 71 : tout 100x → visible si l'un ou l'autre débloqué
         if (n === 71) return allSucces.Succes30.Debloque || allSucces.Succes54.Debloque;
 
         // Succès 72 : toujours visible
