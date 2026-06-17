@@ -834,19 +834,160 @@
 }
 
 /* =====================================================================
-   RESPONSIVE — ADAPTATION TABLETTE
+   RESPONSIVE MOBILE — adaptations pour écrans < 768px
    ===================================================================== */
-
 @media (max-width: 768px) {
-    /* Sur tablette : grille à 2 colonnes au lieu de 4 */
-    #interface {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr auto;
+
+    /* === SCROLL GLOBAL === */
+    /* Autorise le scroll vertical (au lieu de overflow: hidden sur desktop) */
+    html, body {
+        overflow-y: auto;
+        height: auto;
+        min-height: 100dvh;
     }
 
-    /* Paliers en bas, horizontalement */
+    /* === LAYOUT DE BASE === */
+    /* Une seule colonne, sections empilées verticalement */
+    #interface {
+        height: auto;
+        min-height: 100dvh;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas:
+            "poisson"
+            "paliers"
+            "ameliorations"
+            "succes";
+    }
+
+    /* Override des règles :has() (qui forcent des layouts horizontaux sur desktop) */
+    #interface:has(#paliers.hidden),
+    #interface:has(#ameliorations-argent.hidden),
+    #interface:has(#succes-page.hidden) {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "poisson"
+            "paliers"
+            "ameliorations"
+            "succes";
+    }
+
+    /* === ZONE POISSON + SCORE === */
+    /* On garde une bonne hauteur pour bien voir le poisson (~50% de l'écran) */
+    #poisson-score {
+        min-height: 50vh;
+        padding: 10px 0;
+    }
+
+    .imgPoisson img {
+        height: 140px;   /* au lieu de 200px */
+        margin: 1em;
+    }
+
+    #score {
+        font-size: 90%;
+    }
+
+    #nomPoisson {
+        font-size: 85%;
+        padding: 0 10px;
+        word-break: break-word; /* coupe les longs noms de poisson */
+    }
+
+    /* === BARRE DE PALIERS === */
+    /* Devient une barre horizontale scrollable */
+    /* === BARRE DE PALIERS === */
     #paliers {
         flex-direction: row;
-        grid-column: span 2; /* prend les 2 colonnes */
+        flex-wrap: wrap;          /* permet au titre d'être sur sa propre ligne */
+        height: auto;
+        min-height: 60px;
+        padding: 5px;
+        align-items: center;
+        overflow-x: visible;       /* plus besoin de scroll horizontal */
+    }
+
+    #paliers::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Titre paliers : prend toute la largeur sur sa ligne */
+    #p-titre {
+        flex: 0 0 100%;            /* force le titre à occuper 100% (= ligne entière) */
+        margin: 2% 0 5px;
+    }
+
+    #paliers > button {
+        flex: 1;                   /* chaque bouton prend une part égale de la largeur dispo */
+        height: 45px;
+        margin: 0 2px;
+        font-size: 85%;
+    }
+
+    /* === AMÉLIORATIONS === */
+    /* Clic et passif empilés verticalement au lieu de côte à côte */
+    #amelioration-page {
+        flex-direction: column;
+    }
+
+    #amelioration-page > div {
+        width: 100%;
+        margin: 1% 0;
+        min-height: 250px;
+    }
+
+    /* Items plus compacts */
+    .a-img {
+        height: 55px;
+        width: 55px;
+    }
+
+    .a-nom-prix {
+        height: auto;
+    }
+
+    .a-nom {
+        height: auto;
+        font-size: 95%;
+    }
+
+    /* === SUCCÈS === */
+    /* Cases plus petites pour en faire tenir plus par ligne */
+    .succes {
+        width: 42px;
+        height: 42px;
+        font-size: 90%;
+    }
+
+    /* === MODALE OPTIONS === */
+    /* S'adapte à la largeur de l'écran */
+    #modale-bg {
+        width: 92vw;
+        max-width: 400px;
+        padding: 15px;
+    }
+
+    .modale-i-o {
+        font-size: 13px;
+    }
+
+    /* === BOUTON OPTIONS === */
+    #options {
+        font-size: 18px;
+        padding: 4px 6px;
+    }
+
+    /* === TOOLTIP DES SUCCÈS === */
+    /* Ne dépasse pas l'écran */
+    #succes-tooltip {
+        max-width: 80vw;
+        font-size: 11px;
+    }
+
+    /* === TOAST DE SUCCÈS === */
+    /* S'adapte à la largeur sur petits écrans */
+    .succes-toast {
+        width: 280px;
+        max-width: 90vw;
     }
 }
